@@ -1,22 +1,20 @@
 package main;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class Application extends javafx.application.Application {
 	@Override
-	public void start(Stage stage) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("application.fxml"));
-		Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-		stage.setTitle("Hello!");
-		stage.setScene(scene);
-		stage.show();
+	public void start(Stage primaryStage) {
+		Button button = new Button("Your JavaFX is working!");
+		Scene scene = new Scene(button, 200, 250);
+		primaryStage.setTitle("JavaFX Test");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 	public static void main(String[] args) {
-		launch();
+		Application.launch();
 	}
 }
