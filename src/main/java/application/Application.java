@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class Application extends javafx.application.Application {
 	@Override
-	public void start(Stage primaryStage) {//hello
+	public void start(Stage primaryStage) {
 		Button button = new Button("Your JavaFX is working!");
 		Scene scene = new Scene(button, 200, 250);
 		primaryStage.setTitle("JavaFX Test");
