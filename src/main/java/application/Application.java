@@ -13,7 +13,7 @@ public class Application extends javafx.application.Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-	// Test
+
 	public static void main(String[] args) {
 		Application.launch();
 	}
