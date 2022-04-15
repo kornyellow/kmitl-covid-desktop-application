@@ -1,20 +1,13 @@
 package application;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import lib.classes.staff.Staff;
+import lib.methods.staff.CVStaff;
 
-public class Debug extends javafx.application.Application {
-	@Override
-	public void start(Stage primaryStage) {
-		Button button = new Button("Your JavaFX is working!");
-		Scene scene = new Scene(button, 200, 250);
-		primaryStage.setTitle("JavaFX Test");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
+import java.util.ArrayList;
 
+public class Debug {
 	public static void main(String[] args) {
-		Application.launch();
+
+		ArrayList<Staff> staffs = CVStaff.getStaffs();
 	}
 }

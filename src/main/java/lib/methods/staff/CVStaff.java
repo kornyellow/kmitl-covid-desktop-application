@@ -52,6 +52,8 @@ public class CVStaff {
 
 		update.where("s_id",  String.valueOf(staff.getID()));
 
+		System.out.println(update.build());
+
 		KornQuery query = new KornQuery(CVDB.getDB());
 		query.query(update);
 		query.close();
