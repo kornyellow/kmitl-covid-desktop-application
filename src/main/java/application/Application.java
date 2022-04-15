@@ -1,15 +1,16 @@
 package application;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import lib.korn.kornutil.KornFix;
+import template.Home;
 
 public class Application extends javafx.application.Application {
 	@Override
 	public void start(Stage primaryStage) {
-		Button button = new Button("Your JavaFX is working!");
-		Scene scene = new Scene(button, 200, 250);
-		primaryStage.setTitle("JavaFX Test");
+		KornFix.fixAll();
+		Scene scene = new Scene(Home.getLayout(), 1920, 1080);
+		primaryStage.setTitle("Covid-19 Desktop Application");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
