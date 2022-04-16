@@ -12,6 +12,7 @@ public class Application extends javafx.application.Application {
 		KornFix.fixAll();
 		Scene scene = new Scene(Home.getLayout(), Config.applicationWidth, Config.applicationHeight);
 		primaryStage.setTitle(Config.applicationTitle);
+		primaryStage.setMaximized(true);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
