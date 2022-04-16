@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 
 
 public class CVDB {
-	public static Connection getConnection(String username, String password, String database) {
+	public static Connection getConnection(String username, String password) {
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(
-				"jdbc:mysql://localhost/" + database,
+				"jdbc:mysql://localhost/covid_application_beta",
 				username,
 				password
 			);
@@ -22,6 +22,6 @@ public class CVDB {
 		return connection;
 	}
 	public static Connection getDB() {
-		return CVDB.getConnection("root", "", "covid_application_beta");
+		return CVDB.getConnection("root", "");
 	}
 }
