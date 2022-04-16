@@ -33,8 +33,6 @@ public class CVStaff {
 		insert.insert("s_firstname", staff.getFirstName());
 		insert.insert("s_lastname", staff.getLastName());
 
-		System.out.println(insert.build());
-
 		KornQuery query = new KornQuery(CVDB.getDB());
 		query.query(insert);
 		int insertedID = query.getInsertedID();
@@ -51,8 +49,6 @@ public class CVStaff {
 		update.set("s_lastname", staff.getLastName());
 
 		update.where("s_id",  String.valueOf(staff.getID()));
-
-		System.out.println(update.build());
 
 		KornQuery query = new KornQuery(CVDB.getDB());
 		query.query(update);
