@@ -1,5 +1,7 @@
 package template;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -65,12 +67,15 @@ public class NonLoggedIn {
 		GridPane.setHalignment(forgotPasswordButton, HPos.CENTER);
 		GridPane.setHalignment(submitButton, HPos.CENTER);
 
-		submitButton.setOnAction(CVAuthEvent.submitButtonEvent(
+		EventHandler<ActionEvent> submitButtonEvent = CVAuthEvent.submitButtonEvent(
 			invalidUsernameLabel,
 			usernameField,
 			invalidPasswordLabel,
 			passwordField
-		));
+		);
+		submitButton.setOnAction(submitButtonEvent);
+		usernameField.setOnAction(submitButtonEvent);
+		passwordField.setOnAction(submitButtonEvent);
 
 		return gridPane;
 	}

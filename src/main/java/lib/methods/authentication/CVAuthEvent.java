@@ -12,10 +12,16 @@ public class CVAuthEvent {
 		Label invalidUsernameLabel, TextField username,
 		Label invalidPasswordLabel, TextField password) {
 		return actionEvent -> {
-//			invalidUsernameLabel.setText("");
-//			invalidPasswordLabel.setText("");
-//			if (username.getText().isEmpty()) invalidUsernameLabel.setText("กรุณาใส่ชื่อผู้ใช้");
-//			if (password.getText().isEmpty()) invalidPasswordLabel.setText("กรุณาใส่รหัสผ่าน");
+			invalidUsernameLabel.setText("");
+			invalidPasswordLabel.setText("");
+			if (password.getText().isEmpty()) {
+				invalidPasswordLabel.setText("กรุณาใส่รหัสผ่าน");
+				password.requestFocus();
+			}
+			if (username.getText().isEmpty()) {
+				invalidUsernameLabel.setText("กรุณาใส่ชื่อผู้ใช้");
+				username.requestFocus();
+			}
 			if (username.getText().isEmpty() || password.getText().isEmpty()) return;
 
 			Staff staff = new Staff();
@@ -26,6 +32,8 @@ public class CVAuthEvent {
 
 			username.setText("");
 			password.setText("");
+
+			username.requestFocus();
 		};
 	}
 }
