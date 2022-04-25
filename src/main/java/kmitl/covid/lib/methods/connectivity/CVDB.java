@@ -1,6 +1,6 @@
 package kmitl.covid.lib.methods.connectivity;
 
-import kmitl.covid.lib.methods.encryption.KornEncryption;
+import kmitl.covid.lib.korn.kornutil.KornEncryption;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

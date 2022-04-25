@@ -1,4 +1,4 @@
-package kmitl.covid.lib.methods.encryption;
+package kmitl.covid.lib.korn.kornutil;
 
 import java.util.Base64;
 
