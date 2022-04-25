@@ -14,11 +14,9 @@ public class CVDB {
 				username,
 				password
 			);
-
 		} catch (Exception e) {
 			System.out.println("ERROR: Unable to connect to database (" + e.getMessage() + ")");
 		}
-
 		return connection;
 	}
 	public static Connection getDB() {
