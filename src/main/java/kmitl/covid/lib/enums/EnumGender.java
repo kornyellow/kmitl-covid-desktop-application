@@ -1,13 +1,22 @@
 package kmitl.covid.lib.enums;
 
-import kmitl.covid.lib.korn.kornutil.KornEnum;
-
-public class EnumGender extends KornEnum {
-	public EnumGender(String key) {
-		super(key);
+public enum EnumGender {
+	MALE("Male", "ผู้ชาย"),
+	FEMALE("Female", "ผู้หญิง"),
+	OTHER("Other", "อื่น ๆ"),
+	;
+	EnumGender(String english, String thai) {
+		this.english = english;
+		this.thai = thai;
 	}
 
-	public static EnumGender MALE() { return new EnumGender("เพศชาย"); }
-	public static EnumGender FEMALE() { return new EnumGender("เพศหญิง"); }
-	public static EnumGender OTHER() { return new EnumGender("อื่น ๆ"); }
+	private final String english;
+	private final String thai;
+
+	public String getEnglish() {
+		return english;
+	}
+	public String getThai() {
+		return thai;
+	}
 }
