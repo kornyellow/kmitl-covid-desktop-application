@@ -9,6 +9,10 @@ public class User {
 		this.id = -1;
 	}
 
+	public String getFullName() {
+		return this.nameTitle + " " + this.firstName + " " + this.lastName;
+	}
+
 	private final int id;
 	private String username;
 	private String password;
