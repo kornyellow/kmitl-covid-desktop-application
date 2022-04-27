@@ -8,14 +8,20 @@ import kmitl.covid.template.Home;
 public class Application extends javafx.application.Application {
 	@Override
 	public void start(Stage primaryStage) {
-		Scene scene = new Scene(Home.getLayout(), Config.applicationWidth, Config.applicationHeight);
-		primaryStage.setTitle(Config.applicationTitle);
-		primaryStage.setMaximized(true);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		Application.primaryStage = primaryStage;
+		Application.primaryStage.setScene(Home.getScene());
+		Application.primaryStage.setTitle(Config.applicationTitle);
+		Application.primaryStage.setMaximized(true);
+		Application.primaryStage.show();
 	}
 
 	public static void main(String[] args) {
 		Application.launch();
+	}
+
+	private static Stage primaryStage;
+
+	public static void setStageScene(Scene scene) {
+		Application.primaryStage.setScene(scene);
 	}
 }
