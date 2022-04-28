@@ -3,7 +3,6 @@ package kmitl.covid.lib.classes.vaccineschedule;
 import kmitl.covid.lib.korn.kornutil.KornDateTime;
 
 public class VaccineSchedule{
-
 	public VaccineSchedule() {
 		this.id = -1;
 	}

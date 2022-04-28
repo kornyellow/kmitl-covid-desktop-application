@@ -13,25 +13,71 @@ public class KornDateTime {
 		this.calendar = calendar;
 	}
 
+	public String toFullDate() {
+		return this.getDate() + " " +
+			this.getMonthString() + " " +
+			this.getYear();
+	}
+	public String toFullThaiDate() {
+		return this.getDate() + " " +
+			this.getMonthStringThai() + " พ.ศ." +
+			this.getYearThai();
+	}
+
 	public static KornDateTime createFromDate(int date, int month, int year) {
 		KornDateTime toReturn = new KornDateTime();
-		toReturn.getCalendar().set(year, month, date);
+		toReturn.getCalendar().set(Calendar.YEAR, year);
+		toReturn.getCalendar().set(Calendar.MONTH, month - 1);
+		toReturn.getCalendar().set(Calendar.DATE, date);
 		return toReturn;
 	}
 	public static KornDateTime createFromDateTime(int date, int month, int year, int hour, int minute, int second) {
 		KornDateTime toReturn = new KornDateTime();
-		toReturn.getCalendar().set(year, month, date, hour, minute, second);
+		toReturn.getCalendar().set(Calendar.YEAR, year);
+		toReturn.getCalendar().set(Calendar.MONTH, month - 1);
+		toReturn.getCalendar().set(Calendar.DATE, date);
+		toReturn.getCalendar().set(Calendar.HOUR, hour);
+		toReturn.getCalendar().set(Calendar.MINUTE, minute);
+		toReturn.getCalendar().set(Calendar.SECOND, second);
 		return toReturn;
 	}
 	public static KornDateTime createFromThaiDate(int date, int month, int year) {
 		KornDateTime toReturn = new KornDateTime();
-		toReturn.getCalendar().set(year - 543, month, date);
+		toReturn.getCalendar().set(Calendar.YEAR, year - 543);
+		toReturn.getCalendar().set(Calendar.MONTH, month - 1);
+		toReturn.getCalendar().set(Calendar.DATE, date);
 		return toReturn;
 	}
 	public static KornDateTime createFromThaiDateTime(int date, int month, int year, int hour, int minute, int second) {
 		KornDateTime toReturn = new KornDateTime();
-		toReturn.getCalendar().set(year - 543, month, date, hour, minute, second);
+		toReturn.getCalendar().set(Calendar.YEAR, year - 543);
+		toReturn.getCalendar().set(Calendar.MONTH, month - 1);
+		toReturn.getCalendar().set(Calendar.DATE, date);
+		toReturn.getCalendar().set(Calendar.HOUR, hour);
+		toReturn.getCalendar().set(Calendar.MINUTE, minute);
+		toReturn.getCalendar().set(Calendar.SECOND, second);
 		return toReturn;
+	}
+	public static KornDateTime createFromMySQLDate(String dateString) {
+		String[] dates = dateString.split("-");
+		return KornDateTime.createFromDate(
+			Integer.parseInt(dates[2]),
+			Integer.parseInt(dates[1]),
+			Integer.parseInt(dates[0])
+		);
+	}
+	public static KornDateTime createFromMySQLDateTime(String dateTimeString) {
+		String[] dateTimes = dateTimeString.split(" ");
+		String[] dates = dateTimes[0].split("-");
+		String[] times = dateTimes[1].split(":");
+		return KornDateTime.createFromDateTime(
+			Integer.parseInt(dates[2]),
+			Integer.parseInt(dates[1]),
+			Integer.parseInt(dates[0]),
+			Integer.parseInt(times[0]),
+			Integer.parseInt(times[1]),
+			Integer.parseInt(times[2])
+		);
 	}
 
 	public static Map<Integer, String> getMonths() {

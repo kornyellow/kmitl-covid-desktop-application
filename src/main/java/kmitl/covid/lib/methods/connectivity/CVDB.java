@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 
 public class CVDB {
 	public static Connection getConnection(String username, String password) {
+		if (CVDB.connection != null) return CVDB.connection;
 		Connection connection = null;
 		try {
 			connection = DriverManager.getConnection(
@@ -17,6 +18,7 @@ public class CVDB {
 		} catch (Exception e) {
 			System.out.println("ERROR: Unable to connect to database (" + e.getMessage() + ")");
 		}
+		CVDB.connection = connection;
 		return connection;
 	}
 	public static Connection getDB() {
@@ -25,4 +27,6 @@ public class CVDB {
 			KornEncryption.getPassword()
 		);
 	}
+
+	private static Connection connection;
 }

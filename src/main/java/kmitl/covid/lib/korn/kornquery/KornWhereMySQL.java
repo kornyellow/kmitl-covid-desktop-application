@@ -7,16 +7,16 @@ public class KornWhereMySQL {
 		this.compare = compare;
 		this.operator = operator;
 
-		if (this.value == null && this.compare.equal(KornMySQLCompare.EQUAL())) {
-			this.compare = KornMySQLCompare.IS_NULL();
+		if (this.value == null && this.compare.equals(KornMySQLCompare.EQUAL)) {
+			this.compare = KornMySQLCompare.IS_NULL;
 		}
 	}
 
 	public String getWhereString() {
 		StringBuilder output = new StringBuilder();
-		output.append(this.column).append(" ").append(this.compare);
+		output.append(this.column).append(" ").append(this.compare.getValue());
 
-		if (!this.compare.equals(KornMySQLCompare.IS_NULL()) && !this.compare.equals(KornMySQLCompare.IS_NOT_NULL())) {
+		if (!this.compare.equals(KornMySQLCompare.IS_NULL) && !this.compare.equals(KornMySQLCompare.IS_NOT_NULL)) {
 			output.append(" '").append(this.value).append("'");
 		}
 

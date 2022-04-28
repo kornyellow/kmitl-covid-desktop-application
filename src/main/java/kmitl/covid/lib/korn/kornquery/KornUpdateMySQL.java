@@ -10,11 +10,11 @@ public class KornUpdateMySQL extends KornQueryBuilder {
 		return this;
 	}
 	public KornUpdateMySQL where(String column, String value) {
-		this.wheres.add(new KornWhereMySQL(column, KornMySQLCompare.EQUAL(), value, KornMySQLOperator.AND()));
+		this.wheres.add(new KornWhereMySQL(column, KornMySQLCompare.EQUAL, value, KornMySQLOperator.AND));
 		return this;
 	}
 	public KornUpdateMySQL whereWithCompare(String column, KornMySQLCompare compare, String value) {
-		this.wheres.add(new KornWhereMySQL(column, compare, value, KornMySQLOperator.AND()));
+		this.wheres.add(new KornWhereMySQL(column, compare, value, KornMySQLOperator.AND));
 		return this;
 	}
 	public KornUpdateMySQL whereWithCompareAndOperator(String column, KornMySQLCompare compare, String value, KornMySQLOperator operator) {
@@ -42,7 +42,7 @@ public class KornUpdateMySQL extends KornQueryBuilder {
 			output.append(" WHERE");
 			for (KornWhereMySQL where : this.wheres) {
 				if (isAlreadyWhere) {
-					output.append(" ").append(where.getOperator()).append(" ");
+					output.append(" ").append(where.getOperator().getValue()).append(" ");
 				}
 				output.append(" ").append(where.getWhereString()).append(" ");
 				isAlreadyWhere = true;

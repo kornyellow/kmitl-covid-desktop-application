@@ -1,12 +1,14 @@
-package kmitl.covid.lib.classes.vaccinescheduledetail;
+package kmitl.covid.lib.classes.vaccineschedule;
 
 import kmitl.covid.lib.classes.user.User;
 import kmitl.covid.lib.classes.vaccineschedule.VaccineSchedule;
 
 public class VaccineScheduleDetail {
-
 	public VaccineScheduleDetail(){
 		this.id = -1;
+	}
+	public VaccineScheduleDetail(int id) {
+		this.id = id;
 	}
 
 	private final int id;
@@ -49,6 +51,4 @@ public class VaccineScheduleDetail {
 	public void setNote(String note) {
 		this.note = note;
 	}
-
-
 }

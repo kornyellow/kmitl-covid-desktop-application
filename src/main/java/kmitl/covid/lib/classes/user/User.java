@@ -30,7 +30,7 @@ public class User {
 	private String address;
 	private String telephoneNumber;
 
-	public int getId() {
+	public int getID() {
 		return id;
 	}
 	public String getUsername() {
