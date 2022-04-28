@@ -26,10 +26,11 @@ public class User {
 	private EnumGender gender;
 	private String nationalID;
 	private KornDateTime birthDate;
+	private String email;
 	private String address;
 	private String telephoneNumber;
 
-	public int getID() {
+	public int getId() {
 		return id;
 	}
 	public String getUsername() {
@@ -85,6 +86,12 @@ public class User {
 	}
 	public void setBirthDate(KornDateTime birthDate) {
 		this.birthDate = birthDate;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getAddress() {
 		return address;
