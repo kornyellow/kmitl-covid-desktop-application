@@ -12,6 +12,10 @@ public class User {
 		this.id = id;
 	}
 
+	public String getFullName() {
+		return this.nameTitle + " " + this.firstName + " " + this.lastName;
+	}
+
 	private final int id;
 	private String username;
 	private String password;
