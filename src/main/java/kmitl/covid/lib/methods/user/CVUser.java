@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class CVUser {
 	public static User getUser(int id) {
 		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
+
 		select.where("u_id", String.valueOf(id));
 
 		KornQuery query = new KornQuery(CVDB.getDB());
@@ -26,6 +28,7 @@ public class CVUser {
 	}
 	public static ArrayList<User> getUsers() {
 		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
 
 		KornQuery query = new KornQuery(CVDB.getDB());
 		query.query(select);
@@ -77,8 +80,6 @@ public class CVUser {
 	}
 	private static KornSelectMySQL getQueryObject() {
 		KornSelectMySQL select = new KornSelectMySQL();
-		select.table("user");
-
 		select.select(
 			"u_id",
 			"u_username",
@@ -153,6 +154,27 @@ public class CVUser {
 		return result;
 	}
 	private static User processObject(KornQuery query) {
-		return CVUser.processObjectArray(query).get(0);
+		ArrayList<User> users = CVUser.processObjectArray(query);
+		if (users.isEmpty()) return null;
+		return users.get(0);
 	}
+
+	public static boolean tryLogin(String username, String password) {
+		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
+
+		select.where("u_username", username);
+
+		KornQuery query = new KornQuery(CVDB.getDB());
+		query.query(select);
+		User queriedUser = processObject(query);
+		if (queriedUser == null)
+			return false;
+		query.close();
+
+		CVUser.loggedInUser = queriedUser;
+		return KornHash.verifyHash(password, queriedUser.getPassword());
+	}
+
+	private static User loggedInUser;
 }

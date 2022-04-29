@@ -2,6 +2,7 @@ package kmitl.covid.launcher;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.other.Config;
 import kmitl.covid.template.Home;
 
@@ -9,7 +10,7 @@ public class Application extends javafx.application.Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Application.primaryStage = primaryStage;
-		Application.primaryStage.setScene(Home.getScene());
+		Application.primaryStage.setScene(Home.getScene(EnumPage.LOGIN()));
 		Application.primaryStage.setTitle(Config.applicationTitle);
 		Application.primaryStage.setMaximized(true);
 		Application.primaryStage.show();

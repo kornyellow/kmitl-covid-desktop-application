@@ -38,11 +38,11 @@ public class KornFont {
 	public static Font smallNormal;
 	public static Font smallBold;
 
-	private static final int textHeader = 24;
-	private static final int textSubHeader = 20;
-	private static final int textParagraph = 16;
-	private static final int textSmall = 14;
-	public static String fontPathLight;
-	public static String fontPathNormal;
-	public static String fontPathBold;
+	private static final int textHeader = 36;
+	private static final int textSubHeader = 24;
+	private static final int textParagraph = 20;
+	private static final int textSmall = 16;
+	private static String fontPathLight;
+	private static String fontPathNormal;
+	private static String fontPathBold;
 }
