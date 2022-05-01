@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import kmitl.covid.lib.classes.other.PasswordSkin;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornFont;
+import kmitl.covid.lib.korn.kornutil.KornIcon;
 import kmitl.covid.lib.methods.authentication.CVLoginEvent;
 import kmitl.covid.template.Home;
 
@@ -68,7 +69,10 @@ public class LoginPage {
 		loginButton.setFont(KornFont.paragraphNormal); // เซตฟอนต์เช่นเดิม
 		loginButton.setMinWidth(middleColumn.getPrefWidth()); // เซตขนาดความกว้างของปุ่มให้มันขนาดตามกับขนาดช่องของคอลัมน์นั้น ๆ คือทำให้เต็มช่องนั่นแหละ...
 		loginButton.setDefaultButton(true); // เซ็ตให้เป็นปุ่มเริ่มต้น หมายถึงถ้ามีปุ่มนี้ในหน้าไหน กด Enter จะเป็นเรียกการทำงานของปุ่ม
+		loginButton.setGraphic(KornIcon.getIconRegular("\uF2F6")); // ใส่ Icon หน้า Text ของปุ่ม
+		loginButton.setGraphicTextGap(10); // ระยะห่างระหว่าง Icon กับ Text
 		LoginPage.node.add(loginButton, 1, 3); // ยัดใส่เช่้นเดิม
+
 
 		Hyperlink forgotPasswordLink = new Hyperlink("ลืมรหัสผ่าน?"); // สร้างลิ้งลืมรหัสผ่าน คล้าย ๆ ปุ่ม แค่ไม่มีรูปปุ่ม
 		forgotPasswordLink.setFont(KornFont.paragraphNormal); // เช่นเดิม
@@ -86,6 +90,8 @@ public class LoginPage {
 		Button registerButton = new Button("สมัครสมาชิก"); // ปุ่มสมัคร
 		registerButton.setFont(KornFont.paragraphNormal); // เซตฟอนต์
 		registerButton.setMinWidth(middleColumn.getPrefWidth()); // เซตขนาดให้ใหญ่ที่สุดตามขนาดคอลัมน์เช่นเดิม
+		registerButton.setGraphic(KornIcon.getIconRegular("\uF234")); // ใส่ Icon หน้า Text ของปุ่ม
+		registerButton.setGraphicTextGap(10); // ระยะห่างระหว่าง Icon กับ Text
 		LoginPage.node.add(registerButton, 1, 6); // ยัดใส่เช่นเดิม
 
 		// อันนี้คือ Event ลองกดเข้าไปดูใน Class CVLoginEvent คือการเขียน Event ที่จะทำหากทำอะไรที่กำหนด

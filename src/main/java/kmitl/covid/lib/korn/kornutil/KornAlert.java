@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import kmitl.covid.lib.enums.EnumAlertType;
 
@@ -48,15 +49,22 @@ public class KornAlert {
 		headerBox.getChildren().add(content);
 		headerBox.setSpacing(10);
 
+		HBox headerIconBox = new HBox();
+		headerIconBox.getChildren().add(KornIcon.getIconMega(this.type.getIconTitle()));
+		headerIconBox.getChildren().add(headerBox);
+		headerIconBox.setSpacing(25);
+
 		Button button = new Button(this.type.getTextConfirm());
 		button.setFont(KornFont.paragraphNormal);
 		button.setOnAction(this.closeAlertEvent());
 		button.translateYProperty().set(20);
 		button.setDefaultButton(true);
+		button.setGraphic(KornIcon.getIconRegular(this.type.getIconConfirm()));
+		button.setGraphicTextGap(10);
 
 		VBox vBox = new VBox();
 		vBox.setSpacing(30);
-		vBox.getChildren().add(headerBox);
+		vBox.getChildren().add(headerIconBox);
 		vBox.getChildren().add(button);
 		vBox.setAlignment(Pos.CENTER_RIGHT);
 		vBox.setPadding(new Insets(40, 50, 0, 50));
