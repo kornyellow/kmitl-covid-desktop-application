@@ -139,7 +139,7 @@ public class CVUser {
 
 			user.setNameTitle(EnumNameTitle.valueOf(u_nametitle.getValue()));
 			user.setFirstName(u_firstname.getValue());
-			user.setLastName(u_last_login.getValue());
+			user.setLastName(u_lastname.getValue());
 			user.setGender(EnumGender.valueOf(u_gender.getValue()));
 			user.setNationalID(u_national_id.getValue());
 			user.setBirthDate(KornDateTime.createFromMySQLDateTime(u_birthdate.getValue()));
@@ -177,4 +177,8 @@ public class CVUser {
 	}
 
 	private static User loggedInUser;
+
+	public static User getLoggedInUser() {
+		return loggedInUser;
+	}
 }

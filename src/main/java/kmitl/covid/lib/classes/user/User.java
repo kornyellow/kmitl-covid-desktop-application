@@ -13,7 +13,7 @@ public class User {
 	}
 
 	public String getFullName() {
-		return this.nameTitle + " " + this.firstName + " " + this.lastName;
+		return this.firstName + " " + this.lastName;
 	}
 
 	private final int id;

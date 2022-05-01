@@ -6,6 +6,7 @@ import kmitl.covid.content.authentication.LoginPage;
 import kmitl.covid.content.authentication.RegisterPage;
 import kmitl.covid.content.dashboard.DashboardPage;
 import kmitl.covid.content.user.NotificationPage;
+import kmitl.covid.content.user.SettingPage;
 import kmitl.covid.content.vaccine.BookVaccineDetailPage;
 import kmitl.covid.content.vaccine.BookVaccinePage;
 import kmitl.covid.content.vaccine.BookVaccineSuccessPage;
@@ -15,6 +16,7 @@ public record EnumPage(EnumPageType pageType, Node page) {
 	private static EnumPage REGISTER;
 	private static EnumPage FORGOTPASSWORD;
 	private static EnumPage DASHBOARD;
+	private static EnumPage SETTING;
 	private static EnumPage NOTIFICATION;
 	private static EnumPage BOOKVACCINE;
 	private static EnumPage BOOKVACCINEDETAIL;
@@ -39,6 +41,11 @@ public record EnumPage(EnumPageType pageType, Node page) {
 		if (EnumPage.DASHBOARD != null) return EnumPage.DASHBOARD;
 		EnumPage.DASHBOARD = new EnumPage(EnumPageType.LOGGEDIN, DashboardPage.getContent());
 		return EnumPage.DASHBOARD;
+	}
+	public static EnumPage SETTING() {
+		if (EnumPage.SETTING != null) return EnumPage.SETTING;
+		EnumPage.SETTING = new EnumPage(EnumPageType.LOGGEDIN, SettingPage.getContent());
+		return EnumPage.SETTING;
 	}
 	public static EnumPage NOTIFICATION() {
 		if (EnumPage.NOTIFICATION != null) return EnumPage.NOTIFICATION;
