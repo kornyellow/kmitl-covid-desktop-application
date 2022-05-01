@@ -3,8 +3,12 @@ package kmitl.covid.lib.classes.notification;
 import kmitl.covid.lib.classes.user.User;
 
 public class Notification {
-	public Notification() {this.id = -1; }
-	public Notification(int id) {this.id = id;}
+	public Notification() {
+		this.id = -1;
+	}
+	public Notification(int id) {
+		this.id = id;
+	}
 
 	private final int id;
 	private User user;
@@ -20,7 +24,7 @@ public class Notification {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public String getText(){
+	public String getText() {
 		return text;
 	}
 	public void setText(String text) {
@@ -32,6 +36,4 @@ public class Notification {
 	public void setRead(boolean read) {
 		isRead = read;
 	}
-
 }
-
