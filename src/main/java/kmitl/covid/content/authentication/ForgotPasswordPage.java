@@ -59,7 +59,7 @@ public class ForgotPasswordPage {
 		newPasswordField.setAlignment(Pos.CENTER);
 		ForgotPasswordPage.node.add(newPasswordField, 1, 3);
 
-		Button resetPassword = new Button("รีเซ็ตรหัสผ่าน");
+		Button resetPassword = new Button("เปลี่ยนรหัสผ่าน");
 		resetPassword.setFont(KornFont.paragraphNormal);
 		resetPassword.setMinWidth(middleColumn.getPrefWidth());
 		resetPassword.setDefaultButton(true);
@@ -71,7 +71,7 @@ public class ForgotPasswordPage {
 		GridPane.setColumnSpan(separator, 3);
 		ForgotPasswordPage.node.add(separator, 0, 5);
 
-		Button back = new Button("กลับ");
+		Button back = new Button("ย้อนกลับ");
 		back.setFont(KornFont.paragraphNormal);
 		back.setMinWidth(middleColumn.getPrefWidth());
 		back.setGraphicTextGap(10);
