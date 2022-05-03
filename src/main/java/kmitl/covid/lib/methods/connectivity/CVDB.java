@@ -29,7 +29,7 @@ public class CVDB {
 			""
 		);
 		return CVDB.getConnection(
-			"171.6.144.227",
+			"kornyellowbase.ddns.net",
 			KornEncryption.getUsername(),
 			KornEncryption.getPassword()
 		);
