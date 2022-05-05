@@ -39,7 +39,7 @@ public class ForgotPasswordPage {
 		header.setPadding(new Insets(0, 0, 20, 0));
 
 		GridPane.setColumnSpan(header, 5);
-		ForgotPasswordPage.node.add(header,0,0);
+		ForgotPasswordPage.node.add(header, 0, 0);
 
 		TextField emailField = new TextField();
 		emailField.setFont(KornFont.paragraphNormal);
@@ -75,6 +75,7 @@ public class ForgotPasswordPage {
 		back.setFont(KornFont.paragraphNormal);
 		back.setMinWidth(middleColumn.getPrefWidth());
 		back.setGraphicTextGap(10);
+		back.setCancelButton(true);
 		ForgotPasswordPage.node.add(back, 1, 6);
 
 		back.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));

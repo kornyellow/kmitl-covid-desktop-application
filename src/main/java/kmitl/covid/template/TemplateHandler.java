@@ -13,7 +13,7 @@ public class TemplateHandler {
 		hbox.getChildren().add(content);
 
 		ScrollPane node = new ScrollPane(hbox);
-		node.setStyle("-fx-background-color: transparent; -fx-control-inner-background: transparent;");
+		//node.setStyle("-fx-background-color: transparent; -fx-control-inner-background: transparent;");
 		node.setBorder(Border.EMPTY);
 		node.setFitToHeight(true);
 
