@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import kmitl.covid.content.authentication.LoginPage;
 import kmitl.covid.lib.korn.kornutil.KornFont;
 
 public class SettingPage {
