@@ -7,7 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornFont;
+import kmitl.covid.template.Home;
 
 public class RegisterPage {
 	public static GridPane getContent() {
@@ -233,6 +235,7 @@ public class RegisterPage {
 		GridPane.setColumnSpan(backButton, 2);
 		RegisterPage.node.add(backButton, 4, 29); // ยัดใส่เช่้นเดิม
 
+		backButton.setOnAction(Home.redirectEvent(EnumPage.DASHBOARD()));
 
 		return RegisterPage.node;
 	}
