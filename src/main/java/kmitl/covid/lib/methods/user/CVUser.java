@@ -167,7 +167,7 @@ public class CVUser {
 
 		KornQuery query = new KornQuery(CVDB.getDB());
 		query.query(select);
-		User queriedUser = processObject(query);
+		User queriedUser = CVUser.processObject(query);
 		if (queriedUser == null)
 			return false;
 		query.close();

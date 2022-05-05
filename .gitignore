@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 out/
 src/META-INF/
+src/main/java/kmitl/covid/Debug.java
 
 ### IntelliJ IDEA ###
 covid-desktop-application.iml
