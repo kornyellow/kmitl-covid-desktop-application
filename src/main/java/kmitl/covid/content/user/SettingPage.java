@@ -7,7 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornFont;
+import kmitl.covid.template.Home;
 
 public class SettingPage {
 	public static GridPane getContent() {
@@ -35,7 +37,7 @@ public class SettingPage {
 		);
 
 		//Username
-		Label usernameLabel = new Label("Username"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label usernameLabel = new Label("ชื่อผู้ใช้"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		usernameLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox username = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -51,7 +53,7 @@ public class SettingPage {
 		SettingPage.node.add(usernameField, 1, 1); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,1
 
 		//National ID
-		Label nationalidLabel = new Label("National ID"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label nationalidLabel = new Label("รหัสประจำตัวประชาชน"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		nationalidLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox nationalid = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -68,7 +70,7 @@ public class SettingPage {
 		SettingPage.node.add(nationalidField, 1, 5); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,6
 
 		//First Name
-		Label firstnameLabel = new Label("First Name"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label firstnameLabel = new Label("ชื่อจริง"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		firstnameLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox firstname = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -85,7 +87,7 @@ public class SettingPage {
 		SettingPage.node.add(firstnameField, 1, 9); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
 
 		//Name Title
-		Label nametitleLabel = new Label("Name Title"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label nametitleLabel = new Label("คำนำหน้าชื่อ"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		nametitleLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox nametitle = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -102,7 +104,7 @@ public class SettingPage {
 		SettingPage.node.add(nametitleField, 1, 13); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
 
 		//E-mail
-		Label emailLabel = new Label("E-mail"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label emailLabel = new Label("อีเมล"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		emailLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox email = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -119,7 +121,7 @@ public class SettingPage {
 		SettingPage.node.add(emailField, 1, 17); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
 
 		//Address
-		Label addressLabel = new Label("Address"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label addressLabel = new Label("ที่อยู่"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		addressLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox address = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -131,14 +133,14 @@ public class SettingPage {
 		//กล่อง Address
 		TextField addressField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
 		addressField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		addressField.setPromptText("อีเมล"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
+		addressField.setPromptText("ที่อยู่"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
 		GridPane.setColumnSpan(addressField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
 		SettingPage.node.add(addressField, 1, 21); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
 
 		///ขวา////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//Password
-		Label passwordLabel = new Label("Address"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label passwordLabel = new Label("รหัสผ่าน"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		passwordLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox password = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -150,12 +152,12 @@ public class SettingPage {
 		//กล่อง Password
 		TextField passwordField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
 		passwordField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		passwordField.setPromptText("อีเมล"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
+		passwordField.setPromptText("รหัสผ่าน"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
 		GridPane.setColumnSpan(passwordField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
 		SettingPage.node.add(passwordField, 3, 1); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
 
 		//Last Name
-		Label lastnameLabel = new Label("Last Name"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label lastnameLabel = new Label("นามสกุล"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		lastnameLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox lastname = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -172,7 +174,7 @@ public class SettingPage {
 		SettingPage.node.add(lastnameField, 3, 9); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
 
 		//Gender
-		Label genderLabel = new Label("Gender"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label genderLabel = new Label("เพศ"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		genderLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox gender = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -189,7 +191,7 @@ public class SettingPage {
 		SettingPage.node.add(genderField, 2, 13); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
 
 		//Birthdate
-		Label birthdateLabel = new Label("Birthdate (DD/MM/YYYY)"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label birthdateLabel = new Label("วันเกิด (วว/ดด/ปปปป)"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		birthdateLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox birthdate = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -205,7 +207,7 @@ public class SettingPage {
 		SettingPage.node.add(birthdateField, 3, 13); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
 
 		//Phone number
-		Label phonenumberLabel = new Label("Phone Number"); //อารมณ์ประมาณสร้างป้ายข้อความ
+		Label phonenumberLabel = new Label("หมายเลขโทรศัพท์"); //อารมณ์ประมาณสร้างป้ายข้อความ
 		phonenumberLabel.setFont(KornFont.smallLight); //เซตฟอนต์
 
 		VBox phonenumber = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
@@ -217,16 +219,16 @@ public class SettingPage {
 		//กล่อง Phone number
 		TextField phonenumberField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
 		phonenumberField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		phonenumberField.setPromptText("นามสกุล"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
+		phonenumberField.setPromptText("หมายเลขโทรศัพท์"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
 		GridPane.setColumnSpan(phonenumberField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
 		SettingPage.node.add(phonenumberField, 3, 17); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//Save Button
-		Button saveButton = new Button("SAVE"); // สร้างปุ่ม Save
+		Button saveButton = new Button("บันทึกข้อมูล"); // สร้างปุ่ม Save
 		saveButton.setFont(KornFont.paragraphNormal); // เซตฟอนต์เช่นเดิม
-		saveButton.setMinWidth(Column3.getPrefWidth()); // เซตขนาดความกว้างของปุ่มให้มันขนาดตามกับขนาดช่องของคอลัมน์นั้น ๆ คือทำให้เต็มช่องนั่นแหละ...
+		saveButton.setMinWidth(Column3.getPrefWidth() * 2); // เซตขนาดความกว้างของปุ่มให้มันขนาดตามกับขนาดช่องของคอลัมน์นั้น ๆ คือทำให้เต็มช่องนั่นแหละ...
 		saveButton.setDefaultButton(true); // เซ็ตให้เป็นปุ่มเริ่มต้น หมายถึงถ้ามีปุ่มนี้ในหน้าไหน กด Enter จะเป็นเรียกการทำงานของปุ่ม
 		//loginButton.setGraphic(KornIcon.getIconRegular("\uF2F6")); // ใส่ Icon หน้า Text ของปุ่ม
 		//loginButton.setGraphicTextGap(10); // ระยะห่างระหว่าง Icon กับ Text
@@ -234,25 +236,25 @@ public class SettingPage {
 		SettingPage.node.add(saveButton, 2, 26); // ยัดใส่เช่้นเดิม
 
 		//Log out Button
-		Button logoutButton = new Button("Log out"); // สร้างปุ่ม Save
+		Button logoutButton = new Button("ออกจากระบบ"); // สร้างปุ่ม Save
 		logoutButton.setFont(KornFont.paragraphNormal); // เซตฟอนต์เช่นเดิม
-		logoutButton.setMinWidth(Column3.getPrefWidth()); // เซตขนาดความกว้างของปุ่มให้มันขนาดตามกับขนาดช่องของคอลัมน์นั้น ๆ คือทำให้เต็มช่องนั่นแหละ...
-		logoutButton.setDefaultButton(true); // เซ็ตให้เป็นปุ่มเริ่มต้น หมายถึงถ้ามีปุ่มนี้ในหน้าไหน กด Enter จะเป็นเรียกการทำงานของปุ่ม
+		logoutButton.setMinWidth(Column3.getPrefWidth() * 2); // เซตขนาดความกว้างของปุ่มให้มันขนาดตามกับขนาดช่องของคอลัมน์นั้น ๆ คือทำให้เต็มช่องนั่นแหละ...
 		//loginButton.setGraphic(KornIcon.getIconRegular("\uF2F6")); // ใส่ Icon หน้า Text ของปุ่ม
 		//loginButton.setGraphicTextGap(10); // ระยะห่างระหว่าง Icon กับ Text
 		GridPane.setColumnSpan(logoutButton, 2);
 		SettingPage.node.add(logoutButton, 2, 29); // ยัดใส่เช่้นเดิม
 
 		//Back Button
-		Button backButton = new Button("Back"); // สร้างปุ่ม Save
+		Button backButton = new Button("ย้อนกลับ"); // สร้างปุ่ม Save
 		backButton.setFont(KornFont.paragraphNormal); // เซตฟอนต์เช่นเดิม
 		backButton.setMinWidth(Column6.getPrefWidth()); // เซตขนาดความกว้างของปุ่มให้มันขนาดตามกับขนาดช่องของคอลัมน์นั้น ๆ คือทำให้เต็มช่องนั่นแหละ...
-		backButton.setDefaultButton(true); // เซ็ตให้เป็นปุ่มเริ่มต้น หมายถึงถ้ามีปุ่มนี้ในหน้าไหน กด Enter จะเป็นเรียกการทำงานของปุ่ม
+		backButton.setCancelButton(true); // เซ็ตให้เป็นปุ่มเริ่มต้น หมายถึงถ้ามีปุ่มนี้ในหน้าไหน กด Esc จะเป็นเรียกการทำงานของปุ่ม
 		//loginButton.setGraphic(KornIcon.getIconRegular("\uF2F6")); // ใส่ Icon หน้า Text ของปุ่ม
 		//loginButton.setGraphicTextGap(10); // ระยะห่างระหว่าง Icon กับ Text
 		GridPane.setColumnSpan(backButton, 2);
 		SettingPage.node.add(backButton, 4, 29); // ยัดใส่เช่้นเดิม
 
+		backButton.setOnAction(Home.redirectEvent(EnumPage.DASHBOARD()));
 
 		return SettingPage.node;
 	}
