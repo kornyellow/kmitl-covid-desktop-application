@@ -57,6 +57,29 @@ public class CVUser {
 
 		return query.getInsertedID();
 	}
+	public static boolean isDuplicateUsername(String username) {
+		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
+
+		select.where("u_username", username);
+		System.out.println(select.build());
+
+		KornQuery query = new KornQuery(CVDB.getDB());
+		query.query(select);
+
+		return CVUser.processObject(query) != null;
+	}
+	public static boolean isDuplicateNationalID(String nationalID) {
+		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
+
+		select.where("u_national_id", nationalID);
+
+		KornQuery query = new KornQuery(CVDB.getDB());
+		query.query(select);
+
+		return CVUser.processObject(query) != null;
+	}
 	public static int updateUser(User user) {
 		KornUpdateMySQL update = new KornUpdateMySQL();
 		update.table("user");
