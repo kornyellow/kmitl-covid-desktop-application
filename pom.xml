@@ -50,12 +50,6 @@
 			<artifactId>bcrypt</artifactId>
 			<version>0.9.0</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.kordamp.bootstrapfx</groupId>
-			<artifactId>bootstrapfx-core</artifactId>
-			<version>0.4.0</version>
-		</dependency>
 	</dependencies>
 
 	<build>
