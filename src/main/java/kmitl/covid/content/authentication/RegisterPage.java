@@ -1,241 +1,125 @@
 package kmitl.covid.content.authentication;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import kmitl.covid.lib.enums.EnumPage;
+import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
+import kmitl.covid.lib.korn.kornutil.KornIcon;
+import kmitl.covid.lib.methods.user.CVUserEvent;
 import kmitl.covid.template.Home;
 
 public class RegisterPage {
 	public static GridPane getContent() {
 		if (RegisterPage.node != null) return RegisterPage.node;
-		RegisterPage.node = new GridPane(); // GridPane คือตารางเป็นช่องคล้าย ๆ Excel
-		RegisterPage.node.setAlignment((Pos.TOP_LEFT)); // ตั้งค่าให้อะไรก็ตามที่อยู่ในช่องมันเรียงชิดซ้าย
-		RegisterPage.node.setVgap(9); // ให้แต่ละช่องห่างกันแนวตั้ง 10 pixels
-		RegisterPage.node.setHgap(50); // ให้แต่ละช่องห่างกันแนวนอน 50 pixels
 
-		// สร้างข้อกำหนดทั้งหมด 6 คอลัมน์ โดยกำหนดให้มีขนาดตามนี้
-		ColumnConstraints Column1 = new ColumnConstraints(200);
-		ColumnConstraints Column2 = new ColumnConstraints(200);
-		ColumnConstraints Column3 = new ColumnConstraints(200);
-		ColumnConstraints Column4 = new ColumnConstraints(200);
-		ColumnConstraints Column5 = new ColumnConstraints(200);
-		ColumnConstraints Column6 = new ColumnConstraints(200);
-		//ยัดข้อกำหนดใส่ในตาราง Excel ของเรา
+		double columnHGap = 40;
+		double columnVGap = 10;
+		double columnWidth = 120;
+
+		RegisterPage.node = new GridPane();
+		RegisterPage.node.setAlignment(Pos.TOP_CENTER);
+		RegisterPage.node.setVgap(columnVGap);
+		RegisterPage.node.setHgap(columnHGap);
+
+		ColumnConstraints column = new ColumnConstraints(columnWidth);
 		RegisterPage.node.getColumnConstraints().addAll(
-			Column1,
-			Column2,
-			Column3,
-			Column4,
-			Column5,
-			Column6
+			column, column, column, column, column, column
 		);
 
-		//Username
-		Label usernameLabel = new Label("Username"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		usernameLabel.setFont(KornFont.smallLight); //เซตฟอนต์
+		Label headerLabel = new Label("สมัครสมาชิก");
+		headerLabel.setFont(KornFont.headerBold);
+		Label subHeaderLabel = new Label("ระบบจองวัคซีนออนไลน์");
+		subHeaderLabel.setFont(KornFont.subHeaderNormal);
 
-		VBox username = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		username.getChildren().add(usernameLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		username.setAlignment(Pos.TOP_LEFT); // เซตการวางตำแหน่ง
-		RegisterPage.node.add(username, 1, 0); // เอาสิ่งที้่เราเขียนไป ยัดเข้าไปตัวหลัก (GridPage) ในตำแหน่งที่ 1,0 ของตาราง
+		VBox header = new VBox();
+		header.getChildren().add(headerLabel);
+		header.getChildren().add(subHeaderLabel);
+		header.setAlignment(Pos.CENTER);
+		header.setPadding(new Insets(0, 0, 20, 0));
 
-		//กล่อง Username
-		TextField usernameField = new TextField(); // สร้างช่องใส่ชื่อผู้ใช้
-		usernameField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		usernameField.setPromptText("ชื่อผู้ใช้"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(usernameField, 2); // เซตให้มัน Merge คอลัมน์ไป 2 ช่อง คือกินช่องทั้งหมด 2 ช่องนั่นเอง
-		RegisterPage.node.add(usernameField, 1, 1); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,1
+		GridPane.setColumnSpan(header, 6);
+		RegisterPage.node.add(header, 0, 0);
 
-		//National ID
-		Label nationalidLabel = new Label("National ID"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		nationalidLabel.setFont(KornFont.smallLight); //เซตฟอนต์
+		VBox username = KornField.getTextFieldWithLabel("ชื่อผู้ใช้");
+		GridPane.setColumnSpan(username, 3);
+		RegisterPage.node.add(username, 0, 1);
 
-		VBox nationalid = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		nationalid.getChildren().add(nationalidLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		nationalid.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(nationalid, 1, 4);
+		VBox nationalID = KornField.getTextFieldWithLabel("รหัสประจำตัวประชาชน");
+		GridPane.setColumnSpan(nationalID, 3);
+		RegisterPage.node.add(nationalID, 3, 1);
 
-		//กล่อง National ID
-		TextField nationalidField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		nationalidField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		nationalidField.setPromptText("รหัสประจำตัวประชาชน"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(nationalidField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(nationalidField, 1, 5); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,6
+		VBox password = KornField.getPasswordFieldWithLabel("รหัสผ่าน");
+		GridPane.setColumnSpan(password, 3);
+		RegisterPage.node.add(password, 0, 2);
 
-		//First Name
-		Label firstnameLabel = new Label("First Name"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		firstnameLabel.setFont(KornFont.smallLight); //เซตฟอนต์
+		VBox confirmPassword = KornField.getPasswordFieldWithLabel("ยืนยันรหัสผ่าน");
+		GridPane.setColumnSpan(confirmPassword, 3);
+		RegisterPage.node.add(confirmPassword, 3, 2);
 
-		VBox firstname = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		firstname.getChildren().add(firstnameLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		firstname.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(firstname, 1, 8);
+		VBox nameTitle = KornField.getTextFieldWithLabel("คำนำหน้า");
+		GridPane.setColumnSpan(nameTitle, 2);
+		RegisterPage.node.add(nameTitle, 0, 3);
 
-		//กล่อง First Name
-		TextField firstnameField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		firstnameField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		firstnameField.setPromptText("ชื่อจริง"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(firstnameField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(firstnameField, 1, 9); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
+		VBox firstName = KornField.getTextFieldWithLabel("ชื่อจริง");
+		GridPane.setColumnSpan(firstName, 2);
+		RegisterPage.node.add(firstName, 2, 3);
 
-		//Name Title
-		Label nametitleLabel = new Label("Name Title"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		nametitleLabel.setFont(KornFont.smallLight); //เซตฟอนต์
+		VBox lastName = KornField.getTextFieldWithLabel("นามสกุล");
+		GridPane.setColumnSpan(lastName, 2);
+		RegisterPage.node.add(lastName, 4, 3);
 
-		VBox nametitle = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		nametitle.getChildren().add(nametitleLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		nametitle.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(nametitle, 1, 12);
+		VBox gender = KornField.getTextFieldWithLabel("เพศ");
+		GridPane.setColumnSpan(gender, 3);
+		RegisterPage.node.add(gender, 0, 4);
 
-		//กล่อง Name Title
-		TextField nametitleField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		nametitleField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		nametitleField.setPromptText("คำนำหน้าชื่อ"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(nametitleField, 1); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(nametitleField, 1, 13); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
+		VBox birthDate = KornField.getTextFieldWithLabel("วันเกิด");
+		GridPane.setColumnSpan(birthDate, 3);
+		RegisterPage.node.add(birthDate, 3, 4);
 
-		//E-mail
-		Label emailLabel = new Label("E-mail"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		emailLabel.setFont(KornFont.smallLight); //เซตฟอนต์
+		VBox email = KornField.getTextFieldWithLabel("อีเมล");
+		GridPane.setColumnSpan(email, 3);
+		RegisterPage.node.add(email, 0, 5);
 
-		VBox email = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		email.getChildren().add(emailLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		email.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(email, 1, 16);
+		VBox phoneNumber = KornField.getTextFieldWithLabel("เบอร์โทรศัพท์");
+		GridPane.setColumnSpan(phoneNumber, 3);
+		RegisterPage.node.add(phoneNumber, 3, 5);
 
-		//กล่อง E-mail
-		TextField emailField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		emailField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		emailField.setPromptText("อีเมล"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(emailField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(emailField, 1, 17); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
+		VBox address = KornField.getTextFieldWithLabel("ที่อยู่");
+		GridPane.setColumnSpan(address, 6);
+		RegisterPage.node.add(address, 0, 6);
 
-		//Address
-		Label addressLabel = new Label("Address"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		addressLabel.setFont(KornFont.smallLight); //เซตฟอนต์
+		Separator separator = new Separator();
+		separator.setPadding(new Insets(20, 0, 20, 0));
+		GridPane.setColumnSpan(separator, 6);
+		RegisterPage.node.add(separator, 0, 7);
 
-		VBox address = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		address.getChildren().add(addressLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		address.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(address, 1, 20);
+		Button registerButton = new Button("สมัครสมาชิก");
+		registerButton.setFont(KornFont.paragraphNormal);
+		registerButton.setMinWidth((columnWidth * 2) + columnHGap);
+		registerButton.setDefaultButton(true);
+		registerButton.setGraphic(KornIcon.getIconRegular("\uF234"));
+		registerButton.setGraphicTextGap(10);
+		GridPane.setColumnSpan(registerButton, 2);
+		RegisterPage.node.add(registerButton, 1, 8);
 
-		//กล่อง Address
-		TextField addressField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		addressField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		addressField.setPromptText("อีเมล"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(addressField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(addressField, 1, 21); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
-
-		///ขวา////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		//Password
-		Label passwordLabel = new Label("Address"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		passwordLabel.setFont(KornFont.smallLight); //เซตฟอนต์
-
-		VBox password = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		password.getChildren().add(passwordLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		password.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(password, 3, 0);
-
-		//กล่อง Password
-		TextField passwordField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		passwordField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		passwordField.setPromptText("อีเมล"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(passwordField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(passwordField, 3, 1); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
-
-		//Last Name
-		Label lastnameLabel = new Label("Last Name"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		lastnameLabel.setFont(KornFont.smallLight); //เซตฟอนต์
-
-		VBox lastname = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		lastname.getChildren().add(lastnameLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		lastname.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(lastname, 3, 8);
-
-		//กล่อง Last Name
-		TextField lastnameField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		lastnameField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		lastnameField.setPromptText("นามสกุล"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(lastnameField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(lastnameField, 3, 9); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
-
-		//Gender
-		Label genderLabel = new Label("Gender"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		genderLabel.setFont(KornFont.smallLight); //เซตฟอนต์
-
-		VBox gender = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		gender.getChildren().add(genderLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		gender.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(gender, 2, 12);
-
-		//กล่อง Gender
-		TextField genderField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		genderField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		genderField.setPromptText("เพศ"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(genderField, 1); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(genderField, 2, 13); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
-
-		//Birthdate
-		Label birthdateLabel = new Label("Birthdate (DD/MM/YYYY)"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		birthdateLabel.setFont(KornFont.smallLight); //เซตฟอนต์
-
-		VBox birthdate = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		birthdate.getChildren().add(birthdateLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		birthdate.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(birthdate, 3, 12);
-
-		//กล่อง Birthdate
-		TextField birthdateField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		birthdateField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		GridPane.setColumnSpan(birthdateField, 1); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(birthdateField, 3, 13); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
-
-		//Phone number
-		Label phonenumberLabel = new Label("Phone Number"); //อารมณ์ประมาณสร้างป้ายข้อความ
-		phonenumberLabel.setFont(KornFont.smallLight); //เซตฟอนต์
-
-		VBox phonenumber = new VBox(); // VBox คือแนวตั้งคล้าย ๆ ลิ้นชัก
-		phonenumber.getChildren().add(phonenumberLabel); //เพิ่มหัวข้อเข้าไปชั้นบนสุด
-		phonenumber.setAlignment(Pos.TOP_LEFT);
-		RegisterPage.node.add(phonenumber, 3, 16);
-
-		//กล่อง Phone number
-		TextField phonenumberField = new TextField(); // สร้างช่องใส่รหัสบัตรปชช
-		phonenumberField.setFont(KornFont.paragraphNormal); // เซตฟอนเช่นเดิม
-		phonenumberField.setPromptText("นามสกุล"); // ใส่ตัวหนังสือเทา ๆ บอกใบ้ข้างในช่องใส่ข้อความ
-		GridPane.setColumnSpan(phonenumberField, 2); // เซตให้มัน Merge คอลัมน์ไป 3 ช่อง คือกินช่องทั้งหมด 3 ช่องนั่นเอง
-		RegisterPage.node.add(phonenumberField, 3, 17); // ยัดใส่เช่นเดิมในตำแหน่งที่ 1,11
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		//Save Button
-		Button signUpButton = new Button("Sign Up"); // สร้างปุ่ม Save
-		signUpButton.setFont(KornFont.paragraphNormal); // เซตฟอนต์เช่นเดิม
-		signUpButton.setMinWidth(Column3.getPrefWidth()); // เซตขนาดความกว้างของปุ่มให้มันขนาดตามกับขนาดช่องของคอลัมน์นั้น ๆ คือทำให้เต็มช่องนั่นแหละ...
-		signUpButton.setDefaultButton(true); // เซ็ตให้เป็นปุ่มเริ่มต้น หมายถึงถ้ามีปุ่มนี้ในหน้าไหน กด Enter จะเป็นเรียกการทำงานของปุ่ม
-		//loginButton.setGraphic(KornIcon.getIconRegular("\uF2F6")); // ใส่ Icon หน้า Text ของปุ่ม
-		//loginButton.setGraphicTextGap(10); // ระยะห่างระหว่าง Icon กับ Text
-		GridPane.setColumnSpan(signUpButton, 2);
-		RegisterPage.node.add(signUpButton, 2, 28); // ยัดใส่เช่้นเดิม
-
-		//Back Button
-		Button backButton = new Button("Back"); // สร้างปุ่ม Save
-		backButton.setFont(KornFont.paragraphNormal); // เซตฟอนต์เช่นเดิม
-		backButton.setMinWidth(Column6.getPrefWidth()); // เซตขนาดความกว้างของปุ่มให้มันขนาดตามกับขนาดช่องของคอลัมน์นั้น ๆ คือทำให้เต็มช่องนั่นแหละ...
-		backButton.setDefaultButton(true); // เซ็ตให้เป็นปุ่มเริ่มต้น หมายถึงถ้ามีปุ่มนี้ในหน้าไหน กด Enter จะเป็นเรียกการทำงานของปุ่ม
-		//loginButton.setGraphic(KornIcon.getIconRegular("\uF2F6")); // ใส่ Icon หน้า Text ของปุ่ม
-		//loginButton.setGraphicTextGap(10); // ระยะห่างระหว่าง Icon กับ Text
+		Button backButton = new Button("ย้อนกลับ");
+		backButton.setFont(KornFont.paragraphNormal);
+		backButton.setMinWidth((columnWidth * 2) + columnHGap);
+		backButton.setCancelButton(true);
+		backButton.setGraphic(KornIcon.getIconRegular("\uF01E"));
+		backButton.setGraphicTextGap(10);
 		GridPane.setColumnSpan(backButton, 2);
-		RegisterPage.node.add(backButton, 4, 29); // ยัดใส่เช่้นเดิม
+		RegisterPage.node.add(backButton, 3, 8);
 
-		backButton.setOnAction(Home.redirectEvent(EnumPage.DASHBOARD()));
+		registerButton.setOnAction(CVUserEvent.registerEvent());
+		backButton.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));
 
 		return RegisterPage.node;
 	}

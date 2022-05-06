@@ -68,4 +68,8 @@ public class TemplateHeader {
 	}
 
 	private static GridPane node;
+
+	public static void resetHeader() {
+		TemplateHeader.node = null;
+	}
 }

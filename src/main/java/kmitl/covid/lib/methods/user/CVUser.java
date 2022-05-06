@@ -179,6 +179,9 @@ public class CVUser {
 	private static User loggedInUser;
 
 	public static User getLoggedInUser() {
-		return loggedInUser;
+		return CVUser.loggedInUser;
+	}
+	public static void removeLoggedInUser() {
+		CVUser.loggedInUser = null;
 	}
 }

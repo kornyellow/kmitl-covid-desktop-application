@@ -15,12 +15,15 @@ import javafx.scene.layout.RowConstraints;
 import kmitl.covid.launcher.Application;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.enums.EnumPageType;
+import kmitl.covid.lib.methods.user.CVUser;
 import kmitl.covid.other.Config;
 
 public class Home {
 	public static Scene getScene(EnumPage page) {
 		if (page.pageType().equals(EnumPageType.NONLOGGEDIN))
 			return Home.getNonLoggedInScene(page.page());
+		else if (CVUser.getLoggedInUser() == null)
+			return Home.getNonLoggedInScene(EnumPage.LOGIN().page());
 		return Home.getLoggedInScene(page.page());
 	}
 	private static Scene getLoggedInScene(Node content) {
