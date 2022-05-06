@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,11 +21,16 @@ public class KornAlert {
 		KornAlert alert = new KornAlert(type, header, content);
 		alert.show();
 	}
+	public static void alert(EnumAlertType type, String header, String content, EventHandler<DialogEvent> callBackEvent) {
+		KornAlert alert = new KornAlert(type, header, content, callBackEvent);
+		alert.show();
+	}
 
-	public KornAlert(EnumAlertType type, String header, String content) {
+	public KornAlert(EnumAlertType type, String header, String content, EventHandler<DialogEvent> callbackEvent) {
 		this.type = type;
 		this.header = header;
 		this.content = content;
+		this.callBackEvent = callbackEvent;
 
 		this.alert = new Alert(Alert.AlertType.NONE);
 		this.alert.getDialogPane().setContent(this.getContent());
@@ -34,6 +40,12 @@ public class KornAlert {
 		this.alert.getButtonTypes().setAll(buttonType);
 		this.alert.getDialogPane().lookupButton(buttonType).setVisible(false);
 		this.alert.getDialogPane().getStylesheets().add(KornCSS.path);
+
+		if (this.callBackEvent != null)
+			this.alert.setOnCloseRequest(this.callBackEvent);
+	}
+	public KornAlert(EnumAlertType type, String header, String content) {
+		this(type, header, content, null);
 	}
 
 	public void show() {
@@ -84,6 +96,7 @@ public class KornAlert {
 				if (buttonType.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
 					Button button = (Button) alert.getDialogPane().lookupButton(buttonType);
 					button.fire();
+
 					break;
 				}
 			}
@@ -94,4 +107,5 @@ public class KornAlert {
 	private final EnumAlertType type;
 	private final String header;
 	private final String content;
+	private final EventHandler<DialogEvent> callBackEvent;
 }

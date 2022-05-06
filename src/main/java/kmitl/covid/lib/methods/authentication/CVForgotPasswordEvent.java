@@ -23,7 +23,8 @@ public class CVForgotPasswordEvent {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
 					"ไม่สามารถเข้าสู่ระบบได้",
-					"กรุณากรอกข้อมูลให้ครบถ้วน"
+					"กรุณากรอกข้อมูลให้ครบถ้วน",
+					dialogEvent -> Home.redirect(EnumPage.LOGIN())
 				);
 				email.requestFocus();
 				return;

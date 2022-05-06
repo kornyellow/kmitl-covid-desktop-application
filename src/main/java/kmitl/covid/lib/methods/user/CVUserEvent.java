@@ -19,18 +19,12 @@ public class CVUserEvent {
 		};
 	}
 	public static EventHandler<ActionEvent> registerEvent(
-		TextField usernameField,
-		TextField nationalIDField,
-		TextField passwordField,
-		TextField confirmPasswordField,
-		TextField nameTitleField,
-		TextField firstNameField,
-		TextField lastNameField,
-		TextField genderField,
-		TextField birthDateField,
-		TextField emailField,
-		TextField phoneNumberField,
-		TextField addressField
+		TextField usernameField, TextField nationalIDField,
+		TextField passwordField, TextField confirmPasswordField,
+		TextField nameTitleField, TextField firstNameField,
+		TextField lastNameField, TextField genderField,
+		TextField birthDateField, TextField emailField,
+		TextField phoneNumberField, TextField addressField
 	) {
 		return actionEvent -> {
 			String username = usernameField.getText();
@@ -46,7 +40,11 @@ public class CVUserEvent {
 			String phoneNumber = phoneNumberField.getText();
 			String address = addressField.getText();
 
-			if (username.isEmpty() || nationalID.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || nameTitle.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || gender.isEmpty() || birthDate.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || address.isEmpty()) {
+			if (username.isEmpty() || nationalID.isEmpty() || password.isEmpty() ||
+				confirmPassword.isEmpty() || nameTitle.isEmpty() || firstName.isEmpty() ||
+				lastName.isEmpty() || gender.isEmpty() || birthDate.isEmpty() ||
+				email.isEmpty() || phoneNumber.isEmpty() || address.isEmpty()) {
+
 				KornAlert.alert(
 					EnumAlertType.ERROR,
 					"ไม่สามารถสมัครผู้ใช้ได้",
@@ -87,22 +85,24 @@ public class CVUserEvent {
 			KornAlert.alert(
 				EnumAlertType.SUCCESS,
 				"สมัครผู้ใช้สำเร็จ",
-				"กรุณาลงชื่อเข้าใช้"
-			);
-			Home.redirect(EnumPage.LOGIN());
+				"กรุณาลงชื่อเข้าใช้",
+				dialogEvent -> {
+					usernameField.clear();
+					nationalIDField.clear();
+					passwordField.clear();
+					confirmPasswordField.clear();
+					nameTitleField.clear();
+					firstNameField.clear();
+					lastNameField.clear();
+					genderField.clear();
+					birthDateField.clear();
+					emailField.clear();
+					phoneNumberField.clear();
+					addressField.clear();
 
-			usernameField.clear();
-			nationalIDField.clear();
-			passwordField.clear();
-			confirmPasswordField.clear();
-			nameTitleField.clear();
-			firstNameField.clear();
-			lastNameField.clear();
-			genderField.clear();
-			birthDateField.clear();
-			emailField.clear();
-			phoneNumberField.clear();
-			addressField.clear();
+					Home.redirect(EnumPage.LOGIN());
+				}
+			);
 		};
 	}
 }

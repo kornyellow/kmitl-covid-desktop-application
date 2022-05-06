@@ -9,10 +9,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import kmitl.covid.lib.enums.EnumButtonType;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
-import kmitl.covid.lib.korn.kornutil.KornIcon;
+import kmitl.covid.lib.methods.style.CVStyle;
 import kmitl.covid.lib.methods.user.CVUserEvent;
 import kmitl.covid.template.Home;
 
@@ -101,21 +102,15 @@ public class RegisterPage {
 		GridPane.setColumnSpan(separator, 6);
 		RegisterPage.node.add(separator, 0, 7);
 
-		Button registerButton = new Button("สมัครสมาชิก");
-		registerButton.setFont(KornFont.paragraphNormal);
+		Button registerButton = CVStyle.makeButton("สมัครสมาชิก", "\uF234", EnumButtonType.SUCCESS);
 		registerButton.setMinWidth((columnWidth * 2) + columnHGap);
 		registerButton.setDefaultButton(true);
-		registerButton.setGraphic(KornIcon.getIconRegular("\uF234"));
-		registerButton.setGraphicTextGap(10);
 		GridPane.setColumnSpan(registerButton, 2);
 		RegisterPage.node.add(registerButton, 1, 8);
 
-		Button backButton = new Button("ย้อนกลับ");
-		backButton.setFont(KornFont.paragraphNormal);
+		Button backButton = CVStyle.makeButton("ย้อนกลับ", "\uF01E", EnumButtonType.INFO);
 		backButton.setMinWidth((columnWidth * 2) + columnHGap);
 		backButton.setCancelButton(true);
-		backButton.setGraphic(KornIcon.getIconRegular("\uF01E"));
-		backButton.setGraphicTextGap(10);
 		GridPane.setColumnSpan(backButton, 2);
 		RegisterPage.node.add(backButton, 3, 8);
 
@@ -131,20 +126,11 @@ public class RegisterPage {
 		TextField emailField = (TextField) email.getChildren().get(1);
 		TextField phoneNumberField = (TextField) phoneNumber.getChildren().get(1);
 		TextField addressField = (TextField) address.getChildren().get(1);
-
 		registerButton.setOnAction(CVUserEvent.registerEvent(
-			usernameField,
-			nationalIDField,
-			passwordField,
-			confirmPasswordField,
-			nameTitleField,
-			firstNameField,
-			lastNameField,
-			genderField,
-			birthDateField,
-			emailField,
-			phoneNumberField,
-			addressField
+			usernameField, nationalIDField, passwordField,
+			confirmPasswordField, nameTitleField, firstNameField,
+			lastNameField, genderField, birthDateField,
+			emailField, phoneNumberField, addressField
 		));
 
 		backButton.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));

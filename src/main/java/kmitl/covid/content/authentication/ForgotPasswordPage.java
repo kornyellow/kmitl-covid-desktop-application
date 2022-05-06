@@ -75,12 +75,10 @@ public class ForgotPasswordPage {
 		TextField emailField = (TextField) email.getChildren().get(1);
 		TextField nationalIDField = (TextField) nationalID.getChildren().get(1);
 		TextField newPasswordField = (TextField) newPassword.getChildren().get(1);
-		EventHandler<ActionEvent> forgotPasswordEvent = CVForgotPasswordEvent.ForgotpasswordEvent(
-			emailField,
-			nationalIDField,
-			newPasswordField
-		);
 
+		EventHandler<ActionEvent> forgotPasswordEvent = CVForgotPasswordEvent.ForgotpasswordEvent(
+			emailField, nationalIDField, newPasswordField
+		);
 		emailField.setOnAction(forgotPasswordEvent);
 		nationalIDField.setOnAction(forgotPasswordEvent);
 		newPasswordField.setOnAction(forgotPasswordEvent);
