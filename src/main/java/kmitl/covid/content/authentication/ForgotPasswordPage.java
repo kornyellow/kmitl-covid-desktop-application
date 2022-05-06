@@ -10,6 +10,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import kmitl.covid.lib.enums.EnumPage;
+import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
 import kmitl.covid.template.Home;
 
@@ -25,60 +26,56 @@ public class ForgotPasswordPage {
 		ColumnConstraints rightColumn = new ColumnConstraints(150);
 
 		ForgotPasswordPage.node.getColumnConstraints().addAll(
-			leftColumn,
-			middleColumn,
-			rightColumn
+			leftColumn, middleColumn, rightColumn
 		);
 
 		Label headerLabel = new Label("ลืมรหัสผ่าน");
 		headerLabel.setFont(KornFont.headerBold);
+		Label subHeaderLabel = new Label("ระบบจองวัคซีนออนไลน์");
+		subHeaderLabel.setFont(KornFont.subHeaderNormal);
 
 		VBox header = new VBox();
 		header.getChildren().add(headerLabel);
-		header.setAlignment(Pos.TOP_CENTER);
+		header.getChildren().add(subHeaderLabel);
+		header.setAlignment(Pos.CENTER);
 		header.setPadding(new Insets(0, 0, 20, 0));
 
 		GridPane.setColumnSpan(header, 5);
 		ForgotPasswordPage.node.add(header, 0, 0);
 
-		TextField emailField = new TextField();
-		emailField.setFont(KornFont.paragraphNormal);
-		emailField.setPromptText("อีเมล");
-		emailField.setAlignment(Pos.CENTER);
-		ForgotPasswordPage.node.add(emailField, 1, 1);
+		VBox email = KornField.getTextFieldWithLabel("อีเมล");
+		ForgotPasswordPage.node.add(email, 1, 1);
 
-		TextField nationalIDField = new TextField();
-		nationalIDField.setFont(KornFont.paragraphNormal);
-		nationalIDField.setPromptText("รหัสบัตรประชาชน");
-		nationalIDField.setAlignment(Pos.CENTER);
-		ForgotPasswordPage.node.add(nationalIDField, 1, 2);
+		VBox nationalID = KornField.getTextFieldWithLabel("รหัสบัตรประชาชน");
+		ForgotPasswordPage.node.add(nationalID, 1, 2);
 
-		TextField newPasswordField = new TextField();
-		newPasswordField.setFont(KornFont.paragraphNormal);
-		newPasswordField.setPromptText("รหัสผ่านใหม่");
-		newPasswordField.setAlignment(Pos.CENTER);
-		ForgotPasswordPage.node.add(newPasswordField, 1, 3);
+		VBox newPassword = KornField.getTextFieldWithLabel("รหัสผ่านใหม่");
+		ForgotPasswordPage.node.add(newPassword, 1, 3);
 
-		Button resetPassword = new Button("เปลี่ยนรหัสผ่าน");
-		resetPassword.setFont(KornFont.paragraphNormal);
-		resetPassword.setMinWidth(middleColumn.getPrefWidth());
-		resetPassword.setDefaultButton(true);
-		resetPassword.setGraphicTextGap(10);
-		ForgotPasswordPage.node.add(resetPassword, 1, 4);
+		Button changePasswordButton = new Button("เปลี่ยนรหัสผ่าน");
+		changePasswordButton.setFont(KornFont.paragraphNormal);
+		changePasswordButton.setMinWidth(middleColumn.getPrefWidth());
+		changePasswordButton.setDefaultButton(true);
+		changePasswordButton.setGraphicTextGap(10);
+		ForgotPasswordPage.node.add(changePasswordButton, 1, 4);
 
 		Separator separator = new Separator();
 		separator.setPadding(new Insets(20, 0, 20, 0));
 		GridPane.setColumnSpan(separator, 3);
 		ForgotPasswordPage.node.add(separator, 0, 5);
 
-		Button back = new Button("ย้อนกลับ");
-		back.setFont(KornFont.paragraphNormal);
-		back.setMinWidth(middleColumn.getPrefWidth());
-		back.setGraphicTextGap(10);
-		back.setCancelButton(true);
-		ForgotPasswordPage.node.add(back, 1, 6);
+		Button backButton = new Button("ย้อนกลับ");
+		backButton.setFont(KornFont.paragraphNormal);
+		backButton.setMinWidth(middleColumn.getPrefWidth());
+		backButton.setGraphicTextGap(10);
+		backButton.setCancelButton(true);
+		ForgotPasswordPage.node.add(backButton, 1, 6);
 
-		back.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));
+		TextField emailField = (TextField) email.getChildren().get(1);
+		TextField nationalIDField = (TextField) nationalID.getChildren().get(1);
+		TextField newPasswordField = (TextField) newPassword.getChildren().get(1);
+
+		backButton.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));
 
 		return ForgotPasswordPage.node;
 	}
