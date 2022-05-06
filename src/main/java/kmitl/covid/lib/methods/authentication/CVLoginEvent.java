@@ -19,16 +19,6 @@ public class CVLoginEvent {
 			String usernameText = username.getText();
 			String passwordText = password.getText();
 
-			if (usernameText.isEmpty() && passwordText.isEmpty()) {
-				KornAlert.alert(
-					EnumAlertType.ERROR,
-					"ไม่สามารถเข้าสู่ระบบได้",
-					"กรุณากรอกข้อมูลให้ครบถ้วน"
-				);
-				username.requestFocus();
-				return;
-			}
-
 			if (usernameText.isEmpty()) {
 				username.requestFocus();
 				return;
