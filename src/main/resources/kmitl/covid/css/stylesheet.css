@@ -111,6 +111,21 @@
 .text {
     -fx-text-fill: -fx-dark;
 }
+.text-primary {
+    -fx-text-fill: -fx-primary;
+}
+.text-danger {
+    -fx-text-fill: -fx-danger;
+}
+.text-success {
+    -fx-text-fill: -fx-success;
+}
+.text-warning {
+    -fx-text-fill: -fx-warning;
+}
+.text-info {
+    -fx-text-fill: -fx-info;
+}
 
 .form {
     -fx-background-color: -fx-light;

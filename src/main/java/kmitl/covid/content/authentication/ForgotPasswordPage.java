@@ -59,10 +59,11 @@ public class ForgotPasswordPage {
 		Button changePasswordButton = CVStyle.makeButton("เปลี่ยนรหัสผ่าน", "\uF044", EnumButtonType.WARNING);
 		changePasswordButton.setMinWidth(middleColumn.getPrefWidth());
 		changePasswordButton.setDefaultButton(true);
+		GridPane.setMargin(changePasswordButton, new Insets(10, 0, 0, 0));
 		ForgotPasswordPage.node.add(changePasswordButton, 1, 4);
 
 		Separator separator = new Separator();
-		separator.setPadding(new Insets(20, 0, 20, 0));
+		separator.setPadding(new Insets(10, 0, 10, 0));
 		GridPane.setColumnSpan(separator, 3);
 		ForgotPasswordPage.node.add(separator, 0, 5);
 

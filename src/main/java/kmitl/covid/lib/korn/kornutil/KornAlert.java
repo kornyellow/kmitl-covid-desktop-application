@@ -13,10 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import kmitl.covid.lib.enums.EnumAlertType;
+import kmitl.covid.lib.methods.style.CVStyle;
 
 public class KornAlert {
-	public static void alert(EnumAlertType title, String header, String content) {
-		KornAlert alert = new KornAlert(title, header, content);
+	public static void alert(EnumAlertType type, String header, String content) {
+		KornAlert alert = new KornAlert(type, header, content);
 		alert.show();
 	}
 
@@ -32,6 +33,7 @@ public class KornAlert {
 		ButtonType buttonType = new ButtonType("", ButtonBar.ButtonData.OK_DONE);
 		this.alert.getButtonTypes().setAll(buttonType);
 		this.alert.getDialogPane().lookupButton(buttonType).setVisible(false);
+		this.alert.getDialogPane().getStylesheets().add(KornCSS.path);
 	}
 
 	public void show() {
@@ -41,6 +43,7 @@ public class KornAlert {
 	private Node getContent() {
 		Label header = new Label(this.header);
 		header.setFont(KornFont.headerBold);
+		header.getStyleClass().add(this.type.getTitleColor());
 		Label content = new Label(this.content);
 		content.setFont(KornFont.paragraphNormal);
 
@@ -49,18 +52,22 @@ public class KornAlert {
 		headerBox.getChildren().add(content);
 		headerBox.setSpacing(10);
 
+		Label icon = KornIcon.getIconMega(this.type.getIconTitle());
+		icon.getStyleClass().add(this.type.getTitleColor());
+
 		HBox headerIconBox = new HBox();
-		headerIconBox.getChildren().add(KornIcon.getIconMega(this.type.getIconTitle()));
+		headerIconBox.getChildren().add(icon);
 		headerIconBox.getChildren().add(headerBox);
 		headerIconBox.setSpacing(25);
 
-		Button button = new Button(this.type.getTextConfirm());
-		button.setFont(KornFont.paragraphNormal);
+		Button button = CVStyle.makeButton(
+			this.type.getTextConfirm(),
+			this.type.getIconConfirm(),
+			this.type.getButtonType()
+		);
 		button.setOnAction(this.closeAlertEvent());
 		button.translateYProperty().set(20);
 		button.setDefaultButton(true);
-		button.setGraphic(KornIcon.getIconRegular(this.type.getIconConfirm()));
-		button.setGraphicTextGap(10);
 
 		VBox vBox = new VBox();
 		vBox.setSpacing(30);
