@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
+import kmitl.covid.lib.korn.kornutil.KornIcon;
 import kmitl.covid.template.Home;
 
 public class ForgotPasswordPage {
@@ -56,6 +57,7 @@ public class ForgotPasswordPage {
 		changePasswordButton.setFont(KornFont.paragraphNormal);
 		changePasswordButton.setMinWidth(middleColumn.getPrefWidth());
 		changePasswordButton.setDefaultButton(true);
+		changePasswordButton.setGraphic(KornIcon.getIconRegular("\uF044"));
 		changePasswordButton.setGraphicTextGap(10);
 		ForgotPasswordPage.node.add(changePasswordButton, 1, 4);
 
@@ -67,6 +69,7 @@ public class ForgotPasswordPage {
 		Button backButton = new Button("ย้อนกลับ");
 		backButton.setFont(KornFont.paragraphNormal);
 		backButton.setMinWidth(middleColumn.getPrefWidth());
+		backButton.setGraphic(KornIcon.getIconRegular("\uF01E"));
 		backButton.setGraphicTextGap(10);
 		backButton.setCancelButton(true);
 		ForgotPasswordPage.node.add(backButton, 1, 6);
