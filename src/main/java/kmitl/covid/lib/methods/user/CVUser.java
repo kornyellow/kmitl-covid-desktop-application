@@ -167,13 +167,17 @@ public class CVUser {
 
 		KornQuery query = new KornQuery(CVDB.getDB());
 		query.query(select);
+
 		User queriedUser = CVUser.processObject(query);
 		if (queriedUser == null)
 			return false;
 		query.close();
 
+		if (!KornHash.verifyHash(password, queriedUser.getPassword()))
+			return false;
+
 		CVUser.loggedInUser = queriedUser;
-		return KornHash.verifyHash(password, queriedUser.getPassword());
+		return true;
 	}
 
 	private static User loggedInUser;
