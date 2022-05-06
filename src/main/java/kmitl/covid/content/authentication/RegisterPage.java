@@ -121,9 +121,30 @@ public class RegisterPage {
 
 		TextField usernameField = (TextField) username.getChildren().get(1);
 		TextField nationalIDField = (TextField) nationalID.getChildren().get(1);
-		// .. ดึงให้ครบ
+		TextField passwordField = (TextField) password.getChildren().get(1);
+		TextField confirmPasswordField = (TextField) confirmPassword.getChildren().get(1);
+		TextField nameTitleField = (TextField) nameTitle.getChildren().get(1);
+		TextField firstNameField = (TextField) firstName.getChildren().get(1);
+		TextField lastNameField = (TextField) lastName.getChildren().get(1);
+		TextField genderField = (TextField) gender.getChildren().get(1);
+		TextField birthDateField = (TextField) birthDate.getChildren().get(1);
+		TextField emailField = (TextField) email.getChildren().get(1);
+		TextField phoneNumberField = (TextField) phoneNumber.getChildren().get(1);
+		TextField addressField = (TextField) address.getChildren().get(1);
+
 		registerButton.setOnAction(CVUserEvent.registerEvent(
-			usernameField, nationalIDField
+			usernameField,
+			nationalIDField,
+			passwordField,
+			confirmPasswordField,
+			nameTitleField,
+			firstNameField,
+			lastNameField,
+			genderField,
+			birthDateField,
+			emailField,
+			phoneNumberField,
+			addressField
 		));
 
 		backButton.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));
