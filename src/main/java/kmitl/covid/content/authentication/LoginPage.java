@@ -6,20 +6,19 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import kmitl.covid.lib.enums.EnumButtonType;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
-import kmitl.covid.lib.korn.kornutil.KornIcon;
 import kmitl.covid.lib.methods.authentication.CVLoginEvent;
+import kmitl.covid.lib.methods.style.CVStyle;
 import kmitl.covid.template.Home;
 
 public class LoginPage {
@@ -27,7 +26,7 @@ public class LoginPage {
 		if (LoginPage.node != null) return LoginPage.node;
 		LoginPage.node = new GridPane();
 		LoginPage.node.setAlignment(Pos.CENTER);
-		LoginPage.node.setVgap(10);
+		LoginPage.node.setVgap(20);
 
 		ColumnConstraints leftColumn = new ColumnConstraints(150);
 		ColumnConstraints middleColumn = new ColumnConstraints(300);
@@ -50,38 +49,30 @@ public class LoginPage {
 		GridPane.setColumnSpan(header, 3);
 		LoginPage.node.add(header, 0, 0);
 
-		VBox username = KornField.getTextFieldWithLabel("ชื่อผู้ใช้");
+		VBox username = KornField.getTextFieldWithLabel("ชื่อผู้ใช้ (Username)");
 		LoginPage.node.add(username, 1, 1);
 
-		VBox password = KornField.getPasswordFieldWithLabel("รหัสผ่าน");
+		VBox password = KornField.getPasswordFieldWithLabel("รหัสผ่าน (Password)");
 		LoginPage.node.add(password, 1, 2);
 
-		Button loginButton = new Button("เข้าสู่ระบบ");
-		loginButton.setFont(KornFont.paragraphNormal);
+		Button loginButton = CVStyle.makeButton("เข้าสู่ระบบ", "\uF2F6", EnumButtonType.PRIMARY);
 		loginButton.setMinWidth(middleColumn.getPrefWidth());
 		loginButton.setDefaultButton(true);
-		loginButton.setGraphic(KornIcon.getIconRegular("\uF2F6"));
-		loginButton.setGraphicTextGap(10);
+		GridPane.setMargin(loginButton, new Insets(10, 0, 0, 0));
 		LoginPage.node.add(loginButton, 1, 3);
 
-		Hyperlink forgotPasswordLink = new Hyperlink("ลืมรหัสผ่าน?");
-		forgotPasswordLink.setFont(KornFont.paragraphNormal);
-		forgotPasswordLink.setVisited(true);
-		forgotPasswordLink.setPadding(new Insets(10, 0, 0, 0));
-		forgotPasswordLink.setBorder(Border.EMPTY);
-		GridPane.setHalignment(forgotPasswordLink, HPos.CENTER);
-		LoginPage.node.add(forgotPasswordLink, 1, 4);
+		Button forgotPasswordButton = CVStyle.makeButton("ลืมรหัสผ่าน?", "", EnumButtonType.EMPTY);
+		forgotPasswordButton.setFont(KornFont.paragraphNormal);
+		GridPane.setHalignment(forgotPasswordButton, HPos.CENTER);
+		LoginPage.node.add(forgotPasswordButton, 1, 4);
 
 		Separator separator = new Separator();
-		separator.setPadding(new Insets(20, 0, 20, 0));
+		separator.setPadding(new Insets(10, 0, 10, 0));
 		GridPane.setColumnSpan(separator, 3);
 		LoginPage.node.add(separator, 0, 5);
 
-		Button registerButton = new Button("สมัครสมาชิก");
-		registerButton.setFont(KornFont.paragraphNormal);
+		Button registerButton = CVStyle.makeButton("สมัครสมาชิก", "\uF234", EnumButtonType.SUCCESS);
 		registerButton.setMinWidth(middleColumn.getPrefWidth());
-		registerButton.setGraphic(KornIcon.getIconRegular("\uF234"));
-		registerButton.setGraphicTextGap(10);
 		LoginPage.node.add(registerButton, 1, 6);
 
 		TextField usernameField = (TextField) username.getChildren().get(1);
@@ -95,7 +86,7 @@ public class LoginPage {
 		passwordField.setOnAction(loginEvent);
 		loginButton.setOnAction(loginEvent);
 
-		forgotPasswordLink.setOnAction(Home.redirectEvent(EnumPage.FORGOTPASSWORD()));
+		forgotPasswordButton.setOnAction(Home.redirectEvent(EnumPage.FORGOTPASSWORD()));
 		registerButton.setOnAction(Home.redirectEvent(EnumPage.REGISTER()));
 
 		return LoginPage.node;

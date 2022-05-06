@@ -11,11 +11,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import kmitl.covid.lib.enums.EnumButtonType;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
-import kmitl.covid.lib.korn.kornutil.KornIcon;
 import kmitl.covid.lib.methods.authentication.CVForgotPasswordEvent;
+import kmitl.covid.lib.methods.style.CVStyle;
 import kmitl.covid.template.Home;
 
 public class ForgotPasswordPage {
@@ -23,12 +24,11 @@ public class ForgotPasswordPage {
 		if (ForgotPasswordPage.node != null) return ForgotPasswordPage.node;
 		ForgotPasswordPage.node = new GridPane();
 		ForgotPasswordPage.node.setAlignment(Pos.TOP_CENTER);
-		ForgotPasswordPage.node.setVgap(10);
+		ForgotPasswordPage.node.setVgap(20);
 
 		ColumnConstraints leftColumn = new ColumnConstraints(150);
 		ColumnConstraints middleColumn = new ColumnConstraints(300);
 		ColumnConstraints rightColumn = new ColumnConstraints(150);
-
 		ForgotPasswordPage.node.getColumnConstraints().addAll(
 			leftColumn, middleColumn, rightColumn
 		);
@@ -56,12 +56,9 @@ public class ForgotPasswordPage {
 		VBox newPassword = KornField.getTextFieldWithLabel("รหัสผ่านใหม่");
 		ForgotPasswordPage.node.add(newPassword, 1, 3);
 
-		Button changePasswordButton = new Button("เปลี่ยนรหัสผ่าน");
-		changePasswordButton.setFont(KornFont.paragraphNormal);
+		Button changePasswordButton = CVStyle.makeButton("เปลี่ยนรหัสผ่าน", "\uF044", EnumButtonType.WARNING);
 		changePasswordButton.setMinWidth(middleColumn.getPrefWidth());
 		changePasswordButton.setDefaultButton(true);
-		changePasswordButton.setGraphic(KornIcon.getIconRegular("\uF044"));
-		changePasswordButton.setGraphicTextGap(10);
 		ForgotPasswordPage.node.add(changePasswordButton, 1, 4);
 
 		Separator separator = new Separator();
@@ -69,11 +66,8 @@ public class ForgotPasswordPage {
 		GridPane.setColumnSpan(separator, 3);
 		ForgotPasswordPage.node.add(separator, 0, 5);
 
-		Button backButton = new Button("ย้อนกลับ");
-		backButton.setFont(KornFont.paragraphNormal);
+		Button backButton = CVStyle.makeButton("ย้อนกลับ", "\uF01E", EnumButtonType.INFO);
 		backButton.setMinWidth(middleColumn.getPrefWidth());
-		backButton.setGraphic(KornIcon.getIconRegular("\uF01E"));
-		backButton.setGraphicTextGap(10);
 		backButton.setCancelButton(true);
 		ForgotPasswordPage.node.add(backButton, 1, 6);
 

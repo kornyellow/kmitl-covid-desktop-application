@@ -1,0 +1,128 @@
+* {
+    -fx-light: #F8F9Fa;
+    -fx-dark: #5E6065;
+
+    -fx-default: #ACB4BD;
+    -fx-form-border: #6EA9FF;
+
+    -fx-primary: #0D6EFD;
+    -fx-primary-hover: #0B58CB;
+    -fx-primary-shadow: #9EC4FF;
+
+    -fx-success: #198754;
+    -fx-success-hover: #146C43;
+    -fx-success-shadow: #A2CEBB;
+
+    -fx-warning: #FD7E14;
+    -fx-warning-hover: #D96C11;
+    -fx-warning-shadow: #FFCBA0;
+
+    -fx-danger: #DC3545;
+    -fx-danger-hover: #B02B36;
+    -fx-danger-shadow: #F0AFB5;
+
+    -fx-info: #0CCBF0;
+    -fx-info-hover: #0FB4D4;
+    -fx-info-shadow: #9FEBF9;
+}
+
+.body {
+    -fx-background-color: -fx-light;
+}
+
+.btn {
+    -fx-background-radius: 5;
+    -fx-padding: 8 12;
+    -fx-text-fill: -fx-light;
+}
+
+.btn-primary {
+    -fx-background-color: -fx-primary;
+    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 10, 0, 0, 0);
+}
+.btn-primary:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+.btn-primary:focused {
+    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+}
+
+.btn-success {
+    -fx-background-color: -fx-success;
+    -fx-effect: dropshadow(gaussian, -fx-success-shadow, 10, 0, 0, 0);
+}
+.btn-success:hover {
+    -fx-background-color: -fx-success-hover;
+}
+.btn-success:focused {
+    -fx-effect: dropshadow(gaussian, -fx-success-shadow, 4, 1, 0, 0);
+}
+
+.btn-warning {
+    -fx-background-color: -fx-warning;
+    -fx-effect: dropshadow(gaussian, -fx-warning-shadow, 10, 0, 0, 0);
+}
+.btn-warning:hover {
+    -fx-background-color: -fx-warning-hover;
+}
+.btn-warning:focused {
+    -fx-effect: dropshadow(gaussian, -fx-warning-shadow, 4, 1, 0, 0);
+}
+
+.btn-danger {
+    -fx-background-color: -fx-danger;
+    -fx-effect: dropshadow(gaussian, -fx-danger-shadow, 10, 0, 0, 0);
+}
+.btn-danger:hover {
+    -fx-background-color: -fx-danger-hover;
+}
+.btn-danger:focused {
+    -fx-effect: dropshadow(gaussian, -fx-danger-shadow, 4, 1, 0, 0);
+}
+
+.btn-info {
+    -fx-background-color: -fx-info;
+    -fx-effect: dropshadow(gaussian, -fx-info-shadow, 10, 0, 0, 0);
+}
+.btn-info:hover {
+    -fx-background-color: -fx-info-hover;
+}
+.btn-info:focused {
+    -fx-effect: dropshadow(gaussian, -fx-info-shadow, 4, 1, 0, 0);
+}
+
+.btn-empty {
+    -fx-text-fill: -fx-dark;
+    -fx-background-color: -fx-light;
+    -fx-underline: true;
+}
+.btn-empty:focused {
+    -fx-text-fill: -fx-primary;
+    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+}
+.btn-empty:hover {
+    -fx-text-fill: -fx-primary-hover;
+}
+
+.graphic {
+    -fx-text-fill: -fx-light;
+}
+
+.text {
+    -fx-text-fill: -fx-dark;
+}
+
+.form {
+    -fx-background-color: -fx-light;
+    -fx-background-radius: 5;
+    -fx-padding: 8 16;
+    -fx-text-fill: -fx-dark;
+
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+    -fx-border-color: -fx-default;
+}
+.form:focused {
+    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+    -fx-border-color: -fx-form-border;
+}

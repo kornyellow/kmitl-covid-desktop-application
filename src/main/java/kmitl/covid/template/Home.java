@@ -15,16 +15,21 @@ import javafx.scene.layout.RowConstraints;
 import kmitl.covid.launcher.Application;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.enums.EnumPageType;
+import kmitl.covid.lib.korn.kornutil.KornCSS;
 import kmitl.covid.lib.methods.user.CVUser;
 import kmitl.covid.other.Config;
 
 public class Home {
 	public static Scene getScene(EnumPage page) {
+		Scene scene;
 		if (page.pageType().equals(EnumPageType.NONLOGGEDIN))
-			return Home.getNonLoggedInScene(page.page());
+			scene = Home.getNonLoggedInScene(page.page());
 		else if (CVUser.getLoggedInUser() == null)
-			return Home.getNonLoggedInScene(EnumPage.LOGIN().page());
-		return Home.getLoggedInScene(page.page());
+			scene = Home.getNonLoggedInScene(EnumPage.LOGIN().page());
+		else scene = Home.getLoggedInScene(page.page());
+
+		scene.getStylesheets().add(KornCSS.path);
+		return scene;
 	}
 	private static Scene getLoggedInScene(Node content) {
 		GridPane gridPane = new GridPane();
@@ -65,6 +70,7 @@ public class Home {
 	}
 	private static Scene getNonLoggedInScene(Node content) {
 		GridPane gridPane = new GridPane();
+		gridPane.getStyleClass().add("body");
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.getChildren().add(content);
 

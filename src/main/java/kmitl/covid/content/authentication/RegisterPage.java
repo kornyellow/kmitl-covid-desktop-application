@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -118,7 +119,13 @@ public class RegisterPage {
 		GridPane.setColumnSpan(backButton, 2);
 		RegisterPage.node.add(backButton, 3, 8);
 
-		registerButton.setOnAction(CVUserEvent.registerEvent());
+		TextField usernameField = (TextField) username.getChildren().get(1);
+		TextField nationalIDField = (TextField) nationalID.getChildren().get(1);
+		// .. ดึงให้ครบ
+		registerButton.setOnAction(CVUserEvent.registerEvent(
+			usernameField, nationalIDField
+		));
+
 		backButton.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));
 
 		return RegisterPage.node;
