@@ -1,5 +1,7 @@
 package kmitl.covid.content.authentication;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,6 +15,7 @@ import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
 import kmitl.covid.lib.korn.kornutil.KornIcon;
+import kmitl.covid.lib.methods.authentication.CVForgotPasswordEvent;
 import kmitl.covid.template.Home;
 
 public class ForgotPasswordPage {
@@ -77,6 +80,16 @@ public class ForgotPasswordPage {
 		TextField emailField = (TextField) email.getChildren().get(1);
 		TextField nationalIDField = (TextField) nationalID.getChildren().get(1);
 		TextField newPasswordField = (TextField) newPassword.getChildren().get(1);
+		EventHandler<ActionEvent> forgotPasswordEvent = CVForgotPasswordEvent.ForgotpasswordEvent(
+			emailField,
+			nationalIDField,
+			newPasswordField
+		);
+
+		emailField.setOnAction(forgotPasswordEvent);
+		nationalIDField.setOnAction(forgotPasswordEvent);
+		newPasswordField.setOnAction(forgotPasswordEvent);
+		changePasswordButton.setOnAction(forgotPasswordEvent);
 
 		backButton.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));
 
