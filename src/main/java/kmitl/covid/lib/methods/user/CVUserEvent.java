@@ -69,12 +69,10 @@ public class CVUserEvent {
 
 			//}
 
-			// นำข้อมูลเข้าสู่ระบบ
 			User user = new User();
 			user.setUsername(username);
 			user.setNationalID(nationalID);
 			user.setPassword(password);
-			//ต้อง set confirmPassword ปะ
 			user.setNameTitle(EnumNameTitle.MISTER);
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
