@@ -76,19 +76,64 @@ public class CVUserEvent {
 				return;
 			}
 
+			if (CVUser.isDuplicateUsername(username)) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถสมัครผู้ใช้ได้",
+					"ชื่อผู้ใช้ซ้ำกับฐานข้อมูลในระบบ"
+				);
+				return;
+			}
 
-			// 1. เช็คว่าชื่อผู้ใช้ มีซ้ำในระบบหรือเปล่า
-			// (ลบ "-" ออกจาก รหัสบัตรให้ด้วย ถึงแม้มันจะไม่มี)
-			//for (int i = 0; i < 13; i++) {
+			nationalID.replaceAll("[^0-9]", "");
 
-			//}
 			// 2. เช็คว่ารหัสบัตรประชาชน ถูกต้องมั้ย
-			// 3. เช็คว่ารหัสบัตรประชาชน ซ้ำกับในระบบมั้ย
-			// 4. รหัสผ่าน === ยืนยันรหัสผ่าน (อย่างน้อย 8)
-			// (ลบ "-" ออกจาก เบอร์โทร ถึงแม้มันจะไม่มี)
-			//for (int i = 0; i < 10; i++) {
 
-			//}
+			if (nationalID.length() != 13) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถสมัครผู้ใช้ได้",
+					"ข้อมูลเลขบัตรประชาชนไม่ถูกต้อง"
+				);
+				return;
+			}
+
+			if (CVUser.isDuplicateNationalID(nationalID)) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถสมัครผู้ใช้ได้",
+					"เลขบัตรประชาชนซ้ำกับฐานข้อมูลในระบบ"
+				);
+				return;
+			}
+
+			if (!password.equals(confirmPassword)) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถสมัครผู้ใช้ได้",
+					"เนื่องจากกรอกรหัสไม่ตรงกัน"
+				);
+				return;
+			}
+			if (password.length() < 8) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถสมัครผู้ใช้ได้",
+					"เนื่องจากกรอกรหัสน้อยกว่า 8 อักษร"
+				);
+				return;
+			}
+
+			if (phoneNumber.length() < 9 || phoneNumber.length() > 10) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถสมัครผู้ใช้ได้",
+					"ช้อมูลเบอร์โทรศัพท์ไม่ถูกต้อง"
+				);
+				return;
+			}
+
+			phoneNumber.replaceAll("[^0-9]", "");
 
 			User user = new User();
 			user.setUsername(username);
