@@ -22,24 +22,95 @@ public class CVUserEvent {
 	) {
 		return actionEvent -> {
 			// ดึงข้อมูลเป็น String
+			String username = usernameField.getText();
+			String nationalID = nationalIDField.getText();
+			String nameTitle = nameTitleField.getText();
+			String firstName = firstNameField.getText();
+			String lastName = lastNameField.getText();
+			String gender = genderField.getText();
+			String birthDate = birthDateField.getText();
+			String email = emailField.getText();
+			String phoneNumber = phoneNumberField.getText();
+			String address = addressField.getText();
 
 			// เช็คช่องว่างก่อน
+			if (username.isEmpty() || nationalID.isEmpty() || nameTitle.isEmpty() ||
+				firstName.isEmpty() || lastName.isEmpty() || gender.isEmpty() || birthDate.isEmpty()
+				|| email.isEmpty() || phoneNumber.isEmpty() || address.isEmpty()) {
 
-			// CVUser.isDuplicateUsername("usernameที่ต้องการเช็ค")
-			// CVUser.isDuplicateNationalID("รหัสบัตรประชาชน")
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
+					"เนื่องจากกรอกข้อมูลไม่ครบถ้วน"
+				);
+				return;
+			}
 
-			// 1. เช็คว่าชื่อผู้ใช้ มีซ้ำในระบบหรือเปล่า
+			// 1. เช็คว่าชื่อผู้ใช้ มีซ้ำในระบบหรือเปล่า  CVUser.isDuplicateUsername("usernameที่ต้องการเช็ค")
+			if (CVUser.isDuplicateUsername(username)) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
+					"ชื่อผู้ใช้ซ้ำกับฐานข้อมูลในระบบ"
+				);
+				return;
+			}
+
 			// 2. (ลบ ทุกอย่างนอกจากตัวเลข ออกจาก รหัสบัตรให้ด้วย ถึงแม้มันจะไม่มี)
+			nationalID.replaceAll("[^0-9]", "");
+
 			// 3. เช็คว่ารหัสบัตรประชาชน ถูกต้องมั้ย
-			// 4. เช็คว่ารหัสบัตรประชาชน ซ้ำกับในระบบมั้ย
+			if (nationalID.length() != 13) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
+					"ข้อมูลเลขบัตรประชาชนไม่ถูกต้อง"
+				);
+				return;
+			}
+
+			// 4. เช็คว่ารหัสบัตรประชาชน ซ้ำกับในระบบมั้ย  CVUser.isDuplicateNationalID("รหัสบัตรประชาชน")
+			if (CVUser.isDuplicateNationalID(nationalID)) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
+					"เลขบัตรประชาชนซ้ำกับฐานข้อมูลในระบบ"
+				);
+				return;
+			}
+
 			// 5. (ลบ ทุกอย่างนอกจากตัวเลข ออกจาก เบอร์โทร ถึงแม้มันจะไม่มี)
+			phoneNumber.replaceAll("[^0-9]", "");
+
+			//6.เช็คว่าเบอร์โทร ถูกต้องมั้ย
+			if (phoneNumber.length() < 9 || phoneNumber.length() > 10) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
+					"ช้อมูลเบอร์โทรศัพท์ไม่ถูกต้อง"
+				);
+				return;
+			}
 
 			// บันทึกข้อมูล แจ้งเตือน เปลี่ยนหน้า
 			User user = CVUser.getLoggedInUser();
-			user.setFirstName("สวัสดี");
-			// .. ทำให้ครบทุกอัน ยกเว้น 3 อันนั้น
+			user.setUsername(username);
+			user.setNationalID(nationalID);
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			user.setEmail(email);
+			user.setTelephoneNumber(phoneNumber);
+			user.setAddress(address);
+
 			CVUser.updateUser(user);
+
+			KornAlert.alert(
+				EnumAlertType.SUCCESS,
+				"บันทึกข้อมูลผู้ใช้สำเร็จ",
+				""
+			);
 		};
+
 	}
 	public static EventHandler<ActionEvent> registerEvent(
 		TextField usernameField, TextField nationalIDField,

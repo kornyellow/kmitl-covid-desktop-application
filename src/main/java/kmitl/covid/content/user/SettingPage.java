@@ -10,13 +10,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import kmitl.covid.lib.classes.user.User;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
 import kmitl.covid.lib.korn.kornutil.KornIcon;
 import kmitl.covid.lib.methods.authentication.CVLoginEvent;
-import kmitl.covid.lib.methods.user.CVUser;
 import kmitl.covid.lib.methods.user.CVUserEvent;
 import kmitl.covid.template.Home;
 
@@ -128,11 +126,6 @@ public class SettingPage {
 		TextField emailField = (TextField) email.getChildren().get(1);
 		TextField phoneNumberField = (TextField) phoneNumber.getChildren().get(1);
 		TextField addressField = (TextField) address.getChildren().get(1);
-
-		User user = CVUser.getLoggedInUser();
-		usernameField.setText(user.getUsername());
-		// เขียนให้ครบทุก Field
-		// ยกเว้น คำนำหน้า, เพศ, วันเกิด
 
 		saveButton.setOnAction(CVUserEvent.saveEvent(
 			usernameField, nationalIDField, nameTitleField, firstNameField,
