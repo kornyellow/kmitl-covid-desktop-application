@@ -6,14 +6,17 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import kmitl.covid.lib.classes.user.User;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
 import kmitl.covid.lib.korn.kornutil.KornIcon;
 import kmitl.covid.lib.methods.authentication.CVLoginEvent;
+import kmitl.covid.lib.methods.user.CVUser;
 import kmitl.covid.lib.methods.user.CVUserEvent;
 import kmitl.covid.template.Home;
 
@@ -115,7 +118,28 @@ public class SettingPage {
 		GridPane.setColumnSpan(logoutButton, 4);
 		SettingPage.node.add(logoutButton, 1, 8);
 
-		saveButton.setOnAction(CVUserEvent.saveEvent());
+		TextField usernameField = (TextField) username.getChildren().get(1);
+		TextField nationalIDField = (TextField) nationalID.getChildren().get(1);
+		TextField nameTitleField = (TextField) nameTitle.getChildren().get(1);
+		TextField firstNameField = (TextField) firstName.getChildren().get(1);
+		TextField lastNameField = (TextField) lastName.getChildren().get(1);
+		TextField genderField = (TextField) gender.getChildren().get(1);
+		TextField birthDateField = (TextField) birthDate.getChildren().get(1);
+		TextField emailField = (TextField) email.getChildren().get(1);
+		TextField phoneNumberField = (TextField) phoneNumber.getChildren().get(1);
+		TextField addressField = (TextField) address.getChildren().get(1);
+
+		User user = CVUser.getLoggedInUser();
+		usernameField.setText(user.getUsername());
+		// เขียนให้ครบทุก Field
+		// ยกเว้น คำนำหน้า, เพศ, วันเกิด
+
+		saveButton.setOnAction(CVUserEvent.saveEvent(
+			usernameField, nationalIDField, nameTitleField, firstNameField,
+			lastNameField, genderField, birthDateField,
+			emailField, phoneNumberField, addressField
+		));
+
 		logoutButton.setOnAction(CVLoginEvent.logoutEvent());
 		backButton.setOnAction(Home.redirectEvent(EnumPage.DASHBOARD()));
 

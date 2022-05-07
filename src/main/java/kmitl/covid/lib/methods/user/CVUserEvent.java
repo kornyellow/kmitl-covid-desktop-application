@@ -13,9 +13,32 @@ import kmitl.covid.lib.korn.kornutil.KornDateTime;
 import kmitl.covid.template.Home;
 
 public class CVUserEvent {
-	public static EventHandler<ActionEvent> saveEvent() {
+	public static EventHandler<ActionEvent> saveEvent(
+		TextField usernameField, TextField nationalIDField,
+		TextField nameTitleField, TextField firstNameField,
+		TextField lastNameField, TextField genderField,
+		TextField birthDateField, TextField emailField,
+		TextField phoneNumberField, TextField addressField
+	) {
 		return actionEvent -> {
+			// ดึงข้อมูลเป็น String
 
+			// เช็คช่องว่างก่อน
+
+			// CVUser.isDuplicateUsername("usernameที่ต้องการเช็ค")
+			// CVUser.isDuplicateNationalID("รหัสบัตรประชาชน")
+
+			// 1. เช็คว่าชื่อผู้ใช้ มีซ้ำในระบบหรือเปล่า
+			// 2. (ลบ ทุกอย่างนอกจากตัวเลข ออกจาก รหัสบัตรให้ด้วย ถึงแม้มันจะไม่มี)
+			// 3. เช็คว่ารหัสบัตรประชาชน ถูกต้องมั้ย
+			// 4. เช็คว่ารหัสบัตรประชาชน ซ้ำกับในระบบมั้ย
+			// 5. (ลบ ทุกอย่างนอกจากตัวเลข ออกจาก เบอร์โทร ถึงแม้มันจะไม่มี)
+
+			// บันทึกข้อมูล แจ้งเตือน เปลี่ยนหน้า
+			User user = CVUser.getLoggedInUser();
+			user.setFirstName("สวัสดี");
+			// .. ทำให้ครบทุกอัน ยกเว้น 3 อันนั้น
+			CVUser.updateUser(user);
 		};
 	}
 	public static EventHandler<ActionEvent> registerEvent(
