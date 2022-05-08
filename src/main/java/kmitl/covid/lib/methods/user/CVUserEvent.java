@@ -11,6 +11,7 @@ import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornAlert;
 import kmitl.covid.lib.korn.kornutil.KornDateTime;
 import kmitl.covid.template.Home;
+import kmitl.covid.template.TemplateHeader;
 
 public class CVUserEvent {
 	public static EventHandler<ActionEvent> saveEvent(
@@ -18,10 +19,9 @@ public class CVUserEvent {
 		TextField nameTitleField, TextField firstNameField,
 		TextField lastNameField, TextField genderField,
 		TextField birthDateField, TextField emailField,
-		TextField phoneNumberField, TextField addressField
+		TextField telephoneNumberField, TextField addressField
 	) {
 		return actionEvent -> {
-			// ดึงข้อมูลเป็น String
 			String username = usernameField.getText();
 			String nationalID = nationalIDField.getText();
 			String nameTitle = nameTitleField.getText();
@@ -30,84 +30,85 @@ public class CVUserEvent {
 			String gender = genderField.getText();
 			String birthDate = birthDateField.getText();
 			String email = emailField.getText();
-			String phoneNumber = phoneNumberField.getText();
+			String telephoneNumber = telephoneNumberField.getText();
 			String address = addressField.getText();
 
-			// เช็คช่องว่างก่อน
-			if (username.isEmpty() || nationalID.isEmpty() || nameTitle.isEmpty() ||
-				firstName.isEmpty() || lastName.isEmpty() || gender.isEmpty() || birthDate.isEmpty()
-				|| email.isEmpty() || phoneNumber.isEmpty() || address.isEmpty()) {
+			if (username.isEmpty() || nationalID.isEmpty() ||
+				nameTitle.isEmpty() || firstName.isEmpty() ||
+				lastName.isEmpty() || gender.isEmpty() ||
+				birthDate.isEmpty() || email.isEmpty() ||
+				telephoneNumber.isEmpty() || address.isEmpty()) {
 
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
-					"เนื่องจากกรอกข้อมูลไม่ครบถ้วน"
+					"กรุณากรอกข้อมูลให้ครบถ้วน"
 				);
 				return;
 			}
 
-			// 1. เช็คว่าชื่อผู้ใช้ มีซ้ำในระบบหรือเปล่า  CVUser.isDuplicateUsername("usernameที่ต้องการเช็ค")
+			String convertedNationalID = nationalID.replaceAll("[^0-9]", "");
+			String convertedTelephoneNumber = telephoneNumber.replaceAll("[^0-9]", "");
+			nationalID = convertedNationalID;
+			telephoneNumber = convertedTelephoneNumber;
+
 			if (CVUser.isDuplicateUsername(username)) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
-					"ชื่อผู้ใช้ซ้ำกับฐานข้อมูลในระบบ"
+					"พบชื่อผู้ใช้ซ้ำ กรุณาใช้ชื่อผู้ใช้อื่น"
 				);
 				return;
 			}
-
-			// 2. (ลบ ทุกอย่างนอกจากตัวเลข ออกจาก รหัสบัตรให้ด้วย ถึงแม้มันจะไม่มี)
-			nationalID.replaceAll("[^0-9]", "");
-
-			// 3. เช็คว่ารหัสบัตรประชาชน ถูกต้องมั้ย
+			if (CVUser.isDuplicateEmail(email)) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"พบอีเมลซ้ำ กรุณาใช้อีเมลอื่น"
+				);
+				return;
+			}
 			if (nationalID.length() != 13) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
-					"ข้อมูลเลขบัตรประชาชนไม่ถูกต้อง"
+					"เลขบัตรประชาชนไม่ถูกต้อง"
 				);
 				return;
 			}
-
-			// 4. เช็คว่ารหัสบัตรประชาชน ซ้ำกับในระบบมั้ย  CVUser.isDuplicateNationalID("รหัสบัตรประชาชน")
 			if (CVUser.isDuplicateNationalID(nationalID)) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
-					"เลขบัตรประชาชนซ้ำกับฐานข้อมูลในระบบ"
+					"พบเลขบัตรประชาชนซ้ำ กรุณาใช้เลขบัตรประชาชนอื่น"
 				);
 				return;
 			}
-
-			// 5. (ลบ ทุกอย่างนอกจากตัวเลข ออกจาก เบอร์โทร ถึงแม้มันจะไม่มี)
-			phoneNumber.replaceAll("[^0-9]", "");
-
-			//6.เช็คว่าเบอร์โทร ถูกต้องมั้ย
-			if (phoneNumber.length() < 9 || phoneNumber.length() > 10) {
+			if (telephoneNumber.length() < 9 || telephoneNumber.length() > 10) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถบันทึกข้อมูลผู้ใช้ได้",
-					"ช้อมูลเบอร์โทรศัพท์ไม่ถูกต้อง"
+					"เบอร์โทรศัพท์ไม่ถูกต้อง"
 				);
 				return;
 			}
 
-			// บันทึกข้อมูล แจ้งเตือน เปลี่ยนหน้า
 			User user = CVUser.getLoggedInUser();
 			user.setUsername(username);
 			user.setNationalID(nationalID);
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
 			user.setEmail(email);
-			user.setTelephoneNumber(phoneNumber);
+			user.setTelephoneNumber(telephoneNumber);
 			user.setAddress(address);
 
 			CVUser.updateUser(user);
+			CVUser.setLoggedInUser(user);
 
 			KornAlert.alert(
 				EnumAlertType.SUCCESS,
-				"บันทึกข้อมูลผู้ใช้สำเร็จ",
-				""
+				"ข้อมูลผู้ใช้ถูกเปลี่ยนแปลงเรียบร้อย",
+				dialogEvent -> {
+					nationalIDField.setText(convertedNationalID);
+					telephoneNumberField.setText(convertedTelephoneNumber);
+
+					TemplateHeader.resetHeader();
+					Home.redirect(EnumPage.SETTING());
+				}
 			);
 		};
 
@@ -118,7 +119,7 @@ public class CVUserEvent {
 		TextField nameTitleField, TextField firstNameField,
 		TextField lastNameField, TextField genderField,
 		TextField birthDateField, TextField emailField,
-		TextField phoneNumberField, TextField addressField
+		TextField telephoneNumberField, TextField addressField
 	) {
 		return actionEvent -> {
 			String username = usernameField.getText();
@@ -131,80 +132,75 @@ public class CVUserEvent {
 			String gender = genderField.getText();
 			String birthDate = birthDateField.getText();
 			String email = emailField.getText();
-			String phoneNumber = phoneNumberField.getText();
+			String telephoneNumber = telephoneNumberField.getText();
 			String address = addressField.getText();
 
 			if (username.isEmpty() || nationalID.isEmpty() || password.isEmpty() ||
 				confirmPassword.isEmpty() || nameTitle.isEmpty() || firstName.isEmpty() ||
 				lastName.isEmpty() || gender.isEmpty() || birthDate.isEmpty() ||
-				email.isEmpty() || phoneNumber.isEmpty() || address.isEmpty()) {
+				email.isEmpty() || telephoneNumber.isEmpty() || address.isEmpty()) {
 
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถสมัครผู้ใช้ได้",
-					"เนื่องจากกรอกข้อมูลไม่ครบถ้วน"
+					"กรุณากรอกข้อมูลให้ครบถ้วน"
 				);
 				return;
 			}
+
+			String convertedNationalID = nationalID.replaceAll("[^d]", "");
+			String convertedTelephoneNumber = telephoneNumber.replaceAll("[^d]", "");
+			nationalID = convertedNationalID;
+			telephoneNumber = convertedTelephoneNumber;
 
 			if (CVUser.isDuplicateUsername(username)) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถสมัครผู้ใช้ได้",
-					"ชื่อผู้ใช้ซ้ำกับฐานข้อมูลในระบบ"
+					"พบชื่อผู้ใช้ซ้ำ กรุณาใช้ชื่อผู้ใช้อื่น"
 				);
 				return;
 			}
-
-			nationalID.replaceAll("[^0-9]", "");
-
-			// 2. เช็คว่ารหัสบัตรประชาชน ถูกต้องมั้ย
-
+			if (CVUser.isDuplicateEmail(email)) {
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"พบอีเมลซ้ำ กรุณาใช้อีเมลอื่น"
+				);
+				return;
+			}
 			if (nationalID.length() != 13) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถสมัครผู้ใช้ได้",
-					"ข้อมูลเลขบัตรประชาชนไม่ถูกต้อง"
+					"เลขบัตรประชาชนไม่ถูกต้อง"
 				);
 				return;
 			}
-
 			if (CVUser.isDuplicateNationalID(nationalID)) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถสมัครผู้ใช้ได้",
-					"เลขบัตรประชาชนซ้ำกับฐานข้อมูลในระบบ"
+					"พบเลขบัตรประชาชนซ้ำ กรุณาใช้เลขบัตรประชาชนอื่น"
 				);
 				return;
 			}
-
 			if (!password.equals(confirmPassword)) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถสมัครผู้ใช้ได้",
-					"เนื่องจากกรอกรหัสไม่ตรงกัน"
+					"ยืนยันรหัสผ่านไม่ถูกต้อง"
 				);
 				return;
 			}
 			if (password.length() < 8) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถสมัครผู้ใช้ได้",
-					"เนื่องจากกรอกรหัสน้อยกว่า 8 อักษร"
+					"กรุณากรอกรหัสผ่านอย่างน้อย 8 ตัวอักษร"
 				);
 				return;
 			}
-
-			if (phoneNumber.length() < 9 || phoneNumber.length() > 10) {
+			if (telephoneNumber.length() < 9 || telephoneNumber.length() > 10) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถสมัครผู้ใช้ได้",
-					"ช้อมูลเบอร์โทรศัพท์ไม่ถูกต้อง"
+					"เบอร์โทรศัพท์ไม่ถูกต้อง"
 				);
 				return;
 			}
-
-			phoneNumber.replaceAll("[^0-9]", "");
 
 			User user = new User();
 			user.setUsername(username);
@@ -216,15 +212,14 @@ public class CVUserEvent {
 			user.setGender(EnumGender.MALE);
 			user.setBirthDate(KornDateTime.createFromDate(2, 2, 2002));
 			user.setEmail(email);
-			user.setTelephoneNumber(phoneNumber);
+			user.setTelephoneNumber(telephoneNumber);
 			user.setAddress(address);
 
 			CVUser.insertUser(user);
 
 			KornAlert.alert(
 				EnumAlertType.SUCCESS,
-				"สมัครผู้ใช้สำเร็จ",
-				"กรุณาลงชื่อเข้าใช้",
+				"สามารถเข้าสู่ระบบได้เรียบร้อย",
 				dialogEvent -> {
 					usernameField.clear();
 					nationalIDField.clear();
@@ -236,9 +231,8 @@ public class CVUserEvent {
 					genderField.clear();
 					birthDateField.clear();
 					emailField.clear();
-					phoneNumberField.clear();
+					telephoneNumberField.clear();
 					addressField.clear();
-
 					Home.redirect(EnumPage.LOGIN());
 				}
 			);

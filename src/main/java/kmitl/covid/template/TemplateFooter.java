@@ -25,7 +25,7 @@ public class TemplateFooter {
 		TemplateFooter.node.getColumnConstraints().addAll(column);
 
 		Label version = new Label("© " + new KornDateTime().getYear() + " - KMITL Students");
-		version.setFont(KornFont.paragraphNormal);
+		version.setFont(KornFont.smallNormal);
 		GridPane.setHalignment(version, HPos.LEFT);
 		GridPane.setValignment(version, VPos.CENTER);
 		TemplateFooter.node.add(version, 0, 0);
@@ -33,7 +33,7 @@ public class TemplateFooter {
 		String isLocalHost = (Config.isLocalhost) ? "Localhost" : "Production";
 		Label copyright = new Label("Version - " + Config.applicationVersion +
 			" (" + isLocalHost + ")");
-		copyright.setFont(KornFont.paragraphNormal);
+		copyright.setFont(KornFont.smallNormal);
 		GridPane.setHalignment(copyright, HPos.RIGHT);
 		GridPane.setValignment(copyright, VPos.CENTER);
 		TemplateFooter.node.add(copyright, 1, 0);

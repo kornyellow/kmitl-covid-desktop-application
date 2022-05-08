@@ -10,11 +10,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import kmitl.covid.lib.enums.EnumButtonType;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
 import kmitl.covid.lib.korn.kornutil.KornFont;
 import kmitl.covid.lib.korn.kornutil.KornIcon;
 import kmitl.covid.lib.methods.authentication.CVLoginEvent;
+import kmitl.covid.lib.methods.style.CVStyle;
+import kmitl.covid.lib.methods.user.CVUser;
 import kmitl.covid.lib.methods.user.CVUserEvent;
 import kmitl.covid.template.Home;
 
@@ -23,7 +26,7 @@ public class SettingPage {
 		if (SettingPage.node != null) return SettingPage.node;
 
 		double columnHGap = 40;
-		double columnVGap = 15;
+		double columnVGap = 20;
 		double columnWidth = 120;
 
 		SettingPage.node = new GridPane();
@@ -77,9 +80,9 @@ public class SettingPage {
 		GridPane.setColumnSpan(email, 3);
 		SettingPage.node.add(email, 0, 4);
 
-		VBox phoneNumber = KornField.getTextFieldWithLabel("เบอร์โทรศัพท์");
-		GridPane.setColumnSpan(phoneNumber, 3);
-		SettingPage.node.add(phoneNumber, 3, 4);
+		VBox telephoneNumber = KornField.getTextFieldWithLabel("เบอร์โทรศัพท์");
+		GridPane.setColumnSpan(telephoneNumber, 3);
+		SettingPage.node.add(telephoneNumber, 3, 4);
 
 		VBox address = KornField.getTextFieldWithLabel("ที่อยู่");
 		GridPane.setColumnSpan(address, 6);
@@ -90,29 +93,20 @@ public class SettingPage {
 		GridPane.setColumnSpan(separator, 6);
 		SettingPage.node.add(separator, 0, 6);
 
-		Button saveButton = new Button("บันทึกข้อมูล");
-		saveButton.setFont(KornFont.paragraphNormal);
+		Button saveButton = CVStyle.makeButton("บันทึกข้อมูล", "\uF0C7", EnumButtonType.SUCCESS);
 		saveButton.setMinWidth((columnWidth * 2) + columnHGap);
 		saveButton.setDefaultButton(true);
-		saveButton.setGraphic(KornIcon.getIconRegular("\uF0C7"));
-		saveButton.setGraphicTextGap(10);
 		GridPane.setColumnSpan(saveButton, 2);
 		SettingPage.node.add(saveButton, 1, 7);
 
-		Button backButton = new Button("ย้อนกลับ");
-		backButton.setFont(KornFont.paragraphNormal);
+		Button backButton = CVStyle.makeButton("ย้อนกลับ", "\uF01E", EnumButtonType.INFO);
 		backButton.setMinWidth((columnWidth * 2) + columnHGap);
 		backButton.setCancelButton(true);
-		backButton.setGraphic(KornIcon.getIconRegular("\uF01E"));
-		backButton.setGraphicTextGap(10);
 		GridPane.setColumnSpan(backButton, 2);
 		SettingPage.node.add(backButton, 3, 7);
 
-		Button logoutButton = new Button("ออกจากระบบ");
-		logoutButton.setFont(KornFont.paragraphNormal);
+		Button logoutButton = CVStyle.makeButton("ออกจากระบบ", "\uF2F5", EnumButtonType.DANGER);
 		logoutButton.setMinWidth((columnWidth * 4) + (columnHGap * 3));
-		logoutButton.setGraphic(KornIcon.getIconRegular("\uF2F5"));
-		logoutButton.setGraphicTextGap(10);
 		GridPane.setColumnSpan(logoutButton, 4);
 		SettingPage.node.add(logoutButton, 1, 8);
 
@@ -124,13 +118,23 @@ public class SettingPage {
 		TextField genderField = (TextField) gender.getChildren().get(1);
 		TextField birthDateField = (TextField) birthDate.getChildren().get(1);
 		TextField emailField = (TextField) email.getChildren().get(1);
-		TextField phoneNumberField = (TextField) phoneNumber.getChildren().get(1);
+		TextField telephoneNumberField = (TextField) telephoneNumber.getChildren().get(1);
 		TextField addressField = (TextField) address.getChildren().get(1);
 
+		usernameField.setText(CVUser.getLoggedInUser().getUsername());
+		nationalIDField.setText(CVUser.getLoggedInUser().getNationalID());
+		firstNameField.setText(CVUser.getLoggedInUser().getFirstName());
+		lastNameField.setText(CVUser.getLoggedInUser().getLastName());
+		emailField.setText(CVUser.getLoggedInUser().getEmail());
+		telephoneNumberField.setText(CVUser.getLoggedInUser().getTelephoneNumber());
+		addressField.setText(CVUser.getLoggedInUser().getAddress());
+
 		saveButton.setOnAction(CVUserEvent.saveEvent(
-			usernameField, nationalIDField, nameTitleField, firstNameField,
-			lastNameField, genderField, birthDateField,
-			emailField, phoneNumberField, addressField
+			usernameField, nationalIDField,
+			nameTitleField, firstNameField,
+			lastNameField, genderField,
+			birthDateField, emailField,
+			telephoneNumberField, addressField
 		));
 
 		logoutButton.setOnAction(CVLoginEvent.logoutEvent());

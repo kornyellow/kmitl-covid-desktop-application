@@ -22,7 +22,6 @@ public class CVForgotPasswordEvent {
 			if (emailText.isEmpty() && nationalIDText.isEmpty() && newPasswordText.isEmpty()) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถเข้าสู่ระบบได้",
 					"กรุณากรอกข้อมูลให้ครบถ้วน",
 					dialogEvent -> Home.redirect(EnumPage.LOGIN())
 				);
@@ -47,8 +46,7 @@ public class CVForgotPasswordEvent {
 
 			KornAlert.alert(
 				EnumAlertType.SUCCESS,
-				"เปลี่ยนรหัสผ่านเรียบร้อย",
-				""
+				"เปลี่ยนรหัสผ่านเรียบร้อย"
 			);
 
 			Home.redirect(EnumPage.LOGIN());

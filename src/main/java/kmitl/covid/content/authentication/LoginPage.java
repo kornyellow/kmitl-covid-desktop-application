@@ -49,10 +49,10 @@ public class LoginPage {
 		GridPane.setColumnSpan(header, 3);
 		LoginPage.node.add(header, 0, 0);
 
-		VBox username = KornField.getTextFieldWithLabel("ชื่อผู้ใช้ (Username)");
+		VBox username = KornField.getTextFieldWithLabel("ชื่อผู้ใช้หรืออีเมล");
 		LoginPage.node.add(username, 1, 1);
 
-		VBox password = KornField.getPasswordFieldWithLabel("รหัสผ่าน (Password)");
+		VBox password = KornField.getPasswordFieldWithLabel("รหัสผ่าน");
 		LoginPage.node.add(password, 1, 2);
 
 		Button loginButton = CVStyle.makeButton("เข้าสู่ระบบ", "\uF2F6", EnumButtonType.PRIMARY);

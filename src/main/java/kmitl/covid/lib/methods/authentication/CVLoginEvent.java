@@ -32,16 +32,15 @@ public class CVLoginEvent {
 			if (!CVUser.tryLogin(usernameText, passwordText)) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					"ไม่สามารถเข้าสู่ระบบได้",
 					"ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
 					dialogEvent -> password.clear()
 				);
 				password.requestFocus();
 				return;
 			}
+
 			username.clear();
 			password.clear();
-			username.requestFocus();
 			Home.redirect(EnumPage.DASHBOARD());
 		};
 	}

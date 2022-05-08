@@ -1,17 +1,17 @@
 package kmitl.covid.template;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.DialogEvent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import kmitl.covid.launcher.Application;
@@ -35,12 +35,11 @@ public class Home {
 	}
 	private static Scene getLoggedInScene(Node content) {
 		GridPane gridPane = new GridPane();
-		gridPane.setPadding(new Insets(30));
 
-		RowConstraints topRow = new RowConstraints(50);
+		RowConstraints topRow = new RowConstraints(100);
 		RowConstraints middleRow = new RowConstraints();
 		middleRow.setVgrow(Priority.ALWAYS);
-		RowConstraints bottomRow = new RowConstraints(30);
+		RowConstraints bottomRow = new RowConstraints(40);
 		gridPane.getRowConstraints().addAll(
 			topRow,
 			middleRow,
@@ -52,6 +51,8 @@ public class Home {
 		gridPane.getColumnConstraints().addAll(column);
 
 		GridPane header = TemplateHeader.getContent();
+		header.setPadding(new Insets(0, 40, 0, 40));
+		header.getStyleClass().add("header");
 		gridPane.add(header, 0, 0);
 
 		ScrollPane handler = TemplateHandler.getContent(content);
@@ -59,6 +60,8 @@ public class Home {
 		gridPane.add(handler, 0, 1);
 
 		GridPane footer = TemplateFooter.getContent();
+		footer.setPadding(new Insets(0, 40, 0, 40));
+		footer.getStyleClass().add("footer");
 		gridPane.add(footer, 0, 2);
 
 		double applicationWidth = (Application.getCurrentScene() != null) ?
@@ -72,9 +75,19 @@ public class Home {
 	}
 	private static Scene getNonLoggedInScene(Node content) {
 		GridPane gridPane = new GridPane();
-		gridPane.getStyleClass().add("body");
 		gridPane.setAlignment(Pos.CENTER);
-		gridPane.getChildren().add(content);
+
+		content.getStyleClass().add("main-card");
+		HBox hbox = new HBox(content);
+		hbox.setAlignment(Pos.CENTER);
+
+		ScrollPane body = new ScrollPane(hbox);
+		body.setFitToWidth(true);
+		body.setFitToHeight(true);
+
+		GridPane.setHgrow(body, Priority.ALWAYS);
+		GridPane.setHalignment(body, HPos.CENTER);
+		gridPane.getChildren().add(body);
 
 		double applicationWidth = (Application.getCurrentScene() != null) ?
 			Application.getCurrentScene().getWidth() :

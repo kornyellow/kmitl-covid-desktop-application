@@ -4,6 +4,8 @@ import kmitl.covid.lib.classes.user.User;
 import kmitl.covid.lib.enums.EnumGender;
 import kmitl.covid.lib.enums.EnumNameTitle;
 import kmitl.covid.lib.korn.kornquery.KornInsertMySQL;
+import kmitl.covid.lib.korn.kornquery.KornMySQLCompare;
+import kmitl.covid.lib.korn.kornquery.KornMySQLOperator;
 import kmitl.covid.lib.korn.kornquery.KornMySQLValue;
 import kmitl.covid.lib.korn.kornquery.KornQuery;
 import kmitl.covid.lib.korn.kornquery.KornSelectMySQL;
@@ -57,33 +59,11 @@ public class CVUser {
 
 		return query.getInsertedID();
 	}
-	public static boolean isDuplicateUsername(String username) {
-		KornSelectMySQL select = CVUser.getQueryObject();
-		select.table("user");
-
-		select.where("u_username", username);
-		System.out.println(select.build());
-
-		KornQuery query = new KornQuery(CVDB.getDB());
-		query.query(select);
-
-		return CVUser.processObject(query) != null;
-	}
-	public static boolean isDuplicateNationalID(String nationalID) {
-		KornSelectMySQL select = CVUser.getQueryObject();
-		select.table("user");
-
-		select.where("u_national_id", nationalID);
-
-		KornQuery query = new KornQuery(CVDB.getDB());
-		query.query(select);
-
-		return CVUser.processObject(query) != null;
-	}
 	public static int updateUser(User user) {
 		KornUpdateMySQL update = new KornUpdateMySQL();
 		update.table("user");
 
+		update.set("u_username", user.getUsername());
 		update.set("u_nametitle", user.getNameTitle().name());
 		update.set("u_firstname", user.getFirstName());
 		update.set("u_lastname", user.getLastName());
@@ -186,7 +166,18 @@ public class CVUser {
 		KornSelectMySQL select = CVUser.getQueryObject();
 		select.table("user");
 
-		select.where("u_username", username);
+		select.whereWithCompareAndOperator(
+			"u_username",
+			KornMySQLCompare.EQUAL,
+			username,
+			KornMySQLOperator.OR
+		);
+		select.whereWithCompareAndOperator(
+			"u_email",
+			KornMySQLCompare.EQUAL,
+			username,
+			KornMySQLOperator.OR
+		);
 
 		KornQuery query = new KornQuery(CVDB.getDB());
 		query.query(select);
@@ -203,8 +194,51 @@ public class CVUser {
 		return true;
 	}
 
+	public static boolean isDuplicateUsername(String username) {
+		if (CVUser.loggedInUser.getUsername().equals(username)) return false;
+
+		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
+
+		select.where("u_username", username);
+
+		KornQuery query = new KornQuery(CVDB.getDB());
+		query.query(select);
+
+		return CVUser.processObject(query) != null;
+	}
+	public static boolean isDuplicateNationalID(String nationalID) {
+		if (CVUser.loggedInUser.getNationalID().equals(nationalID)) return false;
+
+		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
+
+		select.where("u_national_id", nationalID);
+
+		KornQuery query = new KornQuery(CVDB.getDB());
+		query.query(select);
+
+		return CVUser.processObject(query) != null;
+	}
+	public static boolean isDuplicateEmail(String email) {
+		if (CVUser.loggedInUser.getEmail().equals(email)) return false;
+
+		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
+
+		select.where("u_email", email);
+
+		KornQuery query = new KornQuery(CVDB.getDB());
+		query.query(select);
+
+		return CVUser.processObject(query) != null;
+	}
+
 	private static User loggedInUser;
 
+	public static void setLoggedInUser(User user) {
+		CVUser.loggedInUser = user;
+	}
 	public static User getLoggedInUser() {
 		return CVUser.loggedInUser;
 	}

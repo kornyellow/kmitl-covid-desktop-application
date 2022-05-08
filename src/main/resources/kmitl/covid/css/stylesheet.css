@@ -1,6 +1,7 @@
 * {
-    -fx-light: #F8F9Fa;
-    -fx-dark: #5E6065;
+    -fx-light: #FFFFFF;
+    -fx-light-gray: #F6F8FC;
+    -fx-dark: #494E52;
 
     -fx-default: #ACB4BD;
     -fx-form-border: #6EA9FF;
@@ -28,6 +29,38 @@
 
 .body {
     -fx-background-color: -fx-light;
+}
+.sub-body {
+    -fx-background-color: -fx-light-gray;
+}
+
+.header {
+    -fx-background-color: -fx-light;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0, 0, 0);
+}
+
+.footer {
+    -fx-background-color: -fx-light;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0, 0, 0);
+}
+
+.card {
+    -fx-background-color: -fx-light;
+    -fx-background-radius: 10;
+    -fx-padding: 40;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+}
+.main-card {
+    -fx-background-color: -fx-light;
+    -fx-background-radius: 10;
+    -fx-padding: 60;
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+.scroll-pane {
+    -fx-background-color: transparent;
 }
 
 .btn {
@@ -132,12 +165,36 @@
     -fx-background-radius: 5;
     -fx-padding: 8 16;
     -fx-text-fill: -fx-dark;
+    -fx-accent: -fx-primary;
+
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+    -fx-border-color: -fx-default;
+
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+}
+.form:focused {
+    -fx-border-color: -fx-form-border;
+    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+}
+
+.form-radio {
+    -fx-text-fill: -fx-dark;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+}
+.form-radio .radio {
+    -fx-background-color: -fx-light;
+    -fx-background-radius: 5;
 
     -fx-border-radius: 5;
     -fx-border-width: 1;
     -fx-border-color: -fx-default;
 }
-.form:focused {
-    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+.form-radio .dot {
+    -fx-background-radius: 5px;
+    -fx-mark-color: -fx-primary;
+}
+.form-radio:focused .radio {
     -fx-border-color: -fx-form-border;
+    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
 }

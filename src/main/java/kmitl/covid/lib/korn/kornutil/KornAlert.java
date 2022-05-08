@@ -17,18 +17,18 @@ import kmitl.covid.lib.enums.EnumAlertType;
 import kmitl.covid.lib.methods.style.CVStyle;
 
 public class KornAlert {
-	public static void alert(EnumAlertType type, String header, String content) {
-		KornAlert alert = new KornAlert(type, header, content);
+	public static void alert(EnumAlertType type, String content) {
+		KornAlert alert = new KornAlert(type, content);
 		alert.show();
 	}
-	public static void alert(EnumAlertType type, String header, String content, EventHandler<DialogEvent> callBackEvent) {
-		KornAlert alert = new KornAlert(type, header, content, callBackEvent);
+	public static void alert(EnumAlertType type, String content, EventHandler<DialogEvent> callBackEvent) {
+		KornAlert alert = new KornAlert(type, content, callBackEvent);
 		alert.show();
 	}
 
-	public KornAlert(EnumAlertType type, String header, String content, EventHandler<DialogEvent> callbackEvent) {
+	public KornAlert(EnumAlertType type, String content, EventHandler<DialogEvent> callbackEvent) {
 		this.type = type;
-		this.header = header;
+		this.header = this.type.getTitle();
 		this.content = content;
 		this.callBackEvent = callbackEvent;
 
@@ -44,8 +44,8 @@ public class KornAlert {
 		if (this.callBackEvent != null)
 			this.alert.setOnCloseRequest(this.callBackEvent);
 	}
-	public KornAlert(EnumAlertType type, String header, String content) {
-		this(type, header, content, null);
+	public KornAlert(EnumAlertType type, String content) {
+		this(type, content, null);
 	}
 
 	public void show() {

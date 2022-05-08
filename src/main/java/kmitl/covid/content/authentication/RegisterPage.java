@@ -22,7 +22,7 @@ public class RegisterPage {
 		if (RegisterPage.node != null) return RegisterPage.node;
 
 		double columnHGap = 40;
-		double columnVGap = 10;
+		double columnVGap = 20;
 		double columnWidth = 120;
 
 		RegisterPage.node = new GridPane();
@@ -65,7 +65,7 @@ public class RegisterPage {
 		GridPane.setColumnSpan(confirmPassword, 3);
 		RegisterPage.node.add(confirmPassword, 3, 2);
 
-		VBox nameTitle = KornField.getTextFieldWithLabel("คำนำหน้า");
+		VBox nameTitle = KornField.getRadioButtonNameTitle("คำนำหน้า");
 		GridPane.setColumnSpan(nameTitle, 2);
 		RegisterPage.node.add(nameTitle, 0, 3);
 
@@ -77,13 +77,13 @@ public class RegisterPage {
 		GridPane.setColumnSpan(lastName, 2);
 		RegisterPage.node.add(lastName, 4, 3);
 
-		VBox gender = KornField.getTextFieldWithLabel("เพศ");
+		VBox gender = KornField.getRadioButtonGender("เพศ");
 		GridPane.setColumnSpan(gender, 3);
 		RegisterPage.node.add(gender, 0, 4);
 
 		VBox birthDate = KornField.getTextFieldWithLabel("วันเกิด");
-		GridPane.setColumnSpan(birthDate, 3);
-		RegisterPage.node.add(birthDate, 3, 4);
+		GridPane.setColumnSpan(birthDate, 4);
+		RegisterPage.node.add(birthDate, 2, 4);
 
 		VBox email = KornField.getTextFieldWithLabel("อีเมล");
 		GridPane.setColumnSpan(email, 3);
@@ -118,11 +118,11 @@ public class RegisterPage {
 		TextField nationalIDField = (TextField) nationalID.getChildren().get(1);
 		TextField passwordField = (TextField) password.getChildren().get(1);
 		TextField confirmPasswordField = (TextField) confirmPassword.getChildren().get(1);
-		TextField nameTitleField = (TextField) nameTitle.getChildren().get(1);
+		TextField genderField = new TextField();
 		TextField firstNameField = (TextField) firstName.getChildren().get(1);
 		TextField lastNameField = (TextField) lastName.getChildren().get(1);
-		TextField genderField = (TextField) gender.getChildren().get(1);
-		TextField birthDateField = (TextField) birthDate.getChildren().get(1);
+		TextField nameTitleField = new TextField();
+		TextField birthDateField = new TextField();
 		TextField emailField = (TextField) email.getChildren().get(1);
 		TextField phoneNumberField = (TextField) phoneNumber.getChildren().get(1);
 		TextField addressField = (TextField) address.getChildren().get(1);
