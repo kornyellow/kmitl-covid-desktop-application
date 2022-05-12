@@ -145,7 +145,7 @@ public class CVUser {
 			user.setLastName(u_lastname.getValue());
 			user.setGender(EnumGender.valueOf(u_gender.getValue()));
 			user.setNationalID(u_national_id.getValue());
-			user.setBirthDate(KornDateTime.createFromMySQLDateTime(u_birthdate.getValue()));
+			user.setBirthDate(KornDateTime.createFromMySQLDate(u_birthdate.getValue()));
 			user.setEmail(u_email.getValue());
 			user.setAddress(u_address.getValue());
 			user.setTelephoneNumber(u_telephone_number.getValue());
@@ -195,7 +195,7 @@ public class CVUser {
 	}
 
 	public static boolean isDuplicateUsername(String username) {
-		if (CVUser.loggedInUser.getUsername().equals(username)) return false;
+		if (CVUser.loggedInUser != null && CVUser.loggedInUser.getUsername().equals(username)) return false;
 
 		KornSelectMySQL select = CVUser.getQueryObject();
 		select.table("user");
@@ -208,7 +208,7 @@ public class CVUser {
 		return CVUser.processObject(query) != null;
 	}
 	public static boolean isDuplicateNationalID(String nationalID) {
-		if (CVUser.loggedInUser.getNationalID().equals(nationalID)) return false;
+		if (CVUser.loggedInUser != null && CVUser.loggedInUser.getNationalID().equals(nationalID)) return false;
 
 		KornSelectMySQL select = CVUser.getQueryObject();
 		select.table("user");
@@ -221,7 +221,7 @@ public class CVUser {
 		return CVUser.processObject(query) != null;
 	}
 	public static boolean isDuplicateEmail(String email) {
-		if (CVUser.loggedInUser.getEmail().equals(email)) return false;
+		if (CVUser.loggedInUser != null && CVUser.loggedInUser.getEmail().equals(email)) return false;
 
 		KornSelectMySQL select = CVUser.getQueryObject();
 		select.table("user");

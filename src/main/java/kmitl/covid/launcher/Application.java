@@ -8,9 +8,12 @@ import kmitl.covid.lib.korn.kornutil.KornResource;
 import kmitl.covid.other.Config;
 import kmitl.covid.template.Home;
 
+import java.util.Locale;
+
 public class Application extends javafx.application.Application {
 	@Override
 	public void start(Stage primaryStage) {
+		Locale.setDefault(new Locale("TH"));
 		KornFix.fixAll();
 		KornResource.loadResource();
 

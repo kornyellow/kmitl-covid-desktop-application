@@ -3,12 +3,15 @@ package kmitl.covid.content.authentication;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 import kmitl.covid.lib.enums.EnumButtonType;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
@@ -65,33 +68,33 @@ public class RegisterPage {
 		GridPane.setColumnSpan(confirmPassword, 3);
 		RegisterPage.node.add(confirmPassword, 3, 2);
 
-		VBox nameTitle = KornField.getRadioButtonNameTitle("คำนำหน้า");
-		GridPane.setColumnSpan(nameTitle, 2);
-		RegisterPage.node.add(nameTitle, 0, 3);
+		Pair<VBox, ToggleGroup> nameTitle = KornField.getRadioButtonNameTitle("คำนำหน้า");
+		GridPane.setColumnSpan(nameTitle.getKey(), 2);
+		RegisterPage.node.add(nameTitle.getKey(), 0, 3);
+
+		VBox birthDate = KornField.getDatePicker("วันเกิด", (columnWidth * 2) + columnHGap);
+		GridPane.setColumnSpan(birthDate, 2);
+		RegisterPage.node.add(birthDate, 2, 3);
+
+		Pair<VBox, ToggleGroup> gender = KornField.getRadioButtonGender("เพศ");
+		GridPane.setColumnSpan(gender.getKey(), 2);
+		RegisterPage.node.add(gender.getKey(), 4, 3);
 
 		VBox firstName = KornField.getTextFieldWithLabel("ชื่อจริง");
-		GridPane.setColumnSpan(firstName, 2);
-		RegisterPage.node.add(firstName, 2, 3);
+		GridPane.setColumnSpan(firstName, 3);
+		RegisterPage.node.add(firstName, 0, 4);
 
 		VBox lastName = KornField.getTextFieldWithLabel("นามสกุล");
-		GridPane.setColumnSpan(lastName, 2);
-		RegisterPage.node.add(lastName, 4, 3);
-
-		VBox gender = KornField.getRadioButtonGender("เพศ");
-		GridPane.setColumnSpan(gender, 3);
-		RegisterPage.node.add(gender, 0, 4);
-
-		VBox birthDate = KornField.getTextFieldWithLabel("วันเกิด");
-		GridPane.setColumnSpan(birthDate, 4);
-		RegisterPage.node.add(birthDate, 2, 4);
+		GridPane.setColumnSpan(lastName, 3);
+		RegisterPage.node.add(lastName, 3, 4);
 
 		VBox email = KornField.getTextFieldWithLabel("อีเมล");
 		GridPane.setColumnSpan(email, 3);
 		RegisterPage.node.add(email, 0, 5);
 
-		VBox phoneNumber = KornField.getTextFieldWithLabel("เบอร์โทรศัพท์");
-		GridPane.setColumnSpan(phoneNumber, 3);
-		RegisterPage.node.add(phoneNumber, 3, 5);
+		VBox telephoneNumber = KornField.getTextFieldWithLabel("เบอร์โทรศัพท์");
+		GridPane.setColumnSpan(telephoneNumber, 3);
+		RegisterPage.node.add(telephoneNumber, 3, 5);
 
 		VBox address = KornField.getTextFieldWithLabel("ที่อยู่");
 		GridPane.setColumnSpan(address, 6);
@@ -118,22 +121,36 @@ public class RegisterPage {
 		TextField nationalIDField = (TextField) nationalID.getChildren().get(1);
 		TextField passwordField = (TextField) password.getChildren().get(1);
 		TextField confirmPasswordField = (TextField) confirmPassword.getChildren().get(1);
-		TextField genderField = new TextField();
+		ToggleGroup genderField = gender.getValue();
 		TextField firstNameField = (TextField) firstName.getChildren().get(1);
 		TextField lastNameField = (TextField) lastName.getChildren().get(1);
-		TextField nameTitleField = new TextField();
-		TextField birthDateField = new TextField();
+		ToggleGroup nameTitleField = nameTitle.getValue();
+		DatePicker birthDateField = (DatePicker) birthDate.getChildren().get(1);
 		TextField emailField = (TextField) email.getChildren().get(1);
-		TextField phoneNumberField = (TextField) phoneNumber.getChildren().get(1);
+		TextField telephoneNumberField = (TextField) telephoneNumber.getChildren().get(1);
 		TextField addressField = (TextField) address.getChildren().get(1);
 		registerButton.setOnAction(CVUserEvent.registerEvent(
 			usernameField, nationalIDField, passwordField,
 			confirmPasswordField, nameTitleField, firstNameField,
 			lastNameField, genderField, birthDateField,
-			emailField, phoneNumberField, addressField
+			emailField, telephoneNumberField, addressField
 		));
 
-		backButton.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));
+		backButton.setOnAction(actionEvent -> {
+			usernameField.clear();
+			nationalIDField.clear();
+			passwordField.clear();
+			confirmPasswordField.clear();
+			nameTitleField.selectToggle(null);
+			firstNameField.clear();
+			lastNameField.clear();
+			genderField.selectToggle(null);
+			birthDateField.getEditor().clear();
+			emailField.clear();
+			telephoneNumberField.clear();
+			addressField.clear();
+			Home.redirect(EnumPage.LOGIN());
+		});
 
 		return RegisterPage.node;
 	}

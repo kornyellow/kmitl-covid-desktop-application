@@ -2,7 +2,10 @@ package kmitl.covid.lib.methods.user;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import kmitl.covid.lib.classes.user.User;
 import kmitl.covid.lib.enums.EnumAlertType;
 import kmitl.covid.lib.enums.EnumGender;
@@ -10,8 +13,11 @@ import kmitl.covid.lib.enums.EnumNameTitle;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornAlert;
 import kmitl.covid.lib.korn.kornutil.KornDateTime;
+import kmitl.covid.lib.korn.kornutil.KornString;
 import kmitl.covid.template.Home;
 import kmitl.covid.template.TemplateHeader;
+
+import java.time.format.DateTimeFormatter;
 
 public class CVUserEvent {
 	public static EventHandler<ActionEvent> saveEvent(
@@ -116,29 +122,15 @@ public class CVUserEvent {
 	public static EventHandler<ActionEvent> registerEvent(
 		TextField usernameField, TextField nationalIDField,
 		TextField passwordField, TextField confirmPasswordField,
-		TextField nameTitleField, TextField firstNameField,
-		TextField lastNameField, TextField genderField,
-		TextField birthDateField, TextField emailField,
+		ToggleGroup nameTitleField, TextField firstNameField,
+		TextField lastNameField, ToggleGroup genderField,
+		DatePicker birthDateField, TextField emailField,
 		TextField telephoneNumberField, TextField addressField
 	) {
 		return actionEvent -> {
-			String username = usernameField.getText();
-			String nationalID = nationalIDField.getText();
-			String password = passwordField.getText();
-			String confirmPassword = confirmPasswordField.getText();
-			String nameTitle = nameTitleField.getText();
-			String firstName = firstNameField.getText();
-			String lastName = lastNameField.getText();
-			String gender = genderField.getText();
-			String birthDate = birthDateField.getText();
-			String email = emailField.getText();
-			String telephoneNumber = telephoneNumberField.getText();
-			String address = addressField.getText();
-
-			if (username.isEmpty() || nationalID.isEmpty() || password.isEmpty() ||
-				confirmPassword.isEmpty() || nameTitle.isEmpty() || firstName.isEmpty() ||
-				lastName.isEmpty() || gender.isEmpty() || birthDate.isEmpty() ||
-				email.isEmpty() || telephoneNumber.isEmpty() || address.isEmpty()) {
+			if (nameTitleField.getSelectedToggle() == null ||
+				genderField.getSelectedToggle() == null ||
+				birthDateField.getValue() == null) {
 
 				KornAlert.alert(
 					EnumAlertType.ERROR,
@@ -147,8 +139,32 @@ public class CVUserEvent {
 				return;
 			}
 
-			String convertedNationalID = nationalID.replaceAll("[^d]", "");
-			String convertedTelephoneNumber = telephoneNumber.replaceAll("[^d]", "");
+			String username = KornString.trim(usernameField.getText(), 64);
+			String nationalID = nationalIDField.getText();
+			String password = passwordField.getText();
+			String confirmPassword = confirmPasswordField.getText();
+			String nameTitle = ((RadioButton) nameTitleField.getSelectedToggle()).getText();
+			String firstName = KornString.trim(firstNameField.getText(), 64);
+			String lastName = KornString.trim(lastNameField.getText(), 64);
+			String gender = ((RadioButton) genderField.getSelectedToggle()).getText();
+			String birthDate = birthDateField.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			String email = KornString.trim(emailField.getText(), 64);
+			String telephoneNumber = telephoneNumberField.getText();
+			String address = KornString.trim(addressField.getText(), 256);
+
+			if (username.isEmpty() || nationalID.isEmpty() || password.isEmpty() ||
+				confirmPassword.isEmpty() || firstName.isEmpty() || lastName.isEmpty() ||
+				email.isEmpty() || telephoneNumber.isEmpty() || address.isEmpty()) {
+
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					birthDate
+				);
+				return;
+			}
+
+			String convertedNationalID = nationalID.replaceAll("\\D", "");
+			String convertedTelephoneNumber = telephoneNumber.replaceAll("\\D", "");
 			nationalID = convertedNationalID;
 			telephoneNumber = convertedTelephoneNumber;
 
@@ -206,11 +222,11 @@ public class CVUserEvent {
 			user.setUsername(username);
 			user.setNationalID(nationalID);
 			user.setPassword(password);
-			user.setNameTitle(EnumNameTitle.MISTER);
+			user.setNameTitle(EnumNameTitle.nameOf(nameTitle));
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
-			user.setGender(EnumGender.MALE);
-			user.setBirthDate(KornDateTime.createFromDate(2, 2, 2002));
+			user.setGender(EnumGender.nameOf(gender));
+			user.setBirthDate(KornDateTime.createFromMySQLDate(birthDate));
 			user.setEmail(email);
 			user.setTelephoneNumber(telephoneNumber);
 			user.setAddress(address);
@@ -225,11 +241,11 @@ public class CVUserEvent {
 					nationalIDField.clear();
 					passwordField.clear();
 					confirmPasswordField.clear();
-					nameTitleField.clear();
+					nameTitleField.selectToggle(null);
 					firstNameField.clear();
 					lastNameField.clear();
-					genderField.clear();
-					birthDateField.clear();
+					genderField.selectToggle(null);
+					birthDateField.getEditor().clear();
 					emailField.clear();
 					telephoneNumberField.clear();
 					addressField.clear();

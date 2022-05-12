@@ -11,6 +11,10 @@ public class KornFont {
 		KornFont.fontPathNormal = Objects.requireNonNull(Launcher.class.getResource("font/graphikthailoop/GraphikThaiLoop-Regular.otf")).toString();
 		KornFont.fontPathBold = Objects.requireNonNull(Launcher.class.getResource("font/graphikthailoop/GraphikThaiLoop-Semibold.otf")).toString();
 
+		Font.loadFont(Objects.requireNonNull(Launcher.class.getResource("font/graphikthailoop/GraphikThaiLoop-Light.otf")).toExternalForm(), 10);
+		Font.loadFont(Objects.requireNonNull(Launcher.class.getResource("font/graphikthailoop/GraphikThaiLoop-Regular.otf")).toExternalForm(), 10);
+		Font.loadFont(Objects.requireNonNull(Launcher.class.getResource("font/graphikthailoop/GraphikThaiLoop-Semibold.otf")).toExternalForm(), 10);
+
 		KornFont.bigHeaderLight = Font.loadFont(KornFont.fontPathLight, KornFont.textBigHeader);
 		KornFont.bigHeaderNormal = Font.loadFont(KornFont.fontPathNormal, KornFont.textBigHeader);
 		KornFont.bigHeaderBold = Font.loadFont(KornFont.fontPathBold, KornFont.textBigHeader);

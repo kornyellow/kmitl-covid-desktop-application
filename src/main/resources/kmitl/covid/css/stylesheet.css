@@ -1,200 +1,332 @@
 * {
-    -fx-light: #FFFFFF;
-    -fx-light-gray: #F6F8FC;
-    -fx-dark: #494E52;
+	-fx-light: #FFFFFF;
+	-fx-light-gray: #F6F8FC;
+	-fx-dark: #494E52;
 
-    -fx-default: #ACB4BD;
-    -fx-form-border: #6EA9FF;
+	-fx-default: #ACB4BD;
+	-fx-form-border: #6EA9FF;
 
-    -fx-primary: #1266F1;
-    -fx-primary-hover: #175DD1;
-    -fx-primary-shadow: #9EC4FF;
+	-fx-primary: #1266F1;
+	-fx-primary-hover: #175DD1;
+	-fx-primary-shadow: #9EC4FF;
 
-    -fx-success: #01B74B;
-    -fx-success-hover: #07A647;
-    -fx-success-shadow: #A2CEBB;
+	-fx-success: #01B74B;
+	-fx-success-hover: #07A647;
+	-fx-success-shadow: #A2CEBB;
 
-    -fx-warning: #ED9907;
-    -fx-warning-hover: #CF870C;
-    -fx-warning-shadow: #FFCBA0;
+	-fx-warning: #ED9907;
+	-fx-warning-hover: #CF870C;
+	-fx-warning-shadow: #FFCBA0;
 
-    -fx-danger: #DC3545;
-    -fx-danger-hover: #B02B36;
-    -fx-danger-shadow: #F0AFB5;
+	-fx-danger: #DC3545;
+	-fx-danger-hover: #B02B36;
+	-fx-danger-shadow: #F0AFB5;
 
-    -fx-info: #0DCAF0;
-    -fx-info-hover: #11B7D9;
-    -fx-info-shadow: #9FEBF9;
+	-fx-info: #0DCAF0;
+	-fx-info-hover: #11B7D9;
+	-fx-info-shadow: #9FEBF9;
 }
 
 .body {
-    -fx-background-color: -fx-light;
+	-fx-background-color: -fx-light;
 }
 .sub-body {
-    -fx-background-color: -fx-light-gray;
+	-fx-background-color: -fx-light-gray;
 }
 
 .header {
-    -fx-background-color: -fx-light;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0, 0, 0);
+	-fx-background-color: -fx-light;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0, 0, 0);
 }
 
 .footer {
-    -fx-background-color: -fx-light;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0, 0, 0);
+	-fx-background-color: -fx-light;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0, 0, 0);
 }
 
 .card {
-    -fx-background-color: -fx-light;
-    -fx-background-radius: 10;
-    -fx-padding: 40;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+	-fx-background-color: -fx-light;
+	-fx-background-radius: 10;
+	-fx-padding: 40;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
 }
 .main-card {
-    -fx-background-color: -fx-light;
-    -fx-background-radius: 10;
-    -fx-padding: 60;
+	-fx-background-color: -fx-light;
+	-fx-background-radius: 10;
+	-fx-padding: 60;
 }
 
 .scroll-pane > .viewport {
-   -fx-background-color: transparent;
+	-fx-background-color: transparent;
 }
 .scroll-pane {
-    -fx-background-color: transparent;
+	-fx-background-color: transparent;
 }
 
 .btn {
-    -fx-background-radius: 5;
-    -fx-padding: 8 12;
-    -fx-text-fill: -fx-light;
+	-fx-background-radius: 5;
+	-fx-padding: 8 12;
+	-fx-text-fill: -fx-light;
+}
+.btn:hover {
+	-fx-cursor: hand;
 }
 
 .btn-primary {
-    -fx-background-color: -fx-primary;
-    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 10, 0, 0, 0);
+	-fx-background-color: -fx-primary;
+	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 10, 0, 0, 0);
 }
 .btn-primary:hover {
-    -fx-background-color: -fx-primary-hover;
+	-fx-background-color: -fx-primary-hover;
 }
 .btn-primary:focused {
-    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
 }
 
 .btn-success {
-    -fx-background-color: -fx-success;
-    -fx-effect: dropshadow(gaussian, -fx-success-shadow, 10, 0, 0, 0);
+	-fx-background-color: -fx-success;
+	-fx-effect: dropshadow(gaussian, -fx-success-shadow, 10, 0, 0, 0);
 }
 .btn-success:hover {
-    -fx-background-color: -fx-success-hover;
+	-fx-background-color: -fx-success-hover;
 }
 .btn-success:focused {
-    -fx-effect: dropshadow(gaussian, -fx-success-shadow, 4, 1, 0, 0);
+	-fx-effect: dropshadow(gaussian, -fx-success-shadow, 4, 1, 0, 0);
 }
 
 .btn-warning {
-    -fx-background-color: -fx-warning;
-    -fx-effect: dropshadow(gaussian, -fx-warning-shadow, 10, 0, 0, 0);
+	-fx-background-color: -fx-warning;
+	-fx-effect: dropshadow(gaussian, -fx-warning-shadow, 10, 0, 0, 0);
 }
 .btn-warning:hover {
-    -fx-background-color: -fx-warning-hover;
+	-fx-background-color: -fx-warning-hover;
 }
 .btn-warning:focused {
-    -fx-effect: dropshadow(gaussian, -fx-warning-shadow, 4, 1, 0, 0);
+	-fx-effect: dropshadow(gaussian, -fx-warning-shadow, 4, 1, 0, 0);
 }
 
 .btn-danger {
-    -fx-background-color: -fx-danger;
-    -fx-effect: dropshadow(gaussian, -fx-danger-shadow, 10, 0, 0, 0);
+	-fx-background-color: -fx-danger;
+	-fx-effect: dropshadow(gaussian, -fx-danger-shadow, 10, 0, 0, 0);
 }
 .btn-danger:hover {
-    -fx-background-color: -fx-danger-hover;
+	-fx-background-color: -fx-danger-hover;
 }
 .btn-danger:focused {
-    -fx-effect: dropshadow(gaussian, -fx-danger-shadow, 4, 1, 0, 0);
+	-fx-effect: dropshadow(gaussian, -fx-danger-shadow, 4, 1, 0, 0);
 }
 
 .btn-info {
-    -fx-background-color: -fx-info;
-    -fx-effect: dropshadow(gaussian, -fx-info-shadow, 10, 0, 0, 0);
+	-fx-background-color: -fx-info;
+	-fx-effect: dropshadow(gaussian, -fx-info-shadow, 10, 0, 0, 0);
 }
 .btn-info:hover {
-    -fx-background-color: -fx-info-hover;
+	-fx-background-color: -fx-info-hover;
 }
 .btn-info:focused {
-    -fx-effect: dropshadow(gaussian, -fx-info-shadow, 4, 1, 0, 0);
+	-fx-effect: dropshadow(gaussian, -fx-info-shadow, 4, 1, 0, 0);
 }
 
 .btn-empty {
-    -fx-text-fill: -fx-dark;
-    -fx-background-color: -fx-light;
-    -fx-underline: true;
+	-fx-text-fill: -fx-dark;
+	-fx-background-color: -fx-light;
+	-fx-underline: true;
 }
 .btn-empty:focused {
-    -fx-text-fill: -fx-primary;
-    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+	-fx-text-fill: -fx-primary;
+	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
 }
 .btn-empty:hover {
-    -fx-text-fill: -fx-primary-hover;
+	-fx-text-fill: -fx-primary-hover;
+	-fx-cursor: hand;
 }
 
 .graphic {
-    -fx-text-fill: -fx-light;
+	-fx-text-fill: -fx-light;
 }
 
 .text {
-    -fx-text-fill: -fx-dark;
+	-fx-text-fill: -fx-dark;
 }
 .text-primary {
-    -fx-text-fill: -fx-primary;
+	-fx-text-fill: -fx-primary;
 }
 .text-danger {
-    -fx-text-fill: -fx-danger;
+	-fx-text-fill: -fx-danger;
 }
 .text-success {
-    -fx-text-fill: -fx-success;
+	-fx-text-fill: -fx-success;
 }
 .text-warning {
-    -fx-text-fill: -fx-warning;
+	-fx-text-fill: -fx-warning;
 }
 .text-info {
-    -fx-text-fill: -fx-info;
+	-fx-text-fill: -fx-info;
 }
 
 .form {
-    -fx-background-color: -fx-light;
-    -fx-background-radius: 5;
-    -fx-padding: 8 16;
-    -fx-text-fill: -fx-dark;
-    -fx-accent: -fx-primary;
+	-fx-background-color: -fx-light;
+	-fx-background-radius: 5;
+	-fx-padding: 8 16;
+	-fx-text-fill: -fx-dark;
+	-fx-accent: -fx-primary;
 
-    -fx-border-radius: 5;
-    -fx-border-width: 1;
-    -fx-border-color: -fx-default;
+	-fx-border-radius: 5;
+	-fx-border-width: 1;
+	-fx-border-color: -fx-default;
 
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
 }
 .form:focused {
-    -fx-border-color: -fx-form-border;
-    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+	-fx-border-color: -fx-form-border;
+	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
 }
 
 .form-radio {
-    -fx-text-fill: -fx-dark;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+	-fx-text-fill: -fx-dark;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+}
+.form-radio:hover {
+	-fx-cursor: hand;
 }
 .form-radio .radio {
-    -fx-background-color: -fx-light;
-    -fx-background-radius: 5;
+	-fx-background-color: -fx-light;
+	-fx-background-radius: 5;
 
-    -fx-border-radius: 5;
-    -fx-border-width: 1;
-    -fx-border-color: -fx-default;
+	-fx-border-radius: 5;
+	-fx-border-width: 1;
+	-fx-border-color: -fx-default;
+
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
 }
 .form-radio .dot {
-    -fx-background-radius: 5px;
-    -fx-mark-color: -fx-primary;
+	-fx-background-radius: 5;
+	-fx-mark-color: -fx-primary;
 }
 .form-radio:focused .radio {
-    -fx-border-color: -fx-form-border;
-    -fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+	-fx-border-color: -fx-form-border;
+	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+}
+
+.form-date-picker {
+	-fx-padding: 0;
+	-fx-background-color: -fx-light;
+	-fx-background-radius: 5;
+
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+
+	-fx-border-radius: 5;
+	-fx-border-width: 1;
+	-fx-border-color: -fx-default;
+}
+.form-date-picker:hover {
+	-fx-cursor: hand;
+}
+.form-date-picker:focused {
+	-fx-border-color: -fx-form-border;
+	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+}
+
+.form-date-picker-field {
+	-fx-underline: true;
+}
+.form-date-picker .text-field {
+	-fx-opacity: 1;
+	-fx-background-color: -fx-light;
+	-fx-padding: 10 16 6 16;
+	-fx-text-fill: -fx-dark;
+	-fx-accent: -fx-primary;
+
+	-fx-border-color: transparent;
+}
+
+
+.form-date-picker .cell {
+	-fx-font-family: 'Graphik Thai Loop Semibold';
+	-fx-font-size: 15;
+	-fx-padding: 10 8;
+}
+.form-date-picker .cell:hover {
+	-fx-cursor: none;
+}
+
+.form-date-picker-cell {
+	-fx-border-color: rgba(0, 0, 0, 0.05) !important;
+	-fx-text-fill: -fx-dark !important;
+
+	-fx-font-family: 'Graphik Thai Loop Regular' !important;
+	-fx-font-size: 20 !important;
+	-fx-padding: 10 8 !important;
+}
+.form-date-picker-cell:hover {
+	-fx-cursor: hand !important;
+}
+.form-date-picker-cell:focused {
+	-fx-background-color: -fx-form-border !important;
+	-fx-text-fill: -fx-light !important;
+
+	-fx-border-color: -fx-form-border !important;
+	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0) !important;
+	-fx-view-order: -1 !important;
+}
+
+.form-date-picker .date-picker-display-node {
+	-fx-background-insets: 1 1 1 1;
+}
+.form-date-picker .arrow-button {
+	-fx-padding: 0;
+}
+.form-date-picker .arrow-button .arrow {
+	-fx-padding: 0;
+}
+
+.date-picker-popup {
+	-fx-border-color: transparent;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+}
+.date-picker-popup .month-year-pane {
+	-fx-background-color: -fx-primary;
+}
+.date-picker-popup .month-year-pane .label {
+	-fx-text-fill: -fx-light;
+	-fx-font-family: 'Graphik Thai Loop Semibold';
+	-fx-font-size: 20;
+	-fx-padding: 8 16;
+}
+.date-picker-popup .spinner .button {
+	-fx-padding: 8 16;
+	-fx-background-radius: 5;
+}
+
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+	-fx-background-color: -fx-light;
+	-fx-font-family: 'Graphik Thai Loop Semibold';
+	-fx-font-size: 20;
+}
+.date-picker-popup .spinner .button:hover,
+.date-picker-popup .spinner .button:hover {
+	-fx-background-color: -fx-form-border;
+	-fx-cursor: hand;
+}
+.date-picker-popup .spinner .button:focused,
+.date-picker-popup .spinner .button:focused {
+	-fx-border-width: 0;
+	-fx-background-color: -fx-form-border;
+}
+.date-picker-popup > * > .day-name-cell {
+	-fx-border-color: -fx-primary-shadow;
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-light;
+}
+.date-picker-popup > * > .previous-month,
+.date-picker-popup > * > .next-month {
+    -fx-background-color: #EAF4FF;
+}
+.date-picker-popup > * > .previous-month:hover,
+.date-picker-popup > * > .next-month:hover {
+    -fx-background-color: #C1E0FF !important;
+}
+.date-picker-popup > * > .day-cell:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
 }
