@@ -23,13 +23,13 @@ import kmitl.covid.template.Home;
 public class RegisterPage {
 	public static GridPane getContent() {
 		if (RegisterPage.node != null) return RegisterPage.node;
+		RegisterPage.node = new GridPane();
+		RegisterPage.node.setAlignment(Pos.TOP_CENTER);
 
 		double columnHGap = 40;
 		double columnVGap = 20;
 		double columnWidth = 120;
 
-		RegisterPage.node = new GridPane();
-		RegisterPage.node.setAlignment(Pos.TOP_CENTER);
 		RegisterPage.node.setVgap(columnVGap);
 		RegisterPage.node.setHgap(columnHGap);
 
