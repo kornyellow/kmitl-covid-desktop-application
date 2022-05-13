@@ -107,7 +107,7 @@ public class CVUser {
 		KornUpdateMySQL update = new KornUpdateMySQL();
 		update.table("user");
 
-		update.set("u_password", user.getPassword());
+		update.set("u_password", KornHash.getHash(user.getPassword()));
 
 		update.where("u_id",String.valueOf(user.getID()));
 
