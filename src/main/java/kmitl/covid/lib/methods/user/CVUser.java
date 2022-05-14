@@ -185,12 +185,20 @@ public class CVUser {
 		User queriedUser = CVUser.processObject(query);
 		if (queriedUser == null)
 			return false;
-		query.close();
 
 		if (!KornHash.verifyHash(password, queriedUser.getPassword()))
 			return false;
 
 		CVUser.loggedInUser = queriedUser;
+
+		KornUpdateMySQL update = new KornUpdateMySQL();
+		update.table("user");
+		update.set("u_last_login", new KornDateTime().getMySQLDateTimeFormat());
+		update.where("u_id", String.valueOf(CVUser.loggedInUser.getID()));
+
+		query.query(update);
+		query.close();
+
 		return true;
 	}
 
