@@ -17,6 +17,28 @@ import kmitl.covid.lib.methods.connectivity.CVDB;
 import java.util.ArrayList;
 
 public class CVUser {
+	public static User getUserFromNationalID(String nationalID){
+		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
+
+		select.where("u_national_id", String.valueOf(nationalID));
+
+		KornQuery query = new KornQuery(CVDB.getDB());
+		query.query(select);
+
+		return CVUser.processObject(query);
+	}
+	public static User getUserFromEmail(String email){
+		KornSelectMySQL select = CVUser.getQueryObject();
+		select.table("user");
+
+		select.where("u_email", String.valueOf(email));
+
+		KornQuery query = new KornQuery(CVDB.getDB());
+		query.query(select);
+
+		return CVUser.processObject(query);
+	}
 	public static User getUser(int id) {
 		KornSelectMySQL select = CVUser.getQueryObject();
 		select.table("user");
@@ -74,6 +96,20 @@ public class CVUser {
 		update.set("u_telephone_number", user.getTelephoneNumber());
 
 		update.where("u_id", String.valueOf(user.getID()));
+
+		KornQuery query = new KornQuery(CVDB.getDB());
+		query.query(update);
+		query.close();
+
+		return query.getAffectedRows();
+	}
+	public static int updatePassword(User user){
+		KornUpdateMySQL update = new KornUpdateMySQL();
+		update.table("user");
+
+		update.set("u_password", KornHash.getHash(user.getPassword()));
+
+		update.where("u_id",String.valueOf(user.getID()));
 
 		KornQuery query = new KornQuery(CVDB.getDB());
 		query.query(update);
