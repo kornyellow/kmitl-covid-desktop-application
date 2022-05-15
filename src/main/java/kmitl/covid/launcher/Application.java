@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornFix;
-import kmitl.covid.lib.korn.kornutil.KornResource;
+import kmitl.covid.lib.korn.kornresource.KornResource;
 import kmitl.covid.other.Config;
 import kmitl.covid.template.Home;
 

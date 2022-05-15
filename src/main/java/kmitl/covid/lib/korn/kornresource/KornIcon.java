@@ -1,4 +1,4 @@
-package kmitl.covid.lib.korn.kornutil;
+package kmitl.covid.lib.korn.kornresource;
 
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;

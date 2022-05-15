@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import kmitl.covid.lib.korn.kornutil.KornDateTime;
-import kmitl.covid.lib.korn.kornutil.KornFont;
+import kmitl.covid.lib.korn.kornresource.KornFont;
 import kmitl.covid.other.Config;
 
 public class TemplateFooter {

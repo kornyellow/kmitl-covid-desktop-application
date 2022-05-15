@@ -10,7 +10,6 @@ import javafx.scene.layout.Priority;
 public class TemplateHandler {
 	public static ScrollPane getContent(Node content) {
 		HBox hbox = new HBox();
-		hbox.setStyle("-fx-background-color: transparent;");
 		hbox.getStyleClass().addAll("sub-body");
 		hbox.setAlignment(Pos.TOP_CENTER);
 		hbox.setPadding(new Insets(40));

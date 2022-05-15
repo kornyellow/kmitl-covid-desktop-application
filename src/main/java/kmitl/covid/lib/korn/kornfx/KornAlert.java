@@ -1,4 +1,4 @@
-package kmitl.covid.lib.korn.kornutil;
+package kmitl.covid.lib.korn.kornfx;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import kmitl.covid.lib.enums.EnumAlertType;
+import kmitl.covid.lib.korn.kornresource.KornFont;
+import kmitl.covid.lib.korn.kornresource.KornIcon;
+import kmitl.covid.lib.korn.kornresource.KornCSS;
 import kmitl.covid.lib.methods.style.CVStyle;
 
 public class KornAlert {

@@ -5,8 +5,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import kmitl.covid.lib.korn.kornutil.KornFont;
-import kmitl.covid.lib.korn.kornutil.KornIcon;
+import kmitl.covid.lib.korn.kornresource.KornFont;
+import kmitl.covid.lib.korn.kornresource.KornIcon;
 
 public class NotificationPage {
 	public static GridPane getContent() {

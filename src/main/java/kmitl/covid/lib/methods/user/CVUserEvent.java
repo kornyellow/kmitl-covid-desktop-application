@@ -11,7 +11,7 @@ import kmitl.covid.lib.enums.EnumAlertType;
 import kmitl.covid.lib.enums.EnumGender;
 import kmitl.covid.lib.enums.EnumNameTitle;
 import kmitl.covid.lib.enums.EnumPage;
-import kmitl.covid.lib.korn.kornutil.KornAlert;
+import kmitl.covid.lib.korn.kornfx.KornAlert;
 import kmitl.covid.lib.korn.kornutil.KornDateTime;
 import kmitl.covid.lib.korn.kornutil.KornString;
 import kmitl.covid.template.Home;

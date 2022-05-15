@@ -15,8 +15,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import kmitl.covid.lib.enums.EnumButtonType;
 import kmitl.covid.lib.enums.EnumPage;
-import kmitl.covid.lib.korn.kornutil.KornField;
-import kmitl.covid.lib.korn.kornutil.KornFont;
+import kmitl.covid.lib.korn.kornfx.KornField;
+import kmitl.covid.lib.korn.kornresource.KornFont;
 import kmitl.covid.lib.methods.authentication.CVLoginEvent;
 import kmitl.covid.lib.methods.style.CVStyle;
 import kmitl.covid.template.Home;
@@ -37,7 +37,7 @@ public class LoginPage {
 
 		Label headerLabel = new Label("ระบบจองวัคซีนออนไลน์");
 		headerLabel.setFont(KornFont.headerBold);
-		Label subHeaderLabel = new Label("มหาวิทยาลัยพระจอมเกล้าคุณทหารลาดกระบัง");
+		Label subHeaderLabel = new Label("สถาบันเทคโนโลยีพระจอมเกล้าคุณทหารลาดกระบัง");
 		subHeaderLabel.setFont(KornFont.subHeaderNormal);
 
 		VBox header = new VBox();

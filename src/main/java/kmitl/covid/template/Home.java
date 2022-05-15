@@ -9,6 +9,11 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -17,7 +22,8 @@ import javafx.scene.layout.RowConstraints;
 import kmitl.covid.launcher.Application;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.enums.EnumPageType;
-import kmitl.covid.lib.korn.kornutil.KornCSS;
+import kmitl.covid.lib.korn.kornresource.KornCSS;
+import kmitl.covid.lib.korn.kornresource.KornImage;
 import kmitl.covid.lib.methods.user.CVUser;
 import kmitl.covid.other.Config;
 
@@ -76,6 +82,22 @@ public class Home {
 	private static Scene getNonLoggedInScene(Node content) {
 		GridPane gridPane = new GridPane();
 		gridPane.setAlignment(Pos.CENTER);
+
+		Background background = new Background(new BackgroundImage(
+			KornImage.background,
+			BackgroundRepeat.NO_REPEAT,
+			BackgroundRepeat.NO_REPEAT,
+			BackgroundPosition.CENTER,
+			new BackgroundSize(
+				1920,
+				1080,
+				true,
+				true,
+				true,
+				true
+			)
+		));
+		gridPane.setBackground(background);
 
 		content.getStyleClass().add("main-card");
 		HBox hbox = new HBox(content);

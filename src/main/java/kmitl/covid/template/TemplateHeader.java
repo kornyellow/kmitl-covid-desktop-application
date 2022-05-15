@@ -14,8 +14,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import kmitl.covid.lib.enums.EnumPage;
-import kmitl.covid.lib.korn.kornutil.KornFont;
-import kmitl.covid.lib.korn.kornutil.KornIcon;
+import kmitl.covid.lib.korn.kornresource.KornFont;
+import kmitl.covid.lib.korn.kornresource.KornIcon;
 import kmitl.covid.lib.methods.user.CVUser;
 
 public class TemplateHeader {
@@ -58,6 +58,7 @@ public class TemplateHeader {
 		userIcon.setBorder(Border.EMPTY);
 		userIcon.setVisited(true);
 		userIcon.setOnAction(Home.redirectEvent(EnumPage.SETTING()));
+		userIcon.getStyleClass().add("btn-other");
 		welcomeMessage.getChildren().add(userIcon);
 
 		GridPane.setHalignment(welcomeMessage, HPos.RIGHT);

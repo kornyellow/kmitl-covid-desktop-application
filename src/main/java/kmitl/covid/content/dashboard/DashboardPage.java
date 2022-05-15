@@ -8,8 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import kmitl.covid.lib.enums.EnumButtonType;
 import kmitl.covid.lib.enums.EnumPage;
-import kmitl.covid.lib.korn.kornutil.KornFont;
-import kmitl.covid.lib.korn.kornutil.KornIcon;
+import kmitl.covid.lib.korn.kornresource.KornFont;
+import kmitl.covid.lib.korn.kornresource.KornIcon;
 import kmitl.covid.lib.methods.style.CVStyle;
 import kmitl.covid.template.Home;
 

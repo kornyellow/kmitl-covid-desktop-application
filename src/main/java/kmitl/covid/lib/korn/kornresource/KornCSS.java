@@ -1,4 +1,4 @@
-package kmitl.covid.lib.korn.kornutil;
+package kmitl.covid.lib.korn.kornresource;
 
 import kmitl.covid.Launcher;
 

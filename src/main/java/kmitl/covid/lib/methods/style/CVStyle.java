@@ -2,8 +2,8 @@ package kmitl.covid.lib.methods.style;
 
 import javafx.scene.control.Button;
 import kmitl.covid.lib.enums.EnumButtonType;
-import kmitl.covid.lib.korn.kornutil.KornFont;
-import kmitl.covid.lib.korn.kornutil.KornIcon;
+import kmitl.covid.lib.korn.kornresource.KornFont;
+import kmitl.covid.lib.korn.kornresource.KornIcon;
 
 public class CVStyle {
 	public static Button makeButton(String text, String icon, EnumButtonType type) {

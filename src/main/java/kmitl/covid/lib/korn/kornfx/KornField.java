@@ -1,4 +1,4 @@
-package kmitl.covid.lib.korn.kornutil;
+package kmitl.covid.lib.korn.kornfx;
 
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -12,6 +12,8 @@ import javafx.util.Pair;
 import kmitl.covid.lib.classes.other.PasswordSkin;
 import kmitl.covid.lib.enums.EnumGender;
 import kmitl.covid.lib.enums.EnumNameTitle;
+import kmitl.covid.lib.korn.kornresource.KornFont;
+import kmitl.covid.lib.korn.kornutil.KornDateTime;
 
 import java.time.chrono.ThaiBuddhistChronology;
 

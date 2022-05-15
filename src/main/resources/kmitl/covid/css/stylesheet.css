@@ -2,6 +2,7 @@
 	-fx-light: #FFFFFF;
 	-fx-light-gray: #F6F8FC;
 	-fx-gray: #D9D9D9;
+	-fx-dark-gray: #666666;
 	-fx-dark: #494E52;
 
 	-fx-default: #ACB4BD;
@@ -62,6 +63,15 @@
 }
 .scroll-pane {
 	-fx-background-color: transparent;
+}
+
+.btn-other {
+	-fx-text-fill: -fx-dark;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+}
+.btn-other:hover {
+	-fx-text-fill: -fx-primary;
+	-fx-cursor: hand;
 }
 
 .btn {
