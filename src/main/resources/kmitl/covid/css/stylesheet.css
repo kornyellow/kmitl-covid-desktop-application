@@ -1,6 +1,7 @@
 * {
 	-fx-light: #FFFFFF;
 	-fx-light-gray: #F6F8FC;
+	-fx-gray: #D9D9D9;
 	-fx-dark: #494E52;
 
 	-fx-default: #ACB4BD;
@@ -240,7 +241,6 @@
 	-fx-border-color: transparent;
 }
 
-
 .form-date-picker .cell {
 	-fx-font-family: 'Graphik Thai Loop Semibold';
 	-fx-font-size: 15;
@@ -248,26 +248,6 @@
 }
 .form-date-picker .cell:hover {
 	-fx-cursor: none;
-}
-
-.form-date-picker-cell {
-	-fx-border-color: rgba(0, 0, 0, 0.05) !important;
-	-fx-text-fill: -fx-dark !important;
-
-	-fx-font-family: 'Graphik Thai Loop Regular' !important;
-	-fx-font-size: 20 !important;
-	-fx-padding: 10 8 !important;
-}
-.form-date-picker-cell:hover {
-	-fx-cursor: hand !important;
-}
-.form-date-picker-cell:focused {
-	-fx-background-color: -fx-form-border !important;
-	-fx-text-fill: -fx-light !important;
-
-	-fx-border-color: -fx-form-border !important;
-	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0) !important;
-	-fx-view-order: -1 !important;
 }
 
 .form-date-picker .date-picker-display-node {
@@ -314,19 +294,37 @@
 	-fx-border-width: 0;
 	-fx-background-color: -fx-form-border;
 }
+.date-picker-popup > * > .day-cell {
+	-fx-background-color: -fx-light;
+	-fx-border-color: rgba(0, 0, 0, 0.05);
+	-fx-text-fill: -fx-dark;
+
+	-fx-font-family: 'Graphik Thai Loop Regular';
+	-fx-font-size: 20;
+	-fx-padding: 10 8;
+}
+.date-picker-popup > * > .day-cell:hover {
+	-fx-cursor: hand;
+	-fx-background-color: -fx-gray;
+}
+.date-picker-popup > * > .day-cell:focused {
+	-fx-background-color: -fx-form-border;
+	-fx-text-fill: -fx-light;
+
+	-fx-border-color: -fx-form-border;
+	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 4, 1, 0, 0);
+	-fx-view-order: -1;
+}
 .date-picker-popup > * > .day-name-cell {
 	-fx-border-color: -fx-primary-shadow;
-    -fx-background-color: -fx-primary;
-    -fx-text-fill: -fx-light;
+	-fx-background-color: -fx-primary;
+	-fx-text-fill: -fx-light;
 }
 .date-picker-popup > * > .previous-month,
 .date-picker-popup > * > .next-month {
-    -fx-background-color: #EAF4FF;
+	-fx-background-color: #EAF4FF;
 }
 .date-picker-popup > * > .previous-month:hover,
 .date-picker-popup > * > .next-month:hover {
-    -fx-background-color: #C1E0FF !important;
-}
-.date-picker-popup > * > .day-cell:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.05);
+	-fx-background-color: #C1E0FF !important;
 }

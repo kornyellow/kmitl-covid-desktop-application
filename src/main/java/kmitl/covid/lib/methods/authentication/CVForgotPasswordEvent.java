@@ -12,65 +12,64 @@ import kmitl.covid.template.Home;
 
 public class CVForgotPasswordEvent {
 	public static EventHandler<ActionEvent> ForgotpasswordEvent(
-		TextField email,
-		TextField nationalID,
-		TextField newPassword
+		TextField emailField,
+		TextField nationalIDField,
+		TextField newPasswordField
 	) {
 		return actionEvent -> {
-			String emailText = email.getText();
-			String nationalIDText = nationalID.getText();
-			String newPasswordText = newPassword.getText();
+			String email = emailField.getText();
+			String nationalID = nationalIDField.getText();
+			String newPassword = newPasswordField.getText();
 
-			if (emailText.isEmpty() && nationalIDText.isEmpty() && newPasswordText.isEmpty()) {
+			if (email.isEmpty() && nationalID.isEmpty() && newPassword.isEmpty()) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
 					"กรุณากรอกข้อมูลให้ครบถ้วน"
 				);
-				email.requestFocus();
+				emailField.requestFocus();
+				return;
+			}
+			if (email.isEmpty()) {
+				emailField.requestFocus();
+				return;
+			}
+			if (nationalID.isEmpty()) {
+				nationalIDField.requestFocus();
+				return;
+			}
+			if (newPassword.isEmpty()) {
+				newPasswordField.requestFocus();
 				return;
 			}
 
-			if (emailText.isEmpty()) {
-				email.requestFocus();
-				return;
-			}
-
-			if (nationalIDText.isEmpty()) {
-				nationalID.requestFocus();
-				return;
-			}
-
-			if (newPasswordText.isEmpty()) {
-				newPassword.requestFocus();
-				return;
-			}
-
-			User userNationalID = CVUser.getUserFromNationalID(nationalIDText);
-			if (userNationalID == null) {
+			User user = CVUser.getUserFromNationalID(nationalID);
+			if (user == null) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
 					"อีเมลหรือรหัสบัตรประชาชนไม่ถูกต้อง"
 				);
+				return;
 			}
-
-			User userEmail = CVUser.getUserFromEmail(emailText);
-			if (userEmail == null) {
+			if (user.getEmail().equals(email)) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
 					"อีเมลหรือรหัสบัตรประชาชนไม่ถูกต้อง"
 				);
+				return;
 			}
 
-			User user = new User();
-			user.setPassword(newPasswordText);
+			user.setPassword(newPassword);
 			CVUser.updatePassword(user);
 			KornAlert.alert(
 				EnumAlertType.SUCCESS,
-				"เปลี่ยนรหัสผ่านเรียบร้อย"
+				"เปลี่ยนรหัสผ่านเรียบร้อย",
+				dialogEvent -> {
+					emailField.clear();
+					nationalIDField.clear();
+					newPasswordField.clear();
+					Home.redirect(EnumPage.LOGIN());
+				}
 			);
-
-
-			Home.redirect(EnumPage.LOGIN());
 		};
 	}
 }

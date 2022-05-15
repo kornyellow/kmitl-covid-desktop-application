@@ -4,12 +4,16 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 import kmitl.covid.lib.enums.EnumButtonType;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornutil.KornField;
@@ -23,8 +27,6 @@ import kmitl.covid.template.Home;
 
 public class SettingPage {
 	public static GridPane getContent() {
-		if (SettingPage.node != null) return SettingPage.node;
-
 		double columnHGap = 40;
 		double columnVGap = 20;
 		double columnWidth = 120;
@@ -56,25 +58,26 @@ public class SettingPage {
 		GridPane.setColumnSpan(nationalID, 3);
 		SettingPage.node.add(nationalID, 3, 1);
 
-		VBox nameTitle = KornField.getTextFieldWithLabel("คำนำหน้า");
-		GridPane.setColumnSpan(nameTitle, 2);
-		SettingPage.node.add(nameTitle, 0, 2);
+		Pair<VBox, ToggleGroup> nameTitle = KornField.getRadioButtonNameTitle("คำนำหน้า");
+		GridPane.setColumnSpan(nameTitle.getKey(), 2);
+		SettingPage.node.add(nameTitle.getKey(), 0, 2);
+
+		VBox birthDate = KornField.getDatePicker("วันเกิด", (columnWidth * 2) + columnHGap,
+			CVUser.getLoggedInUser().getBirthDate());
+		GridPane.setColumnSpan(birthDate, 2);
+		SettingPage.node.add(birthDate, 2, 2);
+
+		Pair<VBox, ToggleGroup> gender = KornField.getRadioButtonGender("เพศ");
+		GridPane.setColumnSpan(gender.getKey(), 2);
+		SettingPage.node.add(gender.getKey(), 4, 2);
 
 		VBox firstName = KornField.getTextFieldWithLabel("ชื่อจริง");
-		GridPane.setColumnSpan(firstName, 2);
-		SettingPage.node.add(firstName, 2, 2);
+		GridPane.setColumnSpan(firstName, 3);
+		SettingPage.node.add(firstName, 0, 3);
 
 		VBox lastName = KornField.getTextFieldWithLabel("นามสกุล");
-		GridPane.setColumnSpan(lastName, 2);
-		SettingPage.node.add(lastName, 4, 2);
-
-		VBox gender = KornField.getTextFieldWithLabel("เพศ");
-		GridPane.setColumnSpan(gender, 3);
-		SettingPage.node.add(gender, 0, 3);
-
-		VBox birthDate = KornField.getTextFieldWithLabel("วันเกิด");
-		GridPane.setColumnSpan(birthDate, 3);
-		SettingPage.node.add(birthDate, 3, 3);
+		GridPane.setColumnSpan(lastName, 3);
+		SettingPage.node.add(lastName, 3, 3);
 
 		VBox email = KornField.getTextFieldWithLabel("อีเมล");
 		GridPane.setColumnSpan(email, 3);
@@ -112,11 +115,11 @@ public class SettingPage {
 
 		TextField usernameField = (TextField) username.getChildren().get(1);
 		TextField nationalIDField = (TextField) nationalID.getChildren().get(1);
-		TextField nameTitleField = (TextField) nameTitle.getChildren().get(1);
+		ToggleGroup genderField = gender.getValue();
+		ToggleGroup nameTitleField = nameTitle.getValue();
+		DatePicker birthDateField = (DatePicker) birthDate.getChildren().get(1);
 		TextField firstNameField = (TextField) firstName.getChildren().get(1);
 		TextField lastNameField = (TextField) lastName.getChildren().get(1);
-		TextField genderField = (TextField) gender.getChildren().get(1);
-		TextField birthDateField = (TextField) birthDate.getChildren().get(1);
 		TextField emailField = (TextField) email.getChildren().get(1);
 		TextField telephoneNumberField = (TextField) telephoneNumber.getChildren().get(1);
 		TextField addressField = (TextField) address.getChildren().get(1);
@@ -128,6 +131,14 @@ public class SettingPage {
 		emailField.setText(CVUser.getLoggedInUser().getEmail());
 		telephoneNumberField.setText(CVUser.getLoggedInUser().getTelephoneNumber());
 		addressField.setText(CVUser.getLoggedInUser().getAddress());
+
+		for (Toggle radioButton : genderField.getToggles())
+			if (radioButton.getUserData().equals(CVUser.getLoggedInUser().getGender().getThai()))
+				radioButton.setSelected(true);
+
+		for (Toggle radioButton : nameTitleField.getToggles())
+			if (radioButton.getUserData().equals(CVUser.getLoggedInUser().getNameTitle().getThai()))
+				radioButton.setSelected(true);
 
 		saveButton.setOnAction(CVUserEvent.saveEvent(
 			usernameField, nationalIDField,

@@ -22,19 +22,30 @@ import java.time.format.DateTimeFormatter;
 public class CVUserEvent {
 	public static EventHandler<ActionEvent> saveEvent(
 		TextField usernameField, TextField nationalIDField,
-		TextField nameTitleField, TextField firstNameField,
-		TextField lastNameField, TextField genderField,
-		TextField birthDateField, TextField emailField,
+		ToggleGroup nameTitleField, TextField firstNameField,
+		TextField lastNameField, ToggleGroup genderField,
+		DatePicker birthDateField, TextField emailField,
 		TextField telephoneNumberField, TextField addressField
 	) {
 		return actionEvent -> {
+			if (nameTitleField.getSelectedToggle() == null ||
+				genderField.getSelectedToggle() == null ||
+				birthDateField.getValue() == null) {
+
+				KornAlert.alert(
+					EnumAlertType.ERROR,
+					"กรุณากรอกข้อมูลให้ครบถ้วน"
+				);
+				return;
+			}
+
 			String username = usernameField.getText();
 			String nationalID = nationalIDField.getText();
-			String nameTitle = nameTitleField.getText();
+			String nameTitle = ((RadioButton) nameTitleField.getSelectedToggle()).getText();
 			String firstName = firstNameField.getText();
 			String lastName = lastNameField.getText();
-			String gender = genderField.getText();
-			String birthDate = birthDateField.getText();
+			String gender = ((RadioButton) genderField.getSelectedToggle()).getText();
+			String birthDate = birthDateField.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			String email = emailField.getText();
 			String telephoneNumber = telephoneNumberField.getText();
 			String address = addressField.getText();
@@ -52,8 +63,8 @@ public class CVUserEvent {
 				return;
 			}
 
-			String convertedNationalID = nationalID.replaceAll("[^0-9]", "");
-			String convertedTelephoneNumber = telephoneNumber.replaceAll("[^0-9]", "");
+			String convertedNationalID = nationalID.replaceAll("\\D", "");
+			String convertedTelephoneNumber = telephoneNumber.replaceAll("\\D", "");
 			nationalID = convertedNationalID;
 			telephoneNumber = convertedTelephoneNumber;
 
@@ -96,8 +107,11 @@ public class CVUserEvent {
 			User user = CVUser.getLoggedInUser();
 			user.setUsername(username);
 			user.setNationalID(nationalID);
+			user.setNameTitle(EnumNameTitle.nameOf(nameTitle));
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
+			user.setGender(EnumGender.nameOf(gender));
+			user.setBirthDate(KornDateTime.createFromMySQLDate(birthDate));
 			user.setEmail(email);
 			user.setTelephoneNumber(telephoneNumber);
 			user.setAddress(address);

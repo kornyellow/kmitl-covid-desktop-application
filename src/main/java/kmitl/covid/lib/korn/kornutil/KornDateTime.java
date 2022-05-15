@@ -1,6 +1,8 @@
 package kmitl.covid.lib.korn.kornutil;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +13,13 @@ public class KornDateTime {
 	}
 	public KornDateTime(Calendar calendar) {
 		this.calendar = calendar;
+	}
+
+	public LocalDate getLocalDate() {
+		return LocalDate.ofInstant(this.calendar.toInstant(), this.calendar.getTimeZone().toZoneId());
+	}
+	public LocalDateTime getLocalDateTime() {
+		return LocalDateTime.ofInstant(this.calendar.toInstant(), this.calendar.getTimeZone().toZoneId());
 	}
 
 	public String toFullDate() {

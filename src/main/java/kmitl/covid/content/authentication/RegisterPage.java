@@ -72,7 +72,7 @@ public class RegisterPage {
 		GridPane.setColumnSpan(nameTitle.getKey(), 2);
 		RegisterPage.node.add(nameTitle.getKey(), 0, 3);
 
-		VBox birthDate = KornField.getDatePicker("วันเกิด", (columnWidth * 2) + columnHGap);
+		VBox birthDate = KornField.getDatePicker("วันเกิด", (columnWidth * 2) + columnHGap, null);
 		GridPane.setColumnSpan(birthDate, 2);
 		RegisterPage.node.add(birthDate, 2, 3);
 
@@ -122,10 +122,10 @@ public class RegisterPage {
 		TextField passwordField = (TextField) password.getChildren().get(1);
 		TextField confirmPasswordField = (TextField) confirmPassword.getChildren().get(1);
 		ToggleGroup genderField = gender.getValue();
-		TextField firstNameField = (TextField) firstName.getChildren().get(1);
-		TextField lastNameField = (TextField) lastName.getChildren().get(1);
 		ToggleGroup nameTitleField = nameTitle.getValue();
 		DatePicker birthDateField = (DatePicker) birthDate.getChildren().get(1);
+		TextField firstNameField = (TextField) firstName.getChildren().get(1);
+		TextField lastNameField = (TextField) lastName.getChildren().get(1);
 		TextField emailField = (TextField) email.getChildren().get(1);
 		TextField telephoneNumberField = (TextField) telephoneNumber.getChildren().get(1);
 		TextField addressField = (TextField) address.getChildren().get(1);

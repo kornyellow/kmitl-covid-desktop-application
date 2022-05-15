@@ -84,7 +84,13 @@ public class ForgotPasswordPage {
 		newPasswordField.setOnAction(forgotPasswordEvent);
 		changePasswordButton.setOnAction(forgotPasswordEvent);
 
-		backButton.setOnAction(Home.redirectEvent(EnumPage.LOGIN()));
+		backButton.setOnAction(actionEvent -> {
+				emailField.clear();
+				nationalIDField.clear();
+				newPasswordField.clear();
+				Home.redirect(EnumPage.LOGIN());
+			}
+		);
 
 		return ForgotPasswordPage.node;
 	}
