@@ -34,6 +34,9 @@ public class DashboardPage {
 		Button vaccineDetailButton = CVStyle.makeButton("ไปหน้ารายละเอียดวัคซีน", "", EnumButtonType.INFO);
 		vaccineDetailButton.setOnAction(Home.redirectEvent(EnumPage.BOOKVACCINEDETAIL()));
 		DashboardPage.node.add(vaccineDetailButton, 0, 2);
+		Button vaccineButton = CVStyle.makeButton("ไปหน้าปฏิทินจองวัคซีน", "", EnumButtonType.INFO);
+		vaccineButton.setOnAction(Home.redirectEvent(EnumPage.BOOKVACCINE()));
+		DashboardPage.node.add(vaccineButton, 0, 3);
 
 		return DashboardPage.node;
 	}
