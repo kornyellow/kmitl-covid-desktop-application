@@ -32,7 +32,7 @@ public class Home {
 		Scene scene;
 		if (page.pageType().equals(EnumPageType.NONLOGGEDIN))
 			scene = Home.getNonLoggedInScene(page.page());
-		else if (CVUser.getLoggedInUser() == null)
+		else if (CVUser.getLoggedInUser() == null && !Config.isDisableStrictLogin)
 			scene = Home.getNonLoggedInScene(EnumPage.LOGIN().page());
 		else scene = Home.getLoggedInScene(page.page());
 

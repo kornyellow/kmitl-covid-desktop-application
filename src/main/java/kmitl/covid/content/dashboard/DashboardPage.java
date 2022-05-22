@@ -28,16 +28,6 @@ public class DashboardPage {
 		GridPane.setColumnSpan(header, 6);
 		DashboardPage.node.add(header, 0, 0);
 
-		Button notificationButton = CVStyle.makeButton("ไปหน้าการแจ้งเตือน", "", EnumButtonType.INFO);
-		notificationButton.setOnAction(Home.redirectEvent(EnumPage.NOTIFICATION()));
-		DashboardPage.node.add(notificationButton, 0, 1);
-		Button vaccineDetailButton = CVStyle.makeButton("ไปหน้ารายละเอียดวัคซีน", "", EnumButtonType.INFO);
-		vaccineDetailButton.setOnAction(Home.redirectEvent(EnumPage.BOOKVACCINEDETAIL()));
-		DashboardPage.node.add(vaccineDetailButton, 0, 2);
-		Button vaccineButton = CVStyle.makeButton("ไปหน้าปฏิทินจองวัคซีน", "", EnumButtonType.INFO);
-		vaccineButton.setOnAction(Home.redirectEvent(EnumPage.BOOKVACCINE()));
-		DashboardPage.node.add(vaccineButton, 0, 3);
-
 		return DashboardPage.node;
 	}
 
