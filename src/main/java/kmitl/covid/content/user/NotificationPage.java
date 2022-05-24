@@ -5,8 +5,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import kmitl.covid.lib.korn.kornresource.KornFont;
 import kmitl.covid.lib.korn.kornresource.KornIcon;
+import kmitl.covid.lib.methods.authentication.CVNotification;
 
 public class NotificationPage {
 	public static GridPane getContent() {
@@ -23,6 +25,15 @@ public class NotificationPage {
 		GridPane.setColumnSpan(header, 6);
 		NotificationPage.node.add(header, 0, 0);
 
+		VBox test = CVNotification.getNotificationLogin();
+		NotificationPage.node.add(test,1,2);
+
+//		Button backButton = CVStyle.makeButton("ย้อนกลับ","\uF01E", EnumButtonType.INFO);
+//		backButton.setMinWidth(middleColumn.getPrefWidth());
+//		backButton.setCancelButton(true);
+//		NotificationPage.node.add(backButton,5,4);
+//
+//		backButton.setOnAction(actionEvent -> { Home.redirect(EnumPage.LOGIN());});
 		return NotificationPage.node;
 	}
 
