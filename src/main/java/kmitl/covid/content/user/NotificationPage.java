@@ -14,6 +14,7 @@ public class NotificationPage {
 	public static GridPane getContent() {
 		if (NotificationPage.node != null) return NotificationPage.node;
 		NotificationPage.node = new GridPane();
+		NotificationPage.node.setVgap(20);
 		NotificationPage.node.setAlignment(Pos.TOP_CENTER);
 
 		Label header = new Label("การแจ้งเตือน");
@@ -25,8 +26,14 @@ public class NotificationPage {
 		GridPane.setColumnSpan(header, 6);
 		NotificationPage.node.add(header, 0, 0);
 
-		VBox test = CVNotification.getNotificationLogin();
-		NotificationPage.node.add(test,1,2);
+		VBox notificationLogin = CVNotification.getNotificationLogin();
+		NotificationPage.node.add(notificationLogin,1,2);
+
+		VBox notificationDataUpdate = CVNotification.getNotificationDataUpdate();
+		NotificationPage.node.add(notificationDataUpdate,1,3);
+
+		VBox notificationBookVaccineDetail= CVNotification.getNotificationBookVaccineDetail();
+		NotificationPage.node.add(notificationBookVaccineDetail,1,4);
 
 //		Button backButton = CVStyle.makeButton("ย้อนกลับ","\uF01E", EnumButtonType.INFO);
 //		backButton.setMinWidth(middleColumn.getPrefWidth());
