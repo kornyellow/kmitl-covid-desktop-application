@@ -12,6 +12,7 @@ import javafx.util.Pair;
 import kmitl.covid.lib.classes.other.PasswordSkin;
 import kmitl.covid.lib.enums.EnumGender;
 import kmitl.covid.lib.enums.EnumNameTitle;
+import kmitl.covid.lib.enums.EnumVaccineType;
 import kmitl.covid.lib.korn.kornresource.KornFont;
 import kmitl.covid.lib.korn.kornutil.KornDateTime;
 
@@ -89,6 +90,60 @@ public class KornField {
 
 		return new Pair<>(box, group);
 	}
+
+	public static Pair<VBox, ToggleGroup> getRadioButtonVaccineType(String labelText) {
+		Label label = new Label(labelText);
+		label.setFont(KornFont.paragraphNormal);
+		label.getStyleClass().add("text");
+
+		ToggleGroup group = new ToggleGroup();
+
+		RadioButton radioButton1 = new RadioButton(EnumVaccineType.PFIZER.getThai());
+		radioButton1.setUserData(EnumVaccineType.PFIZER.getThai());
+		radioButton1.setFont(KornFont.paragraphNormal);
+		radioButton1.setToggleGroup(group);
+		radioButton1.getStyleClass().addAll("form-radio");
+
+		RadioButton radioButton2 = new RadioButton(EnumVaccineType.MODERNA.getThai());
+		radioButton2.setUserData(EnumVaccineType.MODERNA.getThai());
+		radioButton2.setFont(KornFont.paragraphNormal);
+		radioButton2.setToggleGroup(group);
+		radioButton2.getStyleClass().addAll("form-radio");
+
+		RadioButton radioButton3 = new RadioButton(EnumVaccineType.ASTRAZENECA.getThai());
+		radioButton3.setUserData(EnumVaccineType.ASTRAZENECA.getThai());
+		radioButton3.setFont(KornFont.paragraphNormal);
+		radioButton3.setToggleGroup(group);
+		radioButton3.getStyleClass().addAll("form-radio");
+
+		RadioButton radioButton4 = new RadioButton(EnumVaccineType.JOHNSON.getThai());
+		radioButton4.setUserData(EnumVaccineType.JOHNSON.getThai());
+		radioButton4.setFont(KornFont.paragraphNormal);
+		radioButton4.setToggleGroup(group);
+		radioButton4.getStyleClass().addAll("form-radio");
+
+		RadioButton radioButton5 = new RadioButton(EnumVaccineType.SINOVAC.getThai());
+		radioButton5.setUserData(EnumVaccineType.SINOVAC.getThai());
+		radioButton5.setFont(KornFont.paragraphNormal);
+		radioButton5.setToggleGroup(group);
+		radioButton5.getStyleClass().addAll("form-radio");
+
+		HBox radioBox = new HBox();
+		radioBox.setSpacing(15);
+		radioBox.getChildren().add(radioButton1);
+		radioBox.getChildren().add(radioButton2);
+		radioBox.getChildren().add(radioButton3);
+		radioBox.getChildren().add(radioButton4);
+		radioBox.getChildren().add(radioButton5);
+
+		VBox box = new VBox();
+		box.setSpacing(20);
+		box.getChildren().add(label);
+		box.getChildren().add(radioBox);
+
+		return new Pair<>(box, group);
+	}
+
 	public static Pair<VBox, ToggleGroup> getRadioButtonNameTitle(String labelText) {
 		Label label = new Label(labelText);
 		label.setFont(KornFont.paragraphNormal);
@@ -127,6 +182,8 @@ public class KornField {
 
 		return new Pair<>(box, group);
 	}
+
+
 	public static VBox getDatePicker(String labelText, double width, KornDateTime initialDate) {
 		Label label = new Label(labelText);
 		label.setFont(KornFont.paragraphNormal);
