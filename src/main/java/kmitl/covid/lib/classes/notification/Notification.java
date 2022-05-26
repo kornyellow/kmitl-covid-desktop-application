@@ -13,11 +13,12 @@ public class Notification {
 
 	private final int id;
 	private User user;
+	private String title;
 	private String data;
 	private KornDateTime date;
 	private boolean isRead;
 
-	public int getId() {
+	public int getID() {
 		return this.id;
 	}
 	public User getUser() {
@@ -25,6 +26,12 @@ public class Notification {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getTitle() {
+		return this.title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getData() {
 		return this.data;
