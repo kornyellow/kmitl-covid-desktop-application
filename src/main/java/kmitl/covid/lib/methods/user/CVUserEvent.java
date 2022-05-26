@@ -196,11 +196,7 @@ public class CVUserEvent {
 				);
 				return;
 			}
-			int sum = 0;
-			for (int i = 0; i < 12; i++) {
-				sum += (double) nationalID.charAt(i) * (13 - i);
-			}
-			if (((11 - sum % 11) % 10 != (double) nationalID.charAt(12)) || (nationalID.length() != 13)) {
+			if (nationalID.length() != 13) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
 					"เลขบัตรประชาชนไม่ถูกต้อง"
