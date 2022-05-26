@@ -6,6 +6,6 @@ public class Config {
 	public static double applicationWidth = 1920;
 	public static double applicationHeight = 1080;
 
-	public static boolean isLocalhost = true;
-	public static boolean isDisableStrictLogin = true;
+	public static boolean isLocalhost = false;
+	public static boolean isDisableStrictLogin = false;
 }
