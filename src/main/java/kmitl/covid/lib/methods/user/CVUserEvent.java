@@ -173,7 +173,7 @@ public class CVUserEvent {
 
 				KornAlert.alert(
 					EnumAlertType.ERROR,
-					birthDate
+					"กรุณากรอกข้อมูลให้ครบถ้วน"
 				);
 				return;
 			}
