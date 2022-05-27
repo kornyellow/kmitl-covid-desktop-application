@@ -94,7 +94,9 @@ public class DashboardPage {
 		DashboardPage.node.add(recovered, 2, 2);
 
 		Button vaccineButton = CVStyle.makeButton("ทำการจองวัคซีน", "\uF48E", EnumButtonType.SUCCESS);
-		vaccineButton.setOnAction(Home.redirectEvent(EnumPage.BOOKVACCINE()));
+		vaccineButton.setOnAction(actionEvent -> {
+			Home.redirect(EnumPage.BOOKVACCINE());
+		});
 		vaccineButton.setPrefWidth(1000);
 		GridPane.setColumnSpan(vaccineButton, 3);
 		GridPane.setHalignment(vaccineButton, HPos.CENTER);
