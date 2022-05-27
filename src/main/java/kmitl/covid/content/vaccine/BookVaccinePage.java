@@ -74,7 +74,7 @@ public class BookVaccinePage {
 				if (date.isMoreThan(dateNow) == -1 || date.isMoreThan(dateNow) == 0)
 					button.setDisable(true);
 
-				if (Integer.parseInt(date.getMonth()) > BookVaccinePage.selectedMonth)
+				if (Integer.parseInt(date.getMonth()) != BookVaccinePage.selectedMonth)
 					button.getStyleClass().add("btn-blank-other");
 
 				button.setFont(KornFont.paragraphBold);
