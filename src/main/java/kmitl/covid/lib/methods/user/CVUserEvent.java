@@ -14,6 +14,7 @@ import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornfx.KornAlert;
 import kmitl.covid.lib.korn.kornutil.KornDateTime;
 import kmitl.covid.lib.korn.kornutil.KornString;
+import kmitl.covid.lib.methods.notification.CVNotification;
 import kmitl.covid.template.Home;
 import kmitl.covid.template.TemplateHeader;
 
@@ -126,12 +127,12 @@ public class CVUserEvent {
 					nationalIDField.setText(convertedNationalID);
 					telephoneNumberField.setText(convertedTelephoneNumber);
 
-					TemplateHeader.resetHeader();
+					TemplateHeader.reset();
+					CVNotification.pushNotification(CVUser.getLoggedInUser(), "การแก้ไขข้อมูลส่วนตัว", "คุณได้แก้ไขข้อมูลส่วนตัวเรียบร้อยแล้ว");
 					Home.redirect(EnumPage.SETTING());
 				}
 			);
 		};
-
 	}
 	public static EventHandler<ActionEvent> registerEvent(
 		TextField usernameField, TextField nationalIDField,

@@ -2,7 +2,7 @@ package kmitl.covid.lib.classes.vaccineschedule;
 
 import kmitl.covid.lib.korn.kornutil.KornDateTime;
 
-public class VaccineSchedule{
+public class VaccineSchedule {
 	public VaccineSchedule() {
 		this.id = -1;
 	}
@@ -12,9 +12,9 @@ public class VaccineSchedule{
 
 	private final int id;
 	private KornDateTime date;
-	private boolean isAvaiable;
+	private boolean isAvailable;
 
-	public int getId(){
+	public int getID() {
 		return id;
 	}
 	public KornDateTime getDate() {
@@ -23,11 +23,11 @@ public class VaccineSchedule{
 	public void setDate(KornDateTime date) {
 		this.date = date;
 	}
-	public boolean isAvaiable() {
-		return isAvaiable;
+	public boolean isAvailable() {
+		return this.isAvailable;
 	}
-	public void setAvaiable(boolean avaiable) {
-		isAvaiable = avaiable;
+	public void setAvailable(boolean available) {
+		this.isAvailable = available;
 	}
 }
 

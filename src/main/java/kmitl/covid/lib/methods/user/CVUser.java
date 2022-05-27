@@ -110,7 +110,6 @@ public class CVUser {
 		update.set("u_password", KornHash.getHash(user.getPassword()));
 
 		update.where("u_id", String.valueOf(user.getID()));
-		System.out.println(update.build());
 
 		KornQuery query = new KornQuery(CVDB.getDB());
 		query.query(update);

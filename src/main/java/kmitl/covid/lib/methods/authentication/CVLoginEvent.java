@@ -3,6 +3,7 @@ package kmitl.covid.lib.methods.authentication;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
+import kmitl.covid.content.user.NotificationPage;
 import kmitl.covid.lib.enums.EnumAlertType;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornfx.KornAlert;
@@ -41,13 +42,14 @@ public class CVLoginEvent {
 
 			username.clear();
 			password.clear();
+			NotificationPage.reset();
 			Home.redirect(EnumPage.DASHBOARD());
 		};
 	}
 	public static EventHandler<ActionEvent> logoutEvent() {
 		return actionEvent -> {
 			CVUser.removeLoggedInUser();
-			TemplateHeader.resetHeader();
+			TemplateHeader.reset();
 			Home.redirect(EnumPage.LOGIN());
 		};
 	}

@@ -75,18 +75,6 @@ public class LoginPage {
 		registerButton.setMinWidth(middleColumn.getPrefWidth());
 		LoginPage.node.add(registerButton, 1, 6);
 
-		// TEMP
-		Button notificationButton = CVStyle.makeButton("ไปหน้าการแจ้งเตือน", "", EnumButtonType.INFO);
-		notificationButton.setOnAction(Home.redirectEvent(EnumPage.NOTIFICATION()));
-		LoginPage.node.add(notificationButton, 1, 7);
-		Button vaccineDetailButton = CVStyle.makeButton("ไปหน้ารายละเอียดวัคซีน", "", EnumButtonType.INFO);
-		vaccineDetailButton.setOnAction(Home.redirectEvent(EnumPage.BOOKVACCINEDETAIL()));
-		LoginPage.node.add(vaccineDetailButton, 1, 8);
-		Button vaccineButton = CVStyle.makeButton("ไปหน้าปฏิทินจองวัคซีน", "", EnumButtonType.INFO);
-		vaccineButton.setOnAction(Home.redirectEvent(EnumPage.BOOKVACCINE()));
-		LoginPage.node.add(vaccineButton, 1, 9);
-		// END TEMP
-
 		TextField usernameField = (TextField) username.getChildren().get(1);
 		PasswordField passwordField = (PasswordField) password.getChildren().get(1);
 

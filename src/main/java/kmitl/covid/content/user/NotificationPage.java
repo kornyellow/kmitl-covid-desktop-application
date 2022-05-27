@@ -3,12 +3,24 @@ package kmitl.covid.content.user;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import kmitl.covid.lib.classes.notification.Notification;
+import kmitl.covid.lib.enums.EnumAlertType;
+import kmitl.covid.lib.enums.EnumButtonType;
+import kmitl.covid.lib.enums.EnumPage;
+import kmitl.covid.lib.korn.kornfx.KornAlert;
 import kmitl.covid.lib.korn.kornresource.KornFont;
 import kmitl.covid.lib.korn.kornresource.KornIcon;
-import kmitl.covid.lib.methods.authentication.CVNotification;
+import kmitl.covid.lib.methods.notification.CVNotification;
+import kmitl.covid.lib.methods.style.CVStyle;
+import kmitl.covid.lib.methods.user.CVUser;
+import kmitl.covid.template.Home;
+
+import java.util.ArrayList;
 
 public class NotificationPage {
 	public static GridPane getContent() {
@@ -23,26 +35,45 @@ public class NotificationPage {
 		header.setGraphicTextGap(20);
 		header.setPadding(new Insets(0, 0, 20, 0));
 		GridPane.setHalignment(header, HPos.CENTER);
-		GridPane.setColumnSpan(header, 6);
 		NotificationPage.node.add(header, 0, 0);
 
-		VBox notificationLogin = CVNotification.getNotificationLogin();
-		NotificationPage.node.add(notificationLogin,1,2);
+		HBox box = new HBox();
+		box.setSpacing(20);
+		box.setAlignment(Pos.CENTER);
 
-		VBox notificationDataUpdate = CVNotification.getNotificationDataUpdate();
-		NotificationPage.node.add(notificationDataUpdate,1,3);
+		Button deleteButton = CVStyle.makeButton("ลบการแจ้งเตือน", "\uF2ED", EnumButtonType.DANGER);
+		deleteButton.setOnAction(actionEvent -> {
+			CVNotification.readNotifications(CVUser.getLoggedInUser());
+			KornAlert.alert(
+				EnumAlertType.SUCCESS,
+				"ลบการแจ้งเตือนทั้งหมดสำเร็จ",
+				dialogEvent -> Home.redirect(EnumPage.DASHBOARD())
+			);
+		});
+		box.getChildren().add(deleteButton);
 
-		VBox notificationBookVaccineDetail= CVNotification.getNotificationBookVaccineDetail();
-		NotificationPage.node.add(notificationBookVaccineDetail,1,4);
+		Button backButton = CVStyle.makeButton("ย้อนกลับ", "\uF01E", EnumButtonType.INFO);
+		backButton.setOnAction(Home.redirectEvent(EnumPage.DASHBOARD()));
+		box.getChildren().add(backButton);
 
-//		Button backButton = CVStyle.makeButton("ย้อนกลับ","\uF01E", EnumButtonType.INFO);
-//		backButton.setMinWidth(middleColumn.getPrefWidth());
-//		backButton.setCancelButton(true);
-//		NotificationPage.node.add(backButton,5,4);
-//
-//		backButton.setOnAction(actionEvent -> { Home.redirect(EnumPage.LOGIN());});
+		GridPane.setHalignment(box, HPos.CENTER);
+		NotificationPage.node.add(box, 0, 1);
+
+		if (CVUser.getLoggedInUser() != null && CVNotification.getNotificationsUnRead(CVUser.getLoggedInUser()).size() != 0) {
+			ArrayList<Notification> notifications = CVNotification.getNotificationsUnRead(CVUser.getLoggedInUser());
+			int row = 2;
+			for (Notification notification : notifications) {
+				VBox notificationLogin = CVStyle.getNotificationBox(notification);
+				NotificationPage.node.add(notificationLogin, 0, row++);
+			}
+		}
+
 		return NotificationPage.node;
 	}
 
 	private static GridPane node;
+
+	public static void reset() {
+		NotificationPage.node = null;
+	}
 }

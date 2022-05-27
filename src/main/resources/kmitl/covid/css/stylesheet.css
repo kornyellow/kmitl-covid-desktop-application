@@ -46,6 +46,16 @@
 	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0, 0, 0);
 }
 
+.grid-card {
+	-fx-background-color: -fx-light;
+	-fx-background-radius: 10;
+	-fx-padding: 30 40;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+
+	-fx-border-radius: 10;
+	-fx-border-width: 1;
+	-fx-border-color: -fx-gray;
+}
 .card {
 	-fx-background-color: -fx-light;
 	-fx-background-radius: 10;
@@ -58,11 +68,48 @@
 	-fx-padding: 60;
 }
 
+.card-color {
+	-fx-background-radius: 5;
+	-fx-padding: 20 30;
+	-fx-text-fill: -fx-light;
+}
+.card-color-primary {
+	-fx-background-color: -fx-primary;
+	-fx-effect: dropshadow(gaussian, -fx-primary-shadow, 10, 0, 0, 0);
+}
+.card-color-success {
+	-fx-background-color: -fx-success;
+	-fx-effect: dropshadow(gaussian, -fx-success-shadow, 10, 0, 0, 0);
+}
+.card-color-warning {
+	-fx-background-color: -fx-warning;
+	-fx-effect: dropshadow(gaussian, -fx-warning-shadow, 10, 0, 0, 0);
+}
+.card-color-danger {
+	-fx-background-color: -fx-danger;
+	-fx-effect: dropshadow(gaussian, -fx-danger-shadow, 10, 0, 0, 0);
+}
+.card-color-info {
+	-fx-background-color: -fx-info;
+	-fx-effect: dropshadow(gaussian, -fx-info-shadow, 10, 0, 0, 0);
+}
+.card-color-dark {
+	-fx-background-color: -fx-dark;
+	-fx-effect: dropshadow(gaussian, -fx-dark, 10, 0, 0, 0);
+}
+
 .scroll-pane > .viewport {
 	-fx-background-color: transparent;
 }
 .scroll-pane {
 	-fx-background-color: transparent;
+}
+
+.notification-badge {
+	-fx-background-color: -fx-primary;
+	-fx-padding: 4;
+	-fx-background-radius: 10;
+	-fx-text-fill: -fx-light;
 }
 
 .btn-other {
@@ -81,6 +128,26 @@
 }
 .btn:hover {
 	-fx-cursor: hand;
+}
+
+.btn-blank {
+	-fx-background-color: -fx-light;
+	-fx-background-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 20, 0, 0, 0);
+
+	-fx-border-radius: 10;
+	-fx-border-width: 1;
+	-fx-border-color: -fx-gray;
+}
+.btn-blank:hover {
+	-fx-background-color: -fx-gray;
+	-fx-cursor: hand;
+}
+.btn-blank-other {
+	-fx-background-color: #EAF4FF;
+}
+.btn-blank-other:hover {
+	-fx-background-color: #C1E0FF !important;
 }
 
 .btn-primary {
@@ -158,6 +225,9 @@
 
 .text {
 	-fx-text-fill: -fx-dark;
+}
+.text-light {
+	-fx-text-fill: -fx-light;
 }
 .text-primary {
 	-fx-text-fill: -fx-primary;

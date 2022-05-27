@@ -22,6 +22,29 @@ public class KornDateTime {
 		return LocalDateTime.ofInstant(this.calendar.toInstant(), this.calendar.getTimeZone().toZoneId());
 	}
 
+	public void increaseDay() {
+		this.calendar.add(Calendar.DATE, 1);
+	}
+	public void decreaseDay() {
+		this.calendar.add(Calendar.DATE, -1);
+	}
+	public void increaseMonth() {
+		this.calendar.add(Calendar.MONTH, 1);
+	}
+	public void decreaseMonth() {
+		this.calendar.add(Calendar.MONTH, -1);
+	}
+
+	public int isMoreThan(KornDateTime date) {
+		if (Integer.parseInt(this.getYear()) < Integer.parseInt(date.getYear())) return -1;
+		if (Integer.parseInt(this.getYear()) > Integer.parseInt(date.getYear())) return 1;
+
+		if (Integer.parseInt(this.getMonth()) < Integer.parseInt(date.getMonth())) return -1;
+		if (Integer.parseInt(this.getMonth()) > Integer.parseInt(date.getMonth())) return 1;
+
+		return Integer.compare(Integer.parseInt(this.getDate()), Integer.parseInt(date.getDate()));
+	}
+
 	public String toFullDate() {
 		return this.getDate() + " " +
 			this.getMonthString() + " " +
@@ -45,7 +68,7 @@ public class KornDateTime {
 		toReturn.getCalendar().set(Calendar.YEAR, year);
 		toReturn.getCalendar().set(Calendar.MONTH, month - 1);
 		toReturn.getCalendar().set(Calendar.DATE, date);
-		toReturn.getCalendar().set(Calendar.HOUR, hour);
+		toReturn.getCalendar().set(Calendar.HOUR_OF_DAY, hour);
 		toReturn.getCalendar().set(Calendar.MINUTE, minute);
 		toReturn.getCalendar().set(Calendar.SECOND, second);
 		return toReturn;
@@ -62,7 +85,7 @@ public class KornDateTime {
 		toReturn.getCalendar().set(Calendar.YEAR, year - 543);
 		toReturn.getCalendar().set(Calendar.MONTH, month - 1);
 		toReturn.getCalendar().set(Calendar.DATE, date);
-		toReturn.getCalendar().set(Calendar.HOUR, hour);
+		toReturn.getCalendar().set(Calendar.HOUR_OF_DAY, hour);
 		toReturn.getCalendar().set(Calendar.MINUTE, minute);
 		toReturn.getCalendar().set(Calendar.SECOND, second);
 		return toReturn;
@@ -87,6 +110,18 @@ public class KornDateTime {
 			Integer.parseInt(times[1]),
 			Integer.parseInt(times[2])
 		);
+	}
+
+	public static Map<Integer, String> getDayNameThai() {
+		Map<Integer, String> days = new HashMap<>();
+		days.put(1, "จันทร์");
+		days.put(2, "อังคาร");
+		days.put(3, "พุธ");
+		days.put(4, "พฤหัสบดี");
+		days.put(5, "ศุกร์");
+		days.put(6, "เสาร์");
+		days.put(7, "อาทิตย์");
+		return days;
 	}
 
 	public static Map<Integer, String> getMonths() {
@@ -182,6 +217,9 @@ public class KornDateTime {
 		if (day.equals("Sun")) return "อาทิตย์";
 		return "";
 	}
+	public String getDateNumber() {
+		return new SimpleDateFormat("u").format(this.calendar.getTime());
+	}
 
 	public String getMonthWithLeadingZero() {
 		return new SimpleDateFormat("MM").format(this.calendar.getTime());
@@ -235,12 +273,12 @@ public class KornDateTime {
 		return new SimpleDateFormat("yy").format(this.getCalendar().getTime());
 	}
 	public String getYearThai() {
-		KornDateTime thaiYear = new KornDateTime(this.calendar);
+		KornDateTime thaiYear = new KornDateTime((Calendar) this.calendar.clone());
 		thaiYear.getCalendar().add(Calendar.YEAR, 543);
 		return new SimpleDateFormat("yyyy").format(thaiYear.getCalendar().getTime());
 	}
 	public String getYearThaiTwoDigit() {
-		KornDateTime thaiYear = new KornDateTime(this.calendar);
+		KornDateTime thaiYear = new KornDateTime((Calendar) this.calendar.clone());
 		thaiYear.getCalendar().add(Calendar.YEAR, 543);
 		return new SimpleDateFormat("yy").format(thaiYear.getCalendar().getTime());
 	}

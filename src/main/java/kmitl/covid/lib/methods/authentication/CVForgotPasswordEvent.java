@@ -7,6 +7,7 @@ import kmitl.covid.lib.classes.user.User;
 import kmitl.covid.lib.enums.EnumAlertType;
 import kmitl.covid.lib.enums.EnumPage;
 import kmitl.covid.lib.korn.kornfx.KornAlert;
+import kmitl.covid.lib.methods.notification.CVNotification;
 import kmitl.covid.lib.methods.user.CVUser;
 import kmitl.covid.template.Home;
 
@@ -50,7 +51,8 @@ public class CVForgotPasswordEvent {
 				);
 				return;
 			}
-			if (user.getEmail().equals(email)) {
+			user = CVUser.getUserFromEmail(email);
+			if (user == null) {
 				KornAlert.alert(
 					EnumAlertType.ERROR,
 					"อีเมลหรือรหัสบัตรประชาชนไม่ถูกต้อง"
@@ -60,6 +62,8 @@ public class CVForgotPasswordEvent {
 
 			user.setPassword(newPassword);
 			CVUser.updatePassword(user);
+
+			User finalUser = user;
 			KornAlert.alert(
 				EnumAlertType.SUCCESS,
 				"เปลี่ยนรหัสผ่านเรียบร้อย",
@@ -68,6 +72,12 @@ public class CVForgotPasswordEvent {
 					nationalIDField.clear();
 					newPasswordField.clear();
 					Home.redirect(EnumPage.LOGIN());
+
+					CVNotification.pushNotification(
+						finalUser,
+						"การแก้ไขรหัสผ่าน",
+						"คุณได้แก้ไขรหัสผ่านเรียบร้อยแล้ว"
+					);
 				}
 			);
 		};

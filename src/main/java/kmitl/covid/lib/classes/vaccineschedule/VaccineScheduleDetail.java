@@ -1,10 +1,9 @@
 package kmitl.covid.lib.classes.vaccineschedule;
 
 import kmitl.covid.lib.classes.user.User;
-import kmitl.covid.lib.classes.vaccineschedule.VaccineSchedule;
 
 public class VaccineScheduleDetail {
-	public VaccineScheduleDetail(){
+	public VaccineScheduleDetail() {
 		this.id = -1;
 	}
 	public VaccineScheduleDetail(int id) {
@@ -18,7 +17,7 @@ public class VaccineScheduleDetail {
 	private String vaccineName;
 	private String note;
 
-	public int getId() {
+	public int getID() {
 		return id;
 	}
 	public VaccineSchedule getVaccineSchedule() {
@@ -45,7 +44,7 @@ public class VaccineScheduleDetail {
 	public void setVaccineName(String vaccineName) {
 		this.vaccineName = vaccineName;
 	}
-	public String getNote(){
+	public String getNote() {
 		return note;
 	}
 	public void setNote(String note) {
